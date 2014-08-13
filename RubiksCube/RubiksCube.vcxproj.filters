@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Common">
-      <UniqueIdentifier>8b0f8eb7-55a9-47f2-bf68-b7065d571f32</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assets">
       <UniqueIdentifier>9700237c-e205-4e7d-b3cd-c676a2d7e20e</UniqueIdentifier>
     </Filter>
@@ -37,6 +34,18 @@
     <Filter Include="CubeStuff\CubeSolver">
       <UniqueIdentifier>{56f08b96-8a24-4485-a46f-fff21c72fb29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CubeStuff\Cube\D3D">
+      <UniqueIdentifier>{d624dc42-5466-4027-a9b6-e4afa05b0f19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CubeStuff\Cube\NULL Renderer">
+      <UniqueIdentifier>{2d53f5f1-1f59-4082-94fd-9295fb27a269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CubeStuff\Cube\GL">
+      <UniqueIdentifier>{04a960c3-8bbe-47a5-bfe8-632c87cd6be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CubeStuff\Cube\Shared">
+      <UniqueIdentifier>{73c38007-aa90-4849-9b90-6ae8173cf532}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="SimplePixelShader.hlsl" />
@@ -46,15 +55,6 @@
     <ClCompile Include="RubiksCube.cpp" />
     <ClCompile Include="Direct3DBase.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Cube.cpp">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClCompile>
-    <ClCompile Include="Slice.cpp">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClCompile>
-    <ClCompile Include="Sticker.cpp">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClCompile>
     <ClCompile Include="CubePlayer.cpp">
       <Filter>CubeStuff\CubePlayer</Filter>
     </ClCompile>
@@ -65,6 +65,27 @@
     <ClCompile Include="CubeSolver.cpp">
       <Filter>CubeStuff\CubeSolver</Filter>
     </ClCompile>
+    <ClCompile Include="Cube_D3D.cpp">
+      <Filter>CubeStuff\Cube\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Sticker_D3D.cpp">
+      <Filter>CubeStuff\Cube\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Sticker.cpp">
+      <Filter>CubeStuff\Cube\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="Slice.cpp">
+      <Filter>CubeStuff\Cube\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="Sticker_NULL.cpp">
+      <Filter>CubeStuff\Cube\NULL Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube_NULL.cpp">
+      <Filter>CubeStuff\Cube\NULL Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>CubeStuff\Cube\Shared</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RubiksCube.h" />
@@ -72,15 +93,6 @@
     <ClInclude Include="Direct3DBase.h" />
     <ClInclude Include="BasicTimer.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Cube.h">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClInclude>
-    <ClInclude Include="Slice.h">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClInclude>
-    <ClInclude Include="Sticker.h">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClInclude>
     <ClInclude Include="CubePlayer.h">
       <Filter>CubeStuff\CubePlayer</Filter>
     </ClInclude>
@@ -93,6 +105,27 @@
     </ClInclude>
     <ClInclude Include="CubeHelperFunctions.h">
       <Filter>CubeStuff\CubeHelperFunctions</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube_D3D.h">
+      <Filter>CubeStuff\Cube\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Sticker_D3D.h">
+      <Filter>CubeStuff\Cube\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Sticker.h">
+      <Filter>CubeStuff\Cube\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Slice.h">
+      <Filter>CubeStuff\Cube\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Sticker_NULL.h">
+      <Filter>CubeStuff\Cube\NULL Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube_NULL.h">
+      <Filter>CubeStuff\Cube\NULL Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>CubeStuff\Cube\Shared</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -19,11 +19,11 @@ void SDKRenderer::CreateDeviceResources()
 
     seed = 5745463;
     seed = 2352242;
-    // seed = 4741;
-    seed = 4754;
+    seed = 4741;
+    // seed = 4754;
 
-	pCube = new Cube();
-	pCube->InitializeModel(m_d3dDevice.Get());
+    pCube = new Cube_D3D(m_d3dDevice.Get(), m_d3dContext.Get());
+	pCube->InitializeModels();
 	pCube->Randomize(seed);
 
 	pCubePlayer = new CubePlayer(pCube);
@@ -39,7 +39,7 @@ void SDKRenderer::CreateDeviceResources()
 
 	// Complete cross broken: 
 
-	Cube *pCubeClone = new Cube();
+    Cube *pCubeClone = new Cube_D3D(m_d3dDevice.Get(), m_d3dContext.Get());
 	pCubeClone->Randomize(seed);
 	// pCubeClone->topFaceStickers[1][0]->SetColor(CUBE_ORANGE);
 	// pCubeClone->backFaceStickers[2][1]->SetColor(CUBE_ORANGE);
@@ -117,7 +117,7 @@ void SDKRenderer::Render()
 		m_depthStencilView.Get()
 		);
 
-	pCube->Draw(m_d3dContext.Get(), &m_viewMatrix, &m_projectionMatrix);
+	pCube->Draw(&m_viewMatrix, &m_projectionMatrix);
 
 
 
@@ -129,6 +129,6 @@ void SDKRenderer::Render()
 
 	XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMLoadFloat4x4(&m_viewMatrix), XMMatrixTranslation(10, 0, 0)));
 
-	pCube->Draw(m_d3dContext.Get(), &m_viewMatrix, &m_projectionMatrix);
+	pCube->Draw(&m_viewMatrix, &m_projectionMatrix);
 
 }

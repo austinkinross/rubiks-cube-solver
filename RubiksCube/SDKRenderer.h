@@ -4,6 +4,8 @@
 #include "CubePlayer.h"
 #include "CubeSolver.h"
 
+#include "Cube_D3D.h"
+
 #include <agile.h>
 
 // This class renders a simple spinning cube.

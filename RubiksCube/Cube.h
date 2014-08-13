@@ -2,18 +2,19 @@
 
 #include "pch.h"
 #include "Sticker.h"
+#include "Sticker_D3D.h"
 #include "Slice.h"
 #include "CubeHelperFunctions.h"
 
 class Cube
 {
 public:
-	EXPORTFORTEST Cube();	
+    EXPORTFORTEST Cube();
 
-	void InitializeModel(ID3D11Device1 *pDevice);
+	void InitializeModels();
 	EXPORTFORTEST void Randomize(UINT seed);
 
-	void Draw(ID3D11DeviceContext1 *pContext, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
+	void Draw(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
 	void SilentlyRotateY();
 	void ApplyCommand(CubeCommand command);
 
@@ -33,4 +34,6 @@ public:
 	Sticker* frontFaceStickers[3][3];
 	Sticker* backFaceStickers[3][3];
 
+protected:
+    void InitializeSlices();
 };

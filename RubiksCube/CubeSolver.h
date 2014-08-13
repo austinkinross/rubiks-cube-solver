@@ -15,7 +15,6 @@ enum CubeSide
 	cBack
 };
 
-
 class CubeSolver
 {
 public:
@@ -44,9 +43,6 @@ private:
 	void ParseCommandString(char *pCommandString, UINT stringLength);
 	void CubeSolver::AddRandomMoves(); //temporary
 
-
-
 	Cube *pPrivateCube;
 	CubeCommandList *m_pCubeCommandList;
-
 };

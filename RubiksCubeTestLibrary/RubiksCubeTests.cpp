@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "../RubiksCube/Cube.h"
+#include "../RubiksCube/Cube_NULL.h"
 #include "../RubiksCube/CubeSolver.h"
 // #pragma comment(lib, "../Debug/RubiksCube/RubiksCube.lib")
 
@@ -36,7 +36,7 @@ namespace UnitTestLibrary
 				UINT seed = 2281 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-				Cube *pCube = new Cube();
+				Cube *pCube = new Cube_NULL();
 				pCube->Randomize(seed);
 
 				CubeSolver *pCubeSolver = new CubeSolver(pCube);
@@ -61,7 +61,7 @@ namespace UnitTestLibrary
                 UINT seed = 2281 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-				Cube *pCube = new Cube();
+                Cube *pCube = new Cube_NULL();
 				pCube->Randomize(seed);
 
 				CubeSolver *pCubeSolver = new CubeSolver(pCube);
@@ -87,7 +87,7 @@ namespace UnitTestLibrary
                 UINT seed = 2281 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-				Cube *pCube = new Cube();
+                Cube *pCube = new Cube_NULL();
 				pCube->Randomize(seed);
 
 				CubeSolver *pCubeSolver = new CubeSolver(pCube);
@@ -114,7 +114,7 @@ namespace UnitTestLibrary
                 UINT seed = 2281 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-				Cube *pCube = new Cube();
+                Cube *pCube = new Cube_NULL();
 				pCube->Randomize(seed);
 
 				CubeSolver *pCubeSolver = new CubeSolver(pCube);
@@ -142,7 +142,7 @@ namespace UnitTestLibrary
                 UINT seed = 99123 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube();
+                Cube *pCube = new Cube_NULL();
                 pCube->Randomize(seed);
 
                 CubeSolver *pCubeSolver = new CubeSolver(pCube);
@@ -165,7 +165,7 @@ namespace UnitTestLibrary
                 UINT seed = 99123 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube();
+                Cube *pCube = new Cube_NULL();
                 pCube->Randomize(seed);
 
                 CubeSolver *pCubeSolver = new CubeSolver(pCube);
@@ -197,7 +197,7 @@ namespace UnitTestLibrary
                 UINT seed = 99123 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube();
+                Cube *pCube = new Cube_NULL();
                 pCube->Randomize(seed);
 
                 CubeSolver *pCubeSolver = new CubeSolver(pCube);

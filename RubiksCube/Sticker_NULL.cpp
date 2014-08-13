@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Sticker.h"
+#include "Sticker_NULL.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // A "Sticker" represents a single face of a single cublet.
@@ -10,41 +10,17 @@
 // The sticker's final world matrix is the product of these matrices.
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Sticker::Sticker(StickerColor color)
+Sticker_NULL::Sticker_NULL(StickerColor color) : Sticker(color)
 {
-	this->color = color;
-	pRotation1 = NULL;
-	pRotation2 = NULL;
-	pRotation3 = NULL;
+
 }
 
-void Sticker::AttachRotationMatrix(XMFLOAT4X4 *pRotationMatrix)
+void Sticker_NULL::InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotation, int pos1, int pos2)
 {
-	if (pRotation1 == NULL)
-	{
-		pRotation1 = pRotationMatrix;
-		return;
-	}
-	if (pRotation2 == NULL)
-	{
-		pRotation2 = pRotationMatrix;
-		return;
-	}
-	if (pRotation3 == NULL)
-	{
-		pRotation3 = pRotationMatrix;
-		return;
-	}
-	assert(0);
+    throw Platform::Exception::CreateException(E_NOTIMPL, ref new Platform::String(L"Don't initialize the models on the NULL sticker."));
 }
 
-void Sticker::SetColor(StickerColor color)
+void Sticker_NULL::Draw(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
 {
-    this->color = color;
+    throw Platform::Exception::CreateException(E_NOTIMPL, ref new Platform::String(L"Don't draw on the NULL sticker."));
 }
-
-StickerColor Sticker::GetColor()
-{
-	return this->color;
-}
-
