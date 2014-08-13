@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>7efcce23-2141-4159-8dd3-89c206bc8368</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>74808c4a-6940-4b3b-aa65-98b6f458e2bf</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>9371d92c-8e4d-413f-a2ee-7ff9989a3221</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Package">
+      <UniqueIdentifier>d7d6f05f-637a-4b7f-90b7-74f703e82f39</UniqueIdentifier>
+      <Extensions>appxmanifest;tile;settings</Extensions>
+    </Filter>
+    <Filter Include="CubeStuff">
+      <UniqueIdentifier>{bb8e0df2-0668-402c-82a1-433dfee836d2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RubiksCube\Cube.h">
+      <Filter>CubeStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RubiksCube\CubeCommandList.h">
+      <Filter>CubeStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RubiksCube\CubeHelperFunctions.h">
+      <Filter>CubeStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RubiksCube\CubeSolver.h">
+      <Filter>CubeStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RubiksCube\Slice.h">
+      <Filter>CubeStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RubiksCube\Sticker.h">
+      <Filter>CubeStuff</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="unittest1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RubiksCube\Cube.cpp">
+      <Filter>CubeStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RubiksCube\CubeCommandList.cpp">
+      <Filter>CubeStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RubiksCube\CubeHelperFunctions.cpp">
+      <Filter>CubeStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RubiksCube\CubeSolver.cpp">
+      <Filter>CubeStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RubiksCube\Slice.cpp">
+      <Filter>CubeStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\RubiksCube\Sticker.cpp">
+      <Filter>CubeStuff</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\UnitTestLogo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\UnitTestSmallLogo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\UnitTestSplashScreen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\UnitTestStoreLogo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <Filter>Package</Filter>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnitTestLibrary_TemporaryKey.pfx" />
+  </ItemGroup>
+</Project>

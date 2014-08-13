@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>8b0f8eb7-55a9-47f2-bf68-b7065d571f32</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>9700237c-e205-4e7d-b3cd-c676a2d7e20e</UniqueIdentifier>
+    </Filter>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Filter Include="CubeStuff">
+      <UniqueIdentifier>{a9b9a229-42bb-4f6f-9873-3c56d4be9abc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CubeStuff\Cube">
+      <UniqueIdentifier>{3a337c97-4cdc-49a3-9b08-3130c45681b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CubeStuff\CubeCommandList">
+      <UniqueIdentifier>{aabade25-3bbe-432d-a977-d03b61e69d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CubeStuff\CubePlayer">
+      <UniqueIdentifier>{31d14b8e-38ab-4f63-afa1-dc28fc7901d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CubeStuff\CubeHelperFunctions">
+      <UniqueIdentifier>{6a27f4d4-8329-4047-bdab-df0f82599a92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CubeStuff\CubeSolver">
+      <UniqueIdentifier>{56f08b96-8a24-4485-a46f-fff21c72fb29}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="SimplePixelShader.hlsl" />
+    <FxCompile Include="SimpleVertexShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RubiksCube.cpp" />
+    <ClCompile Include="Direct3DBase.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Cube.cpp">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Slice.cpp">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Sticker.cpp">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="CubePlayer.cpp">
+      <Filter>CubeStuff\CubePlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="SDKRenderer.cpp" />
+    <ClCompile Include="CubeCommandList.cpp">
+      <Filter>CubeStuff\CubeCommandList</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeHelperFunctions.cpp">
+      <Filter>CubeStuff\CubeHelperFunctions</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeSolver.cpp">
+      <Filter>CubeStuff\CubeSolver</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RubiksCube.h" />
+    <ClInclude Include="DirectXHelper.h" />
+    <ClInclude Include="Direct3DBase.h" />
+    <ClInclude Include="BasicTimer.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Cube.h">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Slice.h">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Sticker.h">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="CubePlayer.h">
+      <Filter>CubeStuff\CubePlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="SDKRenderer.h" />
+    <ClInclude Include="CubeCommandList.h">
+      <Filter>CubeStuff\CubeCommandList</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeSolver.h">
+      <Filter>CubeStuff\CubeSolver</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeHelperFunctions.h">
+      <Filter>CubeStuff\CubeHelperFunctions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RubiksCube_TemporaryKey.pfx" />
+  </ItemGroup>
+</Project>
