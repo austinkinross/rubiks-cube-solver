@@ -17,8 +17,8 @@ void SDKRenderer::CreateDeviceResources()
 	// Known to break:  //4741; // 11947; // 1074; //2311;
     UINT seed = 0;
 
-    seed = 5745763463;
-    seed = 235234242;
+    seed = 5745463;
+    seed = 2352242;
     // seed = 4741;
     seed = 4754;
 

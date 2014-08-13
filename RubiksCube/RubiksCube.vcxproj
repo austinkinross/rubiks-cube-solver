@@ -139,7 +139,6 @@
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeCommandList.cpp" />
-    <ClCompile Include="CubeHelperFunctions.cpp" />
     <ClCompile Include="CubePlayer.cpp" />
     <ClCompile Include="CubeSolver.cpp" />
     <ClCompile Include="Slice.cpp" />

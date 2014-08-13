@@ -9,6 +9,13 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTestLibrary
 {
+    // Little helper method to wrap OutputDebugStringA
+    void OutputDebugStringAndInt(const char* string, int i)
+    {
+        char s[100];
+        sprintf_s(s, string, i);
+        OutputDebugStringA(s);
+    }
 
 	void VerifyCube(Cube *pCube, bool bVerifyCross, bool bVerifyF2L, bool bVerifyTopOrientation, bool bVerifyTopPermutation);
 
@@ -22,11 +29,12 @@ namespace UnitTestLibrary
 		//-----------------------------------------------------------------------
         TEST_METHOD(ValidateInitialCross)
         {
-			const UINT numSeedsToTest = 10000;
+			const int numSeedsToTest = 1000;
 
 			for (int i = 0; i < numSeedsToTest; i++)
 			{
 				UINT seed = 2281 + i;
+                OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
 				Cube *pCube = new Cube();
 				pCube->Randomize(seed);
@@ -46,11 +54,12 @@ namespace UnitTestLibrary
 		//-----------------------------------------------------------------------
         TEST_METHOD(ValidateF2L)
         {
-			const UINT numSeedsToTest = 10000;
+			const int numSeedsToTest = 1000;
 
 			for (int i = 0; i < numSeedsToTest; i++)
 			{
-				UINT seed = 3875 + i;
+                UINT seed = 2281 + i;
+                OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
 				Cube *pCube = new Cube();
 				pCube->Randomize(seed);
@@ -71,16 +80,12 @@ namespace UnitTestLibrary
 		//-----------------------------------------------------------------------
         TEST_METHOD(ValidateTopOrientation)
         {
-			const UINT numSeedsToTest = 10000;
+			const int numSeedsToTest = 1000;
 
 			for (int i = 0; i < numSeedsToTest; i++)
 			{
-				UINT seed = 3875 + i;
-
-				char s[50];
-				sprintf_s(s, "Current seed: %d.\n", seed);
-
-				OutputDebugStringA(s);
+                UINT seed = 2281 + i;
+                OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
 				Cube *pCube = new Cube();
 				pCube->Randomize(seed);
@@ -97,21 +102,17 @@ namespace UnitTestLibrary
         }
 
 		//-----------------------------------------------------------------------
-		// Test to validate the complete solution of the cube!
+		// Test to validate top layer permutations
 		// It randomly generates a cube, uses the CubeSolver to solve the cube, then validates the result
 		//-----------------------------------------------------------------------
         TEST_METHOD(ValidateTopPermutation)
         {
-			const UINT numSeedsToTest = 10000;
+			const int numSeedsToTest = 1000;
 
 			for (int i = 0; i < numSeedsToTest; i++)
 			{
-				UINT seed = 3877 + i;
-
-				char s[50];
-				sprintf_s(s, "Current seed: %d.\n", seed);
-
-				OutputDebugStringA(s);
+                UINT seed = 2281 + i;
+                OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
 				Cube *pCube = new Cube();
 				pCube->Randomize(seed);
@@ -128,24 +129,41 @@ namespace UnitTestLibrary
 			}
         }
 
+        //-----------------------------------------------------------------------
+        // Test to validate the complete solution of the cube!
+        // It randomly generates a cube, uses the CubeSolver to solve the cube, then validates the result
+        //-----------------------------------------------------------------------
+        TEST_METHOD(ValidateFullSolution)
+        {
+            const int numSeedsToTest = 10000;
+
+            for (int i = 0; i < numSeedsToTest; i++)
+            {
+                UINT seed = 99123 + i;
+                OutputDebugStringAndInt("Current seed: %d.\n", seed);
+
+                Cube *pCube = new Cube();
+                pCube->Randomize(seed);
+
+                CubeSolver *pCubeSolver = new CubeSolver(pCube);
+                pCubeSolver->Solve();
+
+                // Ensure the bottom face is totally solved
+                VerifyCube(pCube, true, true, true, true);
+            }
+        }
 
 		//-----------------------------------------------------------------------
 		// Test to validate the solution optimiser
 		//-----------------------------------------------------------------------
 		TEST_METHOD(ValidateOptimiser)
         {
+            const int numSeedsToTest = 1000;
             
-            const UINT numSeedsToTest = 1000;
-            
-            UINT totalNumberOfMoves = 0;
-
             for (int i = 0; i < numSeedsToTest; i++)
             {
-                UINT seed = 3877 + i;
-
-                char s[50];
-                sprintf_s(s, "Current seed: %d.\n", seed);
-                OutputDebugStringA(s);
+                UINT seed = 99123 + i;
+                OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
                 Cube *pCube = new Cube();
                 pCube->Randomize(seed);
@@ -157,20 +175,47 @@ namespace UnitTestLibrary
                 pCubeSolver->GetCubeCommandList(&pCubeCommandList);
                 pCubeCommandList->Optimize();
 
-                CHAR outputChar[100];
-                sprintf_s(&outputChar[0], 100, "Number of moves: %d\n", pCubeCommandList->GetLength());
-                OutputDebugStringA(outputChar);
+                // TODO: Playback pCubeCommandList on a cube, and ensure it's correct.
+                Assert::IsTrue(false);
 
-                totalNumberOfMoves += pCubeCommandList->GetLength();
+                // Ensure the bottom face is totally solved
+                //VerifyCube(pCube, true, true, true, true);
+            }
+        }
+
+        //-----------------------------------------------------------------------
+        // Not really a test, but it's a good place to put this...
+        //-----------------------------------------------------------------------
+        TEST_METHOD(CalculateAverageNumberOfMoves)
+        {
+            const int numSeedsToTest = 1000;
+
+            int totalNumberOfMoves = 0;
+
+            for (int i = 0; i < numSeedsToTest; i++)
+            {
+                UINT seed = 99123 + i;
+                OutputDebugStringAndInt("Current seed: %d.\n", seed);
+
+                Cube *pCube = new Cube();
+                pCube->Randomize(seed);
+
+                CubeSolver *pCubeSolver = new CubeSolver(pCube);
+                pCubeSolver->Solve();
+
+                CubeCommandList* pCubeCommandList = NULL;
+                pCubeSolver->GetCubeCommandList(&pCubeCommandList);
+                pCubeCommandList->Optimize();
 
                 // Ensure the bottom face is totally solved
                 VerifyCube(pCube, true, true, true, true);
+
+                totalNumberOfMoves += pCubeCommandList->GetLength();
             }
 
-            CHAR outputChar[100];
-            sprintf_s(&outputChar[0], 100, "Total number of moves: %d\n", totalNumberOfMoves);
-            OutputDebugStringA(outputChar);
+            int averageMoves = totalNumberOfMoves / numSeedsToTest;
 
+            OutputDebugStringAndInt("Average number of moves to solve: %d.\n", averageMoves);
         }
 
     };

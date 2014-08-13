@@ -62,9 +62,6 @@
     <ClCompile Include="CubeCommandList.cpp">
       <Filter>CubeStuff\CubeCommandList</Filter>
     </ClCompile>
-    <ClCompile Include="CubeHelperFunctions.cpp">
-      <Filter>CubeStuff\CubeHelperFunctions</Filter>
-    </ClCompile>
     <ClCompile Include="CubeSolver.cpp">
       <Filter>CubeStuff\CubeSolver</Filter>
     </ClCompile>

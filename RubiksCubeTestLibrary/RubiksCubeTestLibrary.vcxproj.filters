@@ -51,9 +51,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="unittest1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\RubiksCube\Cube.cpp">
       <Filter>CubeStuff</Filter>
     </ClCompile>
@@ -71,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="..\RubiksCube\Sticker.cpp">
       <Filter>CubeStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="RubiksCubeTests.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +93,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <None Include="UnitTestLibrary_TemporaryKey.pfx" />
+    <None Include="RubiksCubeTestLibrary_TemporaryKey.pfx" />
   </ItemGroup>
 </Project>
