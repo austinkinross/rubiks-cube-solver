@@ -154,6 +154,7 @@
     <ClCompile Include="RendererD3D.cpp" />
     <ClCompile Include="CubeSolver.cpp" />
     <ClCompile Include="RendererGL.cpp" />
+    <ClCompile Include="RendererGL_WindowsStore.cpp" />
     <ClCompile Include="Slice.cpp" />
     <ClCompile Include="AgnosticApplication.cpp" />
     <ClCompile Include="Sticker.cpp" />

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "../RubiksCube/Cube_NULL.h"
+#include "../RubiksCube/Cube.h"
 #include "../RubiksCube/CubeSolver.h"
 // #pragma comment(lib, "../Debug/RubiksCube/RubiksCube.lib")
 
@@ -36,15 +36,13 @@ namespace UnitTestLibrary
 				UINT seed = 2281 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-				Cube *pCube = new Cube_NULL();
-				pCube->Randomize(seed);
-
-				CubeSolver *pCubeSolver = new CubeSolver(pCube);
+				CubeSolver *pCubeSolver = new CubeSolver();
+                pCubeSolver->GetCube()->Randomize(seed);
 				pCubeSolver->PrepareForSolve();
 				pCubeSolver->SolveStage1();
 
 				// Ensure there is a cross shape on the bottom face
-				VerifyCube(pCube, true, false, false, false);
+                VerifyCube(pCubeSolver->GetCube(), true, false, false, false);
 			}
         }
 
@@ -61,16 +59,14 @@ namespace UnitTestLibrary
                 UINT seed = 2281 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube_NULL();
-				pCube->Randomize(seed);
-
-				CubeSolver *pCubeSolver = new CubeSolver(pCube);
+				CubeSolver *pCubeSolver = new CubeSolver();
+                pCubeSolver->GetCube()->Randomize(seed);
 				pCubeSolver->PrepareForSolve();
 				pCubeSolver->SolveStage1();
 				pCubeSolver->SolveStage2();
 
 				// Ensure the bottom face is totally solved
-				VerifyCube(pCube, true, true, false, false);
+                VerifyCube(pCubeSolver->GetCube(), true, true, false, false);
 			}
         }
 
@@ -87,17 +83,15 @@ namespace UnitTestLibrary
                 UINT seed = 2281 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube_NULL();
-				pCube->Randomize(seed);
-
-				CubeSolver *pCubeSolver = new CubeSolver(pCube);
+				CubeSolver *pCubeSolver = new CubeSolver();
+                pCubeSolver->GetCube()->Randomize(seed);
 				pCubeSolver->PrepareForSolve();
 				pCubeSolver->SolveStage1();
 				pCubeSolver->SolveStage2();
 				pCubeSolver->SolveStage3();
 
 				// Ensure the bottom face is totally solved
-				VerifyCube(pCube, true, true, true, false);
+                VerifyCube(pCubeSolver->GetCube(), true, true, true, false);
 			}
         }
 
@@ -114,10 +108,8 @@ namespace UnitTestLibrary
                 UINT seed = 2281 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube_NULL();
-				pCube->Randomize(seed);
-
-				CubeSolver *pCubeSolver = new CubeSolver(pCube);
+                CubeSolver *pCubeSolver = new CubeSolver();
+                pCubeSolver->GetCube()->Randomize(seed);
 				pCubeSolver->PrepareForSolve();
 				pCubeSolver->SolveStage1();
 				pCubeSolver->SolveStage2();
@@ -125,7 +117,7 @@ namespace UnitTestLibrary
 				pCubeSolver->SolveStage4();
 
 				// Ensure the bottom face is totally solved
-				VerifyCube(pCube, true, true, true, true);
+                VerifyCube(pCubeSolver->GetCube(), true, true, true, true);
 			}
         }
 
@@ -142,14 +134,12 @@ namespace UnitTestLibrary
                 UINT seed = 99123 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube_NULL();
-                pCube->Randomize(seed);
-
-                CubeSolver *pCubeSolver = new CubeSolver(pCube);
+                CubeSolver *pCubeSolver = new CubeSolver();
+                pCubeSolver->GetCube()->Randomize(seed);
                 pCubeSolver->Solve();
 
                 // Ensure the bottom face is totally solved
-                VerifyCube(pCube, true, true, true, true);
+                VerifyCube(pCubeSolver->GetCube(), true, true, true, true);
             }
         }
 
@@ -165,10 +155,8 @@ namespace UnitTestLibrary
                 UINT seed = 99123 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube_NULL();
-                pCube->Randomize(seed);
-
-                CubeSolver *pCubeSolver = new CubeSolver(pCube);
+                CubeSolver *pCubeSolver = new CubeSolver();
+                pCubeSolver->GetCube()->Randomize(seed);
                 pCubeSolver->Solve();
 
                 CubeCommandList* pCubeCommandList = NULL;
@@ -197,10 +185,8 @@ namespace UnitTestLibrary
                 UINT seed = 99123 + i;
                 OutputDebugStringAndInt("Current seed: %d.\n", seed);
 
-                Cube *pCube = new Cube_NULL();
-                pCube->Randomize(seed);
-
-                CubeSolver *pCubeSolver = new CubeSolver(pCube);
+                CubeSolver *pCubeSolver = new CubeSolver();
+                pCubeSolver->GetCube()->Randomize(seed);
                 pCubeSolver->Solve();
 
                 CubeCommandList* pCubeCommandList = NULL;
@@ -208,7 +194,7 @@ namespace UnitTestLibrary
                 pCubeCommandList->Optimize();
 
                 // Ensure the bottom face is totally solved
-                VerifyCube(pCube, true, true, true, true);
+                VerifyCube(pCubeSolver->GetCube(), true, true, true, true);
 
                 totalNumberOfMoves += pCubeCommandList->GetLength();
             }

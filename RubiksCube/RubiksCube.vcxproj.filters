@@ -93,6 +93,9 @@
     <ClCompile Include="RendererGL.cpp">
       <Filter>Renderer\GL</Filter>
     </ClCompile>
+    <ClCompile Include="RendererGL_WindowsStore.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubePlayer.h">

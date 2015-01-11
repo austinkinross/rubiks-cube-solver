@@ -46,12 +46,6 @@
     <ClInclude Include="..\RubiksCube\Sticker.h">
       <Filter>CubeStuff</Filter>
     </ClInclude>
-    <ClInclude Include="..\RubiksCube\Sticker_NULL.h">
-      <Filter>CubeStuff</Filter>
-    </ClInclude>
-    <ClInclude Include="..\RubiksCube\Cube_NULL.h">
-      <Filter>CubeStuff</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -74,12 +68,6 @@
     </ClCompile>
     <ClCompile Include="RubiksCubeTests.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\RubiksCube\Sticker_NULL.cpp">
-      <Filter>CubeStuff</Filter>
-    </ClCompile>
-    <ClCompile Include="..\RubiksCube\Cube_NULL.cpp">
-      <Filter>CubeStuff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -223,10 +223,8 @@
     <ClInclude Include="..\RubiksCube\CubeCommandList.h" />
     <ClInclude Include="..\RubiksCube\CubeHelperFunctions.h" />
     <ClInclude Include="..\RubiksCube\CubeSolver.h" />
-    <ClInclude Include="..\RubiksCube\Cube_NULL.h" />
     <ClInclude Include="..\RubiksCube\Slice.h" />
     <ClInclude Include="..\RubiksCube\Sticker.h" />
-    <ClInclude Include="..\RubiksCube\Sticker_NULL.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -234,10 +232,8 @@
     <ClCompile Include="..\RubiksCube\Cube.cpp" />
     <ClCompile Include="..\RubiksCube\CubeCommandList.cpp" />
     <ClCompile Include="..\RubiksCube\CubeSolver.cpp" />
-    <ClCompile Include="..\RubiksCube\Cube_NULL.cpp" />
     <ClCompile Include="..\RubiksCube\Slice.cpp" />
     <ClCompile Include="..\RubiksCube\Sticker.cpp" />
-    <ClCompile Include="..\RubiksCube\Sticker_NULL.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
