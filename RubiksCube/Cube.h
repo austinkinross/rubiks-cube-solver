@@ -3,17 +3,16 @@
 #include "pch.h"
 #include "Slice.h"
 #include "CubeHelperFunctions.h"
-#include "CubeRenderer.h"
+#include "Renderer.h"
 
 class Cube
 {
 public:
     EXPORTFORTEST Cube();
 
-	void InitializeModels();
 	EXPORTFORTEST void Randomize(UINT seed);
 
-	void Draw(CubeRenderer* pCubeRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
+	void Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
 	void SilentlyRotateY();
 	void ApplyCommand(CubeCommand command);
 

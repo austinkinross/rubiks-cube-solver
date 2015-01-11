@@ -34,39 +34,39 @@
     <Filter Include="CubeStuff\CubeSolver">
       <UniqueIdentifier>{56f08b96-8a24-4485-a46f-fff21c72fb29}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CubeStuff\CubeRenderer">
+    <Filter Include="Renderer">
       <UniqueIdentifier>{ca699fb9-abe8-4f44-811d-a224931541f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CubeStuff\CubeRenderer\NULL Renderer">
+    <Filter Include="Renderer\NULL Renderer">
       <UniqueIdentifier>{2d53f5f1-1f59-4082-94fd-9295fb27a269}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CubeStuff\CubeRenderer\D3D">
+    <Filter Include="Renderer\D3D">
       <UniqueIdentifier>{d624dc42-5466-4027-a9b6-e4afa05b0f19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CubeStuff\CubeRenderer\GL">
+    <Filter Include="Renderer\GL">
       <UniqueIdentifier>{04a960c3-8bbe-47a5-bfe8-632c87cd6be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowsStore">
+      <UniqueIdentifier>{485465b6-9f35-4634-a8b3-33bc454a91ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="SimplePixelShader.hlsl" />
-    <FxCompile Include="SimpleVertexShader.hlsl" />
+    <FxCompile Include="SimpleVertexShader.hlsl">
+      <Filter>Renderer\D3D</Filter>
+    </FxCompile>
+    <FxCompile Include="SimplePixelShader.hlsl">
+      <Filter>Renderer\D3D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RubiksCube.cpp" />
-    <ClCompile Include="Direct3DBase.cpp" />
-    <ClCompile Include="pch.cpp" />
     <ClCompile Include="CubePlayer.cpp">
       <Filter>CubeStuff\CubePlayer</Filter>
     </ClCompile>
-    <ClCompile Include="SDKRenderer.cpp" />
     <ClCompile Include="CubeCommandList.cpp">
       <Filter>CubeStuff\CubeCommandList</Filter>
     </ClCompile>
     <ClCompile Include="CubeSolver.cpp">
       <Filter>CubeStuff\CubeSolver</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeRenderer.cpp">
-      <Filter>CubeStuff\CubeRenderer</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
       <Filter>CubeStuff\Cube</Filter>
@@ -77,20 +77,21 @@
     <ClCompile Include="Sticker.cpp">
       <Filter>CubeStuff\Cube</Filter>
     </ClCompile>
-    <ClCompile Include="CubeRendererD3D.cpp">
-      <Filter>CubeStuff\CubeRenderer\D3D</Filter>
+    <ClCompile Include="AppRenderer.cpp" />
+    <ClCompile Include="RendererD3D.cpp">
+      <Filter>Renderer\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsStoreApp.cpp">
+      <Filter>WindowsStore</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>WindowsStore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RubiksCube.h" />
-    <ClInclude Include="DirectXHelper.h" />
-    <ClInclude Include="Direct3DBase.h" />
-    <ClInclude Include="BasicTimer.h" />
-    <ClInclude Include="pch.h" />
     <ClInclude Include="CubePlayer.h">
       <Filter>CubeStuff\CubePlayer</Filter>
     </ClInclude>
-    <ClInclude Include="SDKRenderer.h" />
     <ClInclude Include="CubeCommandList.h">
       <Filter>CubeStuff\CubeCommandList</Filter>
     </ClInclude>
@@ -99,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="CubeHelperFunctions.h">
       <Filter>CubeStuff\CubeHelperFunctions</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeRenderer.h">
-      <Filter>CubeStuff\CubeRenderer</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
       <Filter>CubeStuff\Cube</Filter>
@@ -112,14 +110,34 @@
     <ClInclude Include="Sticker.h">
       <Filter>CubeStuff\Cube</Filter>
     </ClInclude>
-    <ClInclude Include="CubeRendererD3D.h">
-      <Filter>CubeStuff\CubeRenderer\D3D</Filter>
+    <ClInclude Include="AppRenderer.h" />
+    <ClInclude Include="RendererD3D.h">
+      <Filter>Renderer\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsStoreApp.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXHelper.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicTimer.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>WindowsStore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest" />
+    <AppxManifest Include="Package.appxmanifest">
+      <Filter>WindowsStore</Filter>
+    </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <None Include="RubiksCube_TemporaryKey.pfx" />
+    <None Include="RubiksCube_TemporaryKey.pfx">
+      <Filter>WindowsStore</Filter>
+    </None>
   </ItemGroup>
 </Project>

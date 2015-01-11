@@ -1,12 +1,12 @@
 ﻿#pragma once
 
 #include "pch.h"
-#include "SDKRenderer.h"
+#include "AppRenderer.h"
 
-ref class RubiksCube sealed : public Windows::ApplicationModel::Core::IFrameworkView
+ref class WindowsStoreApp sealed : public Windows::ApplicationModel::Core::IFrameworkView
 {
 public:
-	RubiksCube();
+    WindowsStoreApp();
 	
 	// IFrameworkView Methods.
 	virtual void Initialize(Windows::ApplicationModel::Core::CoreApplicationView^ applicationView);
@@ -28,12 +28,12 @@ protected:
 	void OnPointerMoved(Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::PointerEventArgs^ args);
 
 private:
-	SDKRenderer^ m_renderer;
+	AppRenderer^ m_renderer;
 	bool m_windowClosed;
 	bool m_windowVisible;
 };
 
-ref class Direct3DApplicationSource sealed : Windows::ApplicationModel::Core::IFrameworkViewSource
+ref class WindowsStoreApplicationSource sealed : Windows::ApplicationModel::Core::IFrameworkViewSource
 {
 public:
 	virtual Windows::ApplicationModel::Core::IFrameworkView^ CreateView();

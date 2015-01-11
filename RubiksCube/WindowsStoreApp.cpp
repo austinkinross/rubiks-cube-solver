@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
-#include "RubiksCube.h"
+#include "WindowsStoreApp.h"
 #include "BasicTimer.h"
+#include <ppltasks.h>
 
 using namespace Windows::ApplicationModel;
 using namespace Windows::ApplicationModel::Core;
@@ -9,55 +10,55 @@ using namespace Windows::UI::Core;
 using namespace Windows::System;
 using namespace Windows::Foundation;
 using namespace Windows::Graphics::Display;
-using namespace concurrency;
+using namespace Concurrency;
 
-RubiksCube::RubiksCube() :
+WindowsStoreApp::WindowsStoreApp() :
 	m_windowClosed(false),
 	m_windowVisible(true)
 {
 }
 
-void RubiksCube::Initialize(CoreApplicationView^ applicationView)
+void WindowsStoreApp::Initialize(CoreApplicationView^ applicationView)
 {
 	applicationView->Activated +=
-        ref new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &RubiksCube::OnActivated);
+        ref new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &WindowsStoreApp::OnActivated);
 
 	CoreApplication::Suspending +=
-        ref new EventHandler<SuspendingEventArgs^>(this, &RubiksCube::OnSuspending);
+        ref new EventHandler<SuspendingEventArgs^>(this, &WindowsStoreApp::OnSuspending);
 
 	CoreApplication::Resuming +=
-        ref new EventHandler<Platform::Object^>(this, &RubiksCube::OnResuming);
+        ref new EventHandler<Platform::Object^>(this, &WindowsStoreApp::OnResuming);
 
-	m_renderer = ref new SDKRenderer();
+	m_renderer = ref new AppRenderer();
 }
 
-void RubiksCube::SetWindow(CoreWindow^ window)
+void WindowsStoreApp::SetWindow(CoreWindow^ window)
 {
 	window->SizeChanged += 
-        ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &RubiksCube::OnWindowSizeChanged);
+        ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &WindowsStoreApp::OnWindowSizeChanged);
 
 	window->VisibilityChanged +=
-		ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &RubiksCube::OnVisibilityChanged);
+		ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &WindowsStoreApp::OnVisibilityChanged);
 
 	window->Closed += 
-        ref new TypedEventHandler<CoreWindow^, CoreWindowEventArgs^>(this, &RubiksCube::OnWindowClosed);
+        ref new TypedEventHandler<CoreWindow^, CoreWindowEventArgs^>(this, &WindowsStoreApp::OnWindowClosed);
 
 	window->PointerCursor = ref new CoreCursor(CoreCursorType::Arrow, 0);
 
 	window->PointerPressed +=
-		ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &RubiksCube::OnPointerPressed);
+		ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &WindowsStoreApp::OnPointerPressed);
 
 	window->PointerMoved +=
-		ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &RubiksCube::OnPointerMoved);
+		ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &WindowsStoreApp::OnPointerMoved);
 
 	m_renderer->Initialize(CoreWindow::GetForCurrentThread());
 }
 
-void RubiksCube::Load(Platform::String^ entryPoint)
+void WindowsStoreApp::Load(Platform::String^ entryPoint)
 {
 }
 
-void RubiksCube::Run()
+void WindowsStoreApp::Run()
 {
 	BasicTimer^ timer = ref new BasicTimer();
 
@@ -78,41 +79,41 @@ void RubiksCube::Run()
 	}
 }
 
-void RubiksCube::Uninitialize()
+void WindowsStoreApp::Uninitialize()
 {
 }
 
-void RubiksCube::OnWindowSizeChanged(CoreWindow^ sender, WindowSizeChangedEventArgs^ args)
+void WindowsStoreApp::OnWindowSizeChanged(CoreWindow^ sender, WindowSizeChangedEventArgs^ args)
 {
 	m_renderer->UpdateForWindowSizeChange();
 }
 
-void RubiksCube::OnVisibilityChanged(CoreWindow^ sender, VisibilityChangedEventArgs^ args)
+void WindowsStoreApp::OnVisibilityChanged(CoreWindow^ sender, VisibilityChangedEventArgs^ args)
 {
 	m_windowVisible = args->Visible;
 }
 
-void RubiksCube::OnWindowClosed(CoreWindow^ sender, CoreWindowEventArgs^ args)
+void WindowsStoreApp::OnWindowClosed(CoreWindow^ sender, CoreWindowEventArgs^ args)
 {
 	m_windowClosed = true;
 }
 
-void RubiksCube::OnPointerPressed(CoreWindow^ sender, PointerEventArgs^ args)
+void WindowsStoreApp::OnPointerPressed(CoreWindow^ sender, PointerEventArgs^ args)
 {
 	// Insert your code here.
 }
 
-void RubiksCube::OnPointerMoved(CoreWindow^ sender, PointerEventArgs^ args)
+void WindowsStoreApp::OnPointerMoved(CoreWindow^ sender, PointerEventArgs^ args)
 {
 	// Insert your code here.
 }
 
-void RubiksCube::OnActivated(CoreApplicationView^ applicationView, IActivatedEventArgs^ args)
+void WindowsStoreApp::OnActivated(CoreApplicationView^ applicationView, IActivatedEventArgs^ args)
 {
 	CoreWindow::GetForCurrentThread()->Activate();
 }
 
-void RubiksCube::OnSuspending(Platform::Object^ sender, SuspendingEventArgs^ args)
+void WindowsStoreApp::OnSuspending(Platform::Object^ sender, SuspendingEventArgs^ args)
 {
 	// Save app state asynchronously after requesting a deferral. Holding a deferral
 	// indicates that the application is busy performing suspending operations. Be
@@ -128,22 +129,22 @@ void RubiksCube::OnSuspending(Platform::Object^ sender, SuspendingEventArgs^ arg
 	});
 }
  
-void RubiksCube::OnResuming(Platform::Object^ sender, Platform::Object^ args)
+void WindowsStoreApp::OnResuming(Platform::Object^ sender, Platform::Object^ args)
 {
 	// Restore any data or state that was unloaded on suspend. By default, data
 	// and state are persisted when resuming from suspend. Note that this event
 	// does not occur if the app was previously terminated.
 }
 
-IFrameworkView^ Direct3DApplicationSource::CreateView()
+IFrameworkView^ WindowsStoreApplicationSource::CreateView()
 {
-    return ref new RubiksCube();
+    return ref new WindowsStoreApp();
 }
 
 [Platform::MTAThread]
 int main(Platform::Array<Platform::String^>^)
 {
-	auto direct3DApplicationSource = ref new Direct3DApplicationSource();
+    auto direct3DApplicationSource = ref new WindowsStoreApplicationSource();
 	CoreApplication::Run(direct3DApplicationSource);
 	return 0;
 }

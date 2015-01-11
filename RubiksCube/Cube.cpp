@@ -77,11 +77,6 @@ void Cube::InitializeSlices()
 	pBottomSlice->AssociatePartialFace(3, leftFaceStickers[2][2],	leftFaceStickers[1][2],		leftFaceStickers[0][2]);
 };
 
-void Cube::InitializeModels()
-{
-
-}
-
 void Cube::Randomize(UINT seed)
 {
     UINT primes[] = { 29, 73, 107, 37, 59, 67, 151, 89, 13, 71, 29, 199, 11, 61, 109, 139, 257, 499, 151, 89, 73, 23, 401, 37, 433, 223, 251 };
@@ -124,18 +119,18 @@ void Cube::Randomize(UINT seed)
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // Draws the cube in the given context, with the given view/projection matrices
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
-void Cube::Draw(CubeRenderer* pCubeRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void Cube::Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
 {
 	for (int i = 0; i  < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			leftFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
-            rightFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
-            topFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
-            bottomFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
-            frontFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
-            backFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
+			leftFaceStickers[i][j]->Draw(pRenderer, pViewMatrix, pProjectionMatrix);
+            rightFaceStickers[i][j]->Draw(pRenderer, pViewMatrix, pProjectionMatrix);
+            topFaceStickers[i][j]->Draw(pRenderer, pViewMatrix, pProjectionMatrix);
+            bottomFaceStickers[i][j]->Draw(pRenderer, pViewMatrix, pProjectionMatrix);
+            frontFaceStickers[i][j]->Draw(pRenderer, pViewMatrix, pProjectionMatrix);
+            backFaceStickers[i][j]->Draw(pRenderer, pViewMatrix, pProjectionMatrix);
 		}
 	}	
 }

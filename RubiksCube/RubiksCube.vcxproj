@@ -126,14 +126,13 @@
     <ClInclude Include="CubeCommandList.h" />
     <ClInclude Include="CubeHelperFunctions.h" />
     <ClInclude Include="CubePlayer.h" />
-    <ClInclude Include="CubeRenderer.h" />
-    <ClInclude Include="CubeRendererD3D.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RendererD3D.h" />
     <ClInclude Include="CubeSolver.h" />
     <ClInclude Include="Slice.h" />
-    <ClInclude Include="RubiksCube.h" />
-    <ClInclude Include="SDKRenderer.h" />
+    <ClInclude Include="WindowsStoreApp.h" />
+    <ClInclude Include="AppRenderer.h" />
     <ClInclude Include="DirectXHelper.h" />
-    <ClInclude Include="Direct3DBase.h" />
     <ClInclude Include="BasicTimer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sticker.h" />
@@ -142,13 +141,11 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeCommandList.cpp" />
     <ClCompile Include="CubePlayer.cpp" />
-    <ClCompile Include="CubeRenderer.cpp" />
-    <ClCompile Include="CubeRendererD3D.cpp" />
+    <ClCompile Include="RendererD3D.cpp" />
     <ClCompile Include="CubeSolver.cpp" />
     <ClCompile Include="Slice.cpp" />
-    <ClCompile Include="RubiksCube.cpp" />
-    <ClCompile Include="SDKRenderer.cpp" />
-    <ClCompile Include="Direct3DBase.cpp" />
+    <ClCompile Include="WindowsStoreApp.cpp" />
+    <ClCompile Include="AppRenderer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

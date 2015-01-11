@@ -1,9 +1,8 @@
 #pragma once
 
 #include "pch.h"
-#include "Direct3DBase.h"
 #include "CubeHelperFunctions.h"
-#include "CubeRenderer.h"
+#include "Renderer.h"
 
 using namespace DirectX;
 
@@ -21,7 +20,7 @@ public:
 	Sticker();
     Sticker(StickerColor color, XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotation, int pos1, int pos2);
 
-    virtual void Draw(CubeRenderer* pCubeRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
+    virtual void Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
 
 	void AttachRotationMatrix(XMFLOAT4X4 *pRotationMatrix);
 	void SetColor(StickerColor color);

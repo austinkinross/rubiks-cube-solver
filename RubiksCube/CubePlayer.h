@@ -9,17 +9,21 @@ const float fTimePerMove = 0.3f;
 class CubePlayer
 {
 public:
-	CubePlayer(Cube *pCube);
+	CubePlayer();
+    ~CubePlayer();
+
 	void Update(float timeTotal, float timeDelta);
 	void UseCommandList(CubeCommandList *pCommandList);
 
 	void Play();
 	void Pause();
 
+    Cube* GetCube() { return pCube; };
+
 private:
 	void Reset();
 
-	Cube *pPlaybackCube;
+    Cube *pCube;
 	CubeCommandList *pCommandList;
 
 	UINT uiCurrentCommandPos;

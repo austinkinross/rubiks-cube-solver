@@ -52,11 +52,11 @@ StickerColor Sticker::GetColor()
 	return this->color;
 }
 
-void Sticker::Draw(CubeRenderer* pCubeRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void Sticker::Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
 {
     ConfigureShaderMatrices(pViewMatrix, pProjectionMatrix);
 
-    pCubeRenderer->RenderSticker(this, &m_constantBufferData.model, &m_constantBufferData.view, &m_constantBufferData.projection);
+    pRenderer->RenderSticker(this, &m_constantBufferData.model, &m_constantBufferData.view, &m_constantBufferData.projection);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------

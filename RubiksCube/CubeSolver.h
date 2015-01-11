@@ -18,9 +18,14 @@ enum CubeSide
 class CubeSolver
 {
 public:
-	CubeSolver(Cube *pCube);	
+	CubeSolver();	
+    ~CubeSolver();
+
 	void Solve();
+
 	void GetCubeCommandList(CubeCommandList **ppCommandList);
+
+    Cube* GetCube() { return pCube; };
 
 	// Public for unit tests to access
 	void PrepareForSolve();
@@ -43,6 +48,6 @@ private:
 	void ParseCommandString(char *pCommandString, UINT stringLength);
 	void CubeSolver::AddRandomMoves(); //temporary
 
-	Cube *pPrivateCube;
+    Cube *pCube;
 	CubeCommandList *m_pCubeCommandList;
 };
