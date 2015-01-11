@@ -37,12 +37,18 @@ public:
     void GenerateStickerResources();
 
 protected:
+    void CreateWindowResources();
+    void DestroyWindowResources();
+
+#ifdef WIN32
     EGLDisplay mEglDisplay;
     EGLContext mEglContext;
     EGLSurface mEglSurface;
+#endif
 
     GLuint mStickerProgram;
     GLint mStickerModelUniformPos;
     GLint mStickerViewUniformPos;
     GLint mStickerProjectionUniformPos;
+    GLint mStickerColorUniformPos;
 };
