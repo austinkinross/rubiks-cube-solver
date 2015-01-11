@@ -80,13 +80,13 @@
     <ClCompile Include="RendererD3D.cpp">
       <Filter>Renderer\D3D</Filter>
     </ClCompile>
-    <ClCompile Include="WindowsStoreApp.cpp">
+    <ClCompile Include="AgnosticApplication.cpp" />
+    <ClCompile Include="WindowsStore\WindowsStoreApp.cpp">
       <Filter>WindowsStore</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>WindowsStore</Filter>
     </ClCompile>
-    <ClCompile Include="AgnosticApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubePlayer.h">
@@ -116,28 +116,28 @@
     <ClInclude Include="Renderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsStoreApp.h">
+    <ClInclude Include="AgnosticApplication.h" />
+    <ClInclude Include="WindowsStore\BasicTimer.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="DirectXHelper.h">
+    <ClInclude Include="WindowsStore\DirectXHelper.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="BasicTimer.h">
+    <ClInclude Include="WindowsStore\WindowsStoreApp.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="AgnosticApplication.h" />
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <Filter>WindowsStore</Filter>
-    </AppxManifest>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="RubiksCube_TemporaryKey.pfx">
+    <None Include="WindowsStore\RubiksCube_TemporaryKey.pfx">
       <Filter>WindowsStore</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="WindowsStore\Package.appxmanifest">
+      <Filter>WindowsStore</Filter>
+    </AppxManifest>
   </ItemGroup>
 </Project>

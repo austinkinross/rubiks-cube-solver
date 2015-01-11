@@ -126,36 +126,31 @@
     <ClInclude Include="CubeCommandList.h" />
     <ClInclude Include="CubeHelperFunctions.h" />
     <ClInclude Include="CubePlayer.h" />
+    <ClInclude Include="pch.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererD3D.h" />
     <ClInclude Include="CubeSolver.h" />
     <ClInclude Include="Slice.h" />
-    <ClInclude Include="WindowsStoreApp.h" />
     <ClInclude Include="AgnosticApplication.h" />
-    <ClInclude Include="DirectXHelper.h" />
-    <ClInclude Include="BasicTimer.h" />
-    <ClInclude Include="pch.h" />
     <ClInclude Include="Sticker.h" />
+    <ClInclude Include="WindowsStore\BasicTimer.h" />
+    <ClInclude Include="WindowsStore\DirectXHelper.h" />
+    <ClInclude Include="WindowsStore\WindowsStoreApp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeCommandList.cpp" />
     <ClCompile Include="CubePlayer.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="RendererD3D.cpp" />
     <ClCompile Include="CubeSolver.cpp" />
     <ClCompile Include="Slice.cpp" />
-    <ClCompile Include="WindowsStoreApp.cpp" />
     <ClCompile Include="AgnosticApplication.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Sticker.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-    <None Include="RubiksCube_TemporaryKey.pfx" />
+    <ClCompile Include="WindowsStore\WindowsStoreApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="SimplePixelShader.hlsl">
@@ -164,6 +159,12 @@
     <FxCompile Include="SimpleVertexShader.hlsl">
       <ShaderType>Vertex</ShaderType>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WindowsStore\RubiksCube_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="WindowsStore\Package.appxmanifest" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

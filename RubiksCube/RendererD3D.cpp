@@ -5,7 +5,7 @@
 #include "CubeHelperFunctions.h"
 #include "Sticker.h"
 #include "Renderer.h"
-#include "DirectXHelper.h"
+#include "WindowsStore\DirectXHelper.h"
 
 using namespace DirectX;
 using namespace Microsoft::WRL;
