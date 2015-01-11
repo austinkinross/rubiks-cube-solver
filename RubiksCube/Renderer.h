@@ -19,4 +19,3 @@ public:
 
     virtual void UpdateForWindowSizeChange() = 0;
 };
-

@@ -87,6 +87,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>WindowsStore</Filter>
     </ClCompile>
+    <ClCompile Include="RendererGL.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubePlayer.h">
@@ -128,6 +131,9 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="RendererGL.h">
+      <Filter>Renderer\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

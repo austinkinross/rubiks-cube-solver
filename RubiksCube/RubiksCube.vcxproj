@@ -130,6 +130,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererD3D.h" />
     <ClInclude Include="CubeSolver.h" />
+    <ClInclude Include="RendererGL.h" />
     <ClInclude Include="Slice.h" />
     <ClInclude Include="AgnosticApplication.h" />
     <ClInclude Include="Sticker.h" />
@@ -147,6 +148,7 @@
     </ClCompile>
     <ClCompile Include="RendererD3D.cpp" />
     <ClCompile Include="CubeSolver.cpp" />
+    <ClCompile Include="RendererGL.cpp" />
     <ClCompile Include="Slice.cpp" />
     <ClCompile Include="AgnosticApplication.cpp" />
     <ClCompile Include="Sticker.cpp" />
