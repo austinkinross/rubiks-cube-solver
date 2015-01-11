@@ -1,11 +1,15 @@
 #include "pch.h"
 #include "RendererGL.h"
+#include "ShaderCompilerGL.h"
 
 #include "pch.h"
 #include "CubeHelperFunctions.h"
 #include "Sticker.h"
 #include "Renderer.h"
 #include "WindowsStore\DirectXHelper.h"
+
+// ANGLE include for Windows Store
+#include <angle_windowsstore.h>
 
 using namespace Windows::ApplicationModel::Core;
 using namespace Windows::ApplicationModel::Activation;
@@ -17,8 +21,7 @@ using namespace Windows::Graphics::Display;
 using namespace Microsoft::WRL;
 using namespace Platform;
 
-// ANGLE include for Windows Store
-#include <angle_windowsstore.h>
+#define STRING(s) #s
 
 RendererGL::RendererGL()
 {
@@ -178,6 +181,8 @@ RendererGL::RendererGL()
     {
         throw Exception::CreateException(E_FAIL, L"Failed to make fullscreen EGLSurface current");
     }
+
+    GenerateStickerResources();
 }
 
 RendererGL::~RendererGL()
@@ -199,6 +204,45 @@ RendererGL::~RendererGL()
         eglTerminate(mEglDisplay);
         mEglDisplay = EGL_NO_DISPLAY;
     }
+
+    if (mStickerProgram != 0)
+    {
+        glDeleteProgram(mStickerProgram);
+        mStickerProgram = 0;
+    }
+}
+
+void RendererGL::GenerateStickerResources()
+{
+    // Vertex Shader source
+    const std::string vs = STRING
+    (
+        attribute vec4 vPosition;
+        uniform mat4 uModelMatrix;
+        uniform mat4 uViewMatrix;
+        uniform mat4 uProjectionMatrix;
+        void main()
+        {
+            gl_Position = vPosition * uModelMatrix * uViewMatrix * uProjectionMatrix;
+        }
+    );
+
+    // Fragment Shader source
+    const std::string fs = STRING
+    (
+        precision mediump float;
+        void main()
+        {
+            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        }
+    );
+
+    // CompileProgram will throw if it fails, so we don't need to check for success.
+    mStickerProgram = CompileProgram(vs, fs);
+
+    mStickerModelUniformPos = glGetUniformLocation(mStickerProgram, "uModelMatrix");
+    mStickerViewUniformPos = glGetUniformLocation(mStickerProgram, "uViewMatrix");
+    mStickerProjectionUniformPos = glGetUniformLocation(mStickerProgram, "uProjectionMatrix");
 }
 
 // This method is called in the event handler for the SizeChanged event.
@@ -229,7 +273,24 @@ void RendererGL::Swap()
 
 void RendererGL::RenderSticker(Sticker* pSticker, XMFLOAT4X4 *pWorldMatrix, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
 {
+    GLfloat vertices[] =
+    {
+        -0.95f, 3.0f, -0.95f,
+        -0.95f, 3.0f, +0.95f,
+        +0.95f, 3.0f, -0.95f,
+        +0.95f, 3.0f, +0.95f
+    };
 
+    glUseProgram(mStickerProgram);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    glEnableVertexAttribArray(0);
+
+    glUniformMatrix4fv(mStickerModelUniformPos, 1, GL_FALSE, (GLfloat*)pWorldMatrix);
+    glUniformMatrix4fv(mStickerViewUniformPos, 1, GL_FALSE, (GLfloat*)pViewMatrix);
+    glUniformMatrix4fv(mStickerProjectionUniformPos, 1, GL_FALSE, (GLfloat*)pProjectionMatrix);
+
+    glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 void RendererGL::Clear()

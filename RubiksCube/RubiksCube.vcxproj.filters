@@ -138,6 +138,9 @@
     <ClInclude Include="RendererGL.h">
       <Filter>Renderer\GL</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderCompilerGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="WindowsStore\RubiksCube_TemporaryKey.pfx">

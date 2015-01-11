@@ -130,6 +130,7 @@
     <ClInclude Include="CubeCommandList.h" />
     <ClInclude Include="CubeHelperFunctions.h" />
     <ClInclude Include="CubePlayer.h" />
+    <ClInclude Include="ShaderCompilerGL.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererD3D.h" />

@@ -34,8 +34,15 @@ public:
 
     void UpdateForWindowSizeChange();
 
+    void GenerateStickerResources();
+
 protected:
     EGLDisplay mEglDisplay;
     EGLContext mEglContext;
     EGLSurface mEglSurface;
+
+    GLuint mStickerProgram;
+    GLint mStickerModelUniformPos;
+    GLint mStickerViewUniformPos;
+    GLint mStickerProjectionUniformPos;
 };
