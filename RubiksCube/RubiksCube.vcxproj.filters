@@ -49,6 +49,9 @@
     <Filter Include="WindowsStore">
       <UniqueIdentifier>{485465b6-9f35-4634-a8b3-33bc454a91ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer\GL\Binaries">
+      <UniqueIdentifier>{1fd056d2-544f-4507-87f5-f83190e6e047}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="SimpleVertexShader.hlsl">
@@ -139,6 +142,12 @@
   <ItemGroup>
     <None Include="WindowsStore\RubiksCube_TemporaryKey.pfx">
       <Filter>WindowsStore</Filter>
+    </None>
+    <None Include="$(AngleBinPath)libEGL.dll">
+      <Filter>Renderer\GL\Binaries</Filter>
+    </None>
+    <None Include="$(AngleBinPath)libGLESv2.dll">
+      <Filter>Renderer\GL\Binaries</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
