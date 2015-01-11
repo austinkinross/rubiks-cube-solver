@@ -1,6 +1,8 @@
 ﻿#include "pch.h"
 #include "SDKRenderer.h"
 
+#include "CubeRendererD3D.h"
+
 using namespace DirectX;
 using namespace Microsoft::WRL;
 using namespace Windows::Foundation;
@@ -22,7 +24,9 @@ void SDKRenderer::CreateDeviceResources()
     seed = 4741;
     // seed = 4754;
 
-    pCube = new Cube_D3D(m_d3dDevice.Get(), m_d3dContext.Get());
+    pCubeRenderer = new CubeRendererD3D(m_d3dDevice.Get(), m_d3dContext.Get());
+
+    pCube = new Cube();
 	pCube->InitializeModels();
 	pCube->Randomize(seed);
 
@@ -39,7 +43,7 @@ void SDKRenderer::CreateDeviceResources()
 
 	// Complete cross broken: 
 
-    Cube *pCubeClone = new Cube_D3D(m_d3dDevice.Get(), m_d3dContext.Get());
+    Cube *pCubeClone = new Cube();
 	pCubeClone->Randomize(seed);
 	// pCubeClone->topFaceStickers[1][0]->SetColor(CUBE_ORANGE);
 	// pCubeClone->backFaceStickers[2][1]->SetColor(CUBE_ORANGE);
@@ -117,7 +121,7 @@ void SDKRenderer::Render()
 		m_depthStencilView.Get()
 		);
 
-	pCube->Draw(&m_viewMatrix, &m_projectionMatrix);
+    pCube->Draw(pCubeRenderer, &m_viewMatrix, &m_projectionMatrix);
 
 
 
@@ -129,6 +133,6 @@ void SDKRenderer::Render()
 
 	XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMLoadFloat4x4(&m_viewMatrix), XMMatrixTranslation(10, 0, 0)));
 
-	pCube->Draw(&m_viewMatrix, &m_projectionMatrix);
+	pCube->Draw(pCubeRenderer, &m_viewMatrix, &m_projectionMatrix);
 
 }

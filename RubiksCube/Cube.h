@@ -1,10 +1,9 @@
 #pragma once
 
 #include "pch.h"
-#include "Sticker.h"
-#include "Sticker_D3D.h"
 #include "Slice.h"
 #include "CubeHelperFunctions.h"
+#include "CubeRenderer.h"
 
 class Cube
 {
@@ -14,7 +13,7 @@ public:
 	void InitializeModels();
 	EXPORTFORTEST void Randomize(UINT seed);
 
-	void Draw(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
+	void Draw(CubeRenderer* pCubeRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
 	void SilentlyRotateY();
 	void ApplyCommand(CubeCommand command);
 

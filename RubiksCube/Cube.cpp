@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Cube.h"
 
-
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // A "Cube" simply represents a Rubik's Cube. 
 // It is made up of 6 sets of 9 'stickers' (that make up its faces), and slices to represent 3x3x1 parts of the cube that can be rotated.
@@ -10,6 +9,27 @@
 Cube::Cube()
 {
     XMStoreFloat4x4(&worldMatrix, XMMatrixRotationX(0.23835f));
+
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            leftFaceStickers[i][j] = new Sticker(CUBE_RED, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PIDIV2), XMMatrixRotationZ(-XM_PIDIV2))), i, j);
+
+            rightFaceStickers[i][j] = new Sticker(CUBE_ORANGE, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(-XM_PIDIV2), XMMatrixRotationZ(XM_PIDIV2))), i, j);
+
+            topFaceStickers[i][j] = new Sticker(CUBE_GREEN, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixRotationY(0)), i, j);
+
+            bottomFaceStickers[i][j] = new Sticker(CUBE_BLUE, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PIDIV2), XMMatrixRotationZ(XM_PI))), i, j);
+
+            frontFaceStickers[i][j] = new Sticker(CUBE_YELLOW, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixRotationX(XM_PIDIV2)), i, j);
+
+            backFaceStickers[i][j] = new Sticker(CUBE_WHITE, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PI), XMMatrixRotationX(-XM_PIDIV2))), i, j);
+        }
+    }
+
+    InitializeSlices();
+
 }
 
 void Cube::InitializeSlices() 
@@ -59,23 +79,7 @@ void Cube::InitializeSlices()
 
 void Cube::InitializeModels()
 {
-	for (int i = 0; i  < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			leftFaceStickers[i][j]->InitializeModels(&(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PIDIV2), XMMatrixRotationZ(-XM_PIDIV2))), i , j );
 
-            rightFaceStickers[i][j]->InitializeModels(&(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(-XM_PIDIV2), XMMatrixRotationZ(XM_PIDIV2))), i, j);
-
-            topFaceStickers[i][j]->InitializeModels(&(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixRotationY(0)), i, j);
-
-            bottomFaceStickers[i][j]->InitializeModels(&(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PIDIV2), XMMatrixRotationZ(XM_PI))), i, j);
-
-            frontFaceStickers[i][j]->InitializeModels(&(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixRotationX(XM_PIDIV2)), i, j);
-
-            backFaceStickers[i][j]->InitializeModels(&(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PI), XMMatrixRotationX(-XM_PIDIV2))), i, j);
-		}
-	}
 }
 
 void Cube::Randomize(UINT seed)
@@ -120,18 +124,18 @@ void Cube::Randomize(UINT seed)
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // Draws the cube in the given context, with the given view/projection matrices
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
-void Cube::Draw(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void Cube::Draw(CubeRenderer* pCubeRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
 {
 	for (int i = 0; i  < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			leftFaceStickers[i][j]->Draw(pViewMatrix, pProjectionMatrix);
-			rightFaceStickers[i][j]->Draw(pViewMatrix, pProjectionMatrix);
-			topFaceStickers[i][j]->Draw(pViewMatrix, pProjectionMatrix);
-			bottomFaceStickers[i][j]->Draw(pViewMatrix, pProjectionMatrix);
-			frontFaceStickers[i][j]->Draw(pViewMatrix, pProjectionMatrix);
-			backFaceStickers[i][j]->Draw(pViewMatrix, pProjectionMatrix);
+			leftFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
+            rightFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
+            topFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
+            bottomFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
+            frontFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
+            backFaceStickers[i][j]->Draw(pCubeRenderer, pViewMatrix, pProjectionMatrix);
 		}
 	}	
 }

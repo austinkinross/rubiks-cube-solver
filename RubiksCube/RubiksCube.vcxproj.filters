@@ -34,17 +34,17 @@
     <Filter Include="CubeStuff\CubeSolver">
       <UniqueIdentifier>{56f08b96-8a24-4485-a46f-fff21c72fb29}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CubeStuff\Cube\D3D">
-      <UniqueIdentifier>{d624dc42-5466-4027-a9b6-e4afa05b0f19}</UniqueIdentifier>
+    <Filter Include="CubeStuff\CubeRenderer">
+      <UniqueIdentifier>{ca699fb9-abe8-4f44-811d-a224931541f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CubeStuff\Cube\NULL Renderer">
+    <Filter Include="CubeStuff\CubeRenderer\NULL Renderer">
       <UniqueIdentifier>{2d53f5f1-1f59-4082-94fd-9295fb27a269}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CubeStuff\Cube\GL">
-      <UniqueIdentifier>{04a960c3-8bbe-47a5-bfe8-632c87cd6be6}</UniqueIdentifier>
+    <Filter Include="CubeStuff\CubeRenderer\D3D">
+      <UniqueIdentifier>{d624dc42-5466-4027-a9b6-e4afa05b0f19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CubeStuff\Cube\Shared">
-      <UniqueIdentifier>{73c38007-aa90-4849-9b90-6ae8173cf532}</UniqueIdentifier>
+    <Filter Include="CubeStuff\CubeRenderer\GL">
+      <UniqueIdentifier>{04a960c3-8bbe-47a5-bfe8-632c87cd6be6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,26 +65,20 @@
     <ClCompile Include="CubeSolver.cpp">
       <Filter>CubeStuff\CubeSolver</Filter>
     </ClCompile>
-    <ClCompile Include="Cube_D3D.cpp">
-      <Filter>CubeStuff\Cube\D3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Sticker_D3D.cpp">
-      <Filter>CubeStuff\Cube\D3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Sticker.cpp">
-      <Filter>CubeStuff\Cube\Shared</Filter>
-    </ClCompile>
-    <ClCompile Include="Slice.cpp">
-      <Filter>CubeStuff\Cube\Shared</Filter>
-    </ClCompile>
-    <ClCompile Include="Sticker_NULL.cpp">
-      <Filter>CubeStuff\Cube\NULL Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube_NULL.cpp">
-      <Filter>CubeStuff\Cube\NULL Renderer</Filter>
+    <ClCompile Include="CubeRenderer.cpp">
+      <Filter>CubeStuff\CubeRenderer</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>CubeStuff\Cube\Shared</Filter>
+      <Filter>CubeStuff\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Slice.cpp">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Sticker.cpp">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeRendererD3D.cpp">
+      <Filter>CubeStuff\CubeRenderer\D3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,26 +100,20 @@
     <ClInclude Include="CubeHelperFunctions.h">
       <Filter>CubeStuff\CubeHelperFunctions</Filter>
     </ClInclude>
-    <ClInclude Include="Cube_D3D.h">
-      <Filter>CubeStuff\Cube\D3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Sticker_D3D.h">
-      <Filter>CubeStuff\Cube\D3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Sticker.h">
-      <Filter>CubeStuff\Cube\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="Slice.h">
-      <Filter>CubeStuff\Cube\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="Sticker_NULL.h">
-      <Filter>CubeStuff\Cube\NULL Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube_NULL.h">
-      <Filter>CubeStuff\Cube\NULL Renderer</Filter>
+    <ClInclude Include="CubeRenderer.h">
+      <Filter>CubeStuff\CubeRenderer</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>CubeStuff\Cube\Shared</Filter>
+      <Filter>CubeStuff\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Slice.h">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Sticker.h">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeRendererD3D.h">
+      <Filter>CubeStuff\CubeRenderer\D3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

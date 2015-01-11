@@ -126,9 +126,9 @@
     <ClInclude Include="CubeCommandList.h" />
     <ClInclude Include="CubeHelperFunctions.h" />
     <ClInclude Include="CubePlayer.h" />
+    <ClInclude Include="CubeRenderer.h" />
+    <ClInclude Include="CubeRendererD3D.h" />
     <ClInclude Include="CubeSolver.h" />
-    <ClInclude Include="Cube_D3D.h" />
-    <ClInclude Include="Cube_NULL.h" />
     <ClInclude Include="Slice.h" />
     <ClInclude Include="RubiksCube.h" />
     <ClInclude Include="SDKRenderer.h" />
@@ -137,16 +137,14 @@
     <ClInclude Include="BasicTimer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Sticker.h" />
-    <ClInclude Include="Sticker_D3D.h" />
-    <ClInclude Include="Sticker_NULL.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeCommandList.cpp" />
     <ClCompile Include="CubePlayer.cpp" />
+    <ClCompile Include="CubeRenderer.cpp" />
+    <ClCompile Include="CubeRendererD3D.cpp" />
     <ClCompile Include="CubeSolver.cpp" />
-    <ClCompile Include="Cube_D3D.cpp" />
-    <ClCompile Include="Cube_NULL.cpp" />
     <ClCompile Include="Slice.cpp" />
     <ClCompile Include="RubiksCube.cpp" />
     <ClCompile Include="SDKRenderer.cpp" />
@@ -155,8 +153,6 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Sticker.cpp" />
-    <ClCompile Include="Sticker_D3D.cpp" />
-    <ClCompile Include="Sticker_NULL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

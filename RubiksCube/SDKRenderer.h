@@ -4,9 +4,9 @@
 #include "CubePlayer.h"
 #include "CubeSolver.h"
 
-#include "Cube_D3D.h"
-
 #include <agile.h>
+
+#include "CubeRenderer.h"
 
 // This class renders a simple spinning cube.
 ref class SDKRenderer sealed : public Direct3DBase
@@ -25,6 +25,7 @@ public:
 private:
 
 	Cube* pCube;
+    CubeRenderer* pCubeRenderer;
 	CubePlayer* pCubePlayer;
 	CubeCommandList* pCubeCommandList;
 	CubeSolver *pCubeSolver;

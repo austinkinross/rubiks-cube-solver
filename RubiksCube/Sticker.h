@@ -3,25 +3,33 @@
 #include "pch.h"
 #include "Direct3DBase.h"
 #include "CubeHelperFunctions.h"
+#include "CubeRenderer.h"
 
 using namespace DirectX;
 
+struct SideCubeConstantBuffer
+{
+    DirectX::XMFLOAT4X4 model;
+    DirectX::XMFLOAT4X4 view;
+    DirectX::XMFLOAT4X4 projection;
+    DirectX::XMFLOAT4 color;
+};
+
 class Sticker 
 {
-
 public:
 	Sticker();
-	Sticker(StickerColor color);
+    Sticker(StickerColor color, XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotation, int pos1, int pos2);
 
-    virtual void InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotation, int pos1, int pos2) = 0;
-
-    virtual void Draw(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix) = 0;
+    virtual void Draw(CubeRenderer* pCubeRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
 
 	void AttachRotationMatrix(XMFLOAT4X4 *pRotationMatrix);
 	void SetColor(StickerColor color);
-	EXPORTFORTEST StickerColor GetColor();
+	StickerColor GetColor();
 
 protected:
+
+    void ConfigureShaderMatrices(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
 
 	StickerColor color;
 
@@ -34,4 +42,6 @@ protected:
 	XMFLOAT4X4* pRotation3;
 
 	XMFLOAT4X4 worldMatrix;
+
+    SideCubeConstantBuffer m_constantBufferData;
 };

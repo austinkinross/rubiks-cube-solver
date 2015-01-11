@@ -1,33 +1,24 @@
 #include "pch.h"
-#include "Sticker_D3D.h"
+#include "CubeRendererD3D.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------
-// A "Sticker" represents a single face of a single cublet.
-// It has several matrices associated with it:
-//		1) Its own world matrix that determines where it is positioned in relation to the rest of the cube.
-//		2) The rotation matrices of the various slices that a sticker may be in. (Note: only one of these should be non-identity at a time)
-//		3) Its parent cube's world matrix
-// The sticker's final world matrix is the product of these matrices.
-//-------------------------------------------------------------------------------------------------------------------------------------------------------
+#include "pch.h"
+#include "Direct3DBase.h"
+#include "CubeHelperFunctions.h"
+#include "Sticker.h"
+#include "CubeRenderer.h"
 
-Sticker_D3D::Sticker_D3D(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, StickerColor color) : Sticker(color)
+struct VertexPositionColor
 {
-    this->color = color;
-    pRotation1 = NULL;
-    pRotation2 = NULL;
-    pRotation3 = NULL;
+    DirectX::XMFLOAT3 pos;
+    DirectX::XMFLOAT3 color;
+};
 
+CubeRendererD3D::CubeRendererD3D(ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+{
     mDevice = pDevice;
     mContext = pContext;
-}
 
-void Sticker_D3D::InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotation, int pos1, int pos2)
-{
-    XMStoreFloat4x4(&worldMatrix, XMMatrixMultiply(XMMatrixTranslation(2.0f * pos1 - 2.0f, 0.0f, 2.0f * pos2 - 2.0f), XMLoadFloat4x4(&sideRotation)));
-
-    this->pCubeWorld = pCubeWorld;
-
-    m_constantBufferData.color = ColorToXMFLOAT4(color);
+    // Initialize data to render a sticker
 
     auto loadVSTask = DX::ReadDataAsync("SimpleVertexShader.cso");
     auto loadPSTask = DX::ReadDataAsync("SimplePixelShader.cso");
@@ -38,7 +29,7 @@ void Sticker_D3D::InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotati
             fileData->Data,
             fileData->Length,
             nullptr,
-            &m_vertexShader
+            &mStickerVertexShader
             )
             );
 
@@ -54,7 +45,7 @@ void Sticker_D3D::InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotati
             ARRAYSIZE(vertexDesc),
             fileData->Data,
             fileData->Length,
-            &m_inputLayout
+            &mStickerInputLayout
             )
             );
     });
@@ -66,16 +57,16 @@ void Sticker_D3D::InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotati
             fileData->Data,
             fileData->Length,
             nullptr,
-            &m_pixelShader
+            &mStickerPixelShader
             )
             );
 
-        CD3D11_BUFFER_DESC constantBufferDesc(sizeof(SideCubeConstantBuffer), D3D11_BIND_CONSTANT_BUFFER);
+        CD3D11_BUFFER_DESC constantBufferDesc(sizeof(SideCubeConstantBuffer2), D3D11_BIND_CONSTANT_BUFFER);
         DX::ThrowIfFailed(
             mDevice->CreateBuffer(
             &constantBufferDesc,
             nullptr,
-            &m_constantBuffer
+            &mStickerConstantBuffer
             )
             );
     });
@@ -109,7 +100,7 @@ void Sticker_D3D::InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotati
             mDevice->CreateBuffer(
             &vertexBufferDesc,
             &vertexBufferData,
-            &m_vertexBuffer
+            &mStickerVertexBuffer
             )
             );
 
@@ -124,7 +115,7 @@ void Sticker_D3D::InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotati
             //	5,7,6,
         };
 
-        m_indexCount = ARRAYSIZE(cubeIndices);
+        mStickerIndexCount = ARRAYSIZE(cubeIndices);
 
         D3D11_SUBRESOURCE_DATA indexBufferData = { 0 };
         indexBufferData.pSysMem = cubeIndices;
@@ -135,34 +126,29 @@ void Sticker_D3D::InitializeModels(XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotati
             mDevice->CreateBuffer(
             &indexBufferDesc,
             &indexBufferData,
-            &m_indexBuffer
+            &mStickerIndexBuffer
             )
             );
     });
 
     createCubeTask.then([this]() {
-        m_loadingComplete = true;
+        mStickerLoadingComplete = true;
     });
-
 }
 
-void Sticker_D3D::Draw(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void CubeRendererD3D::RenderSticker(Sticker* pSticker, XMFLOAT4X4 *pWorldMatrix, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
 {
-    // Only draw the cube once it is loaded (loading is asynchronous).
-    if (!m_loadingComplete)
-    {
-        return;
-    }
+    mStickerConstantBufferData.color = ColorToXMFLOAT4(pSticker->GetColor());
 
-    m_constantBufferData.color = ColorToXMFLOAT4(color);
-
-    ConfigureShaderMatrices(pViewMatrix, pProjectionMatrix);
+    mStickerConstantBufferData.model = *pWorldMatrix;
+    mStickerConstantBufferData.view = *pViewMatrix;
+    mStickerConstantBufferData.projection = *pProjectionMatrix;
 
     mContext->UpdateSubresource(
-        m_constantBuffer.Get(),
+        mStickerConstantBuffer.Get(),
         0,
         NULL,
-        &m_constantBufferData,
+        &mStickerConstantBufferData,
         0,
         0
         );
@@ -172,23 +158,23 @@ void Sticker_D3D::Draw(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
     mContext->IASetVertexBuffers(
         0,
         1,
-        m_vertexBuffer.GetAddressOf(),
+        mStickerVertexBuffer.GetAddressOf(),
         &stride,
         &offset
         );
 
     mContext->IASetIndexBuffer(
-        m_indexBuffer.Get(),
+        mStickerIndexBuffer.Get(),
         DXGI_FORMAT_R16_UINT,
         0
         );
 
     mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-    mContext->IASetInputLayout(m_inputLayout.Get());
+    mContext->IASetInputLayout(mStickerInputLayout.Get());
 
     mContext->VSSetShader(
-        m_vertexShader.Get(),
+        mStickerVertexShader.Get(),
         nullptr,
         0
         );
@@ -196,51 +182,18 @@ void Sticker_D3D::Draw(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
     mContext->VSSetConstantBuffers(
         0,
         1,
-        m_constantBuffer.GetAddressOf()
+        mStickerConstantBuffer.GetAddressOf()
         );
 
     mContext->PSSetShader(
-        m_pixelShader.Get(),
+        mStickerPixelShader.Get(),
         nullptr,
         0
         );
 
     mContext->DrawIndexed(
-        m_indexCount,
+        mStickerIndexCount,
         0,
         0
         );
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------------
-// This sets up the sticker's constant buffer before it is drawn
-//-------------------------------------------------------------------------------------------------------------------------------------------------------
-void Sticker_D3D::ConfigureShaderMatrices(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
-{
-    XMFLOAT4X4 cumulativeWorld = worldMatrix;
-
-    // cumulativeWorld = worldMatrix, then rotation1, then rotation2, then rotation3, then cubeWorld
-
-    if (pRotation1 != NULL)
-    {
-        XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation1)));
-    }
-
-    if (pRotation2 != NULL)
-    {
-        XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation2)));
-    }
-
-    if (pRotation3 != NULL)
-    {
-        XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation3)));
-    }
-
-    XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pCubeWorld)));
-
-    // Set final values. Note, the matrices must be transposed for the shaders!
-    XMStoreFloat4x4(&m_constantBufferData.model, XMMatrixTranspose((XMLoadFloat4x4(&cumulativeWorld))));
-    XMStoreFloat4x4(&m_constantBufferData.view, XMMatrixTranspose(XMLoadFloat4x4(pViewMatrix)));
-    XMStoreFloat4x4(&m_constantBufferData.projection, XMMatrixTranspose(XMLoadFloat4x4(pProjectionMatrix)));
-
 }
