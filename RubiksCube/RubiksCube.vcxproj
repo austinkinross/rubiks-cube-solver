@@ -131,7 +131,7 @@
     <ClInclude Include="CubeSolver.h" />
     <ClInclude Include="Slice.h" />
     <ClInclude Include="WindowsStoreApp.h" />
-    <ClInclude Include="AppRenderer.h" />
+    <ClInclude Include="AgnosticApplication.h" />
     <ClInclude Include="DirectXHelper.h" />
     <ClInclude Include="BasicTimer.h" />
     <ClInclude Include="pch.h" />
@@ -145,7 +145,7 @@
     <ClCompile Include="CubeSolver.cpp" />
     <ClCompile Include="Slice.cpp" />
     <ClCompile Include="WindowsStoreApp.cpp" />
-    <ClCompile Include="AppRenderer.cpp" />
+    <ClCompile Include="AgnosticApplication.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

@@ -2,20 +2,15 @@
 
 #include "CubePlayer.h"
 #include "CubeSolver.h"
-
-#include <agile.h>
-
 #include "Renderer.h"
 
-// This class renders a simple spinning cube.
-ref class AppRenderer sealed
+ref class AgnosticApplication sealed
 {
 public:
-	AppRenderer();
+    AgnosticApplication();
 
-    void Initialize(Windows::UI::Core::CoreWindow^ window);
+    void Initialize(float windowWidth, float windowHeight);
 
-	// Method for updating time-dependent objects.
 	void Update(float timeTotal, float timeDelta);
     void UpdateForWindowSizeChange();
 
@@ -23,9 +18,6 @@ public:
     void Render();
 
 private:
-    Windows::Foundation::Rect m_windowBounds;
-    Platform::Agile<Windows::UI::Core::CoreWindow> m_window;
-
     Renderer* mRenderer;
 	CubePlayer* mCubePlayer;
 

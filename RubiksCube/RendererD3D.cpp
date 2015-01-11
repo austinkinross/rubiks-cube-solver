@@ -295,6 +295,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
 // This method is called in the event handler for the SizeChanged event.
 void RendererD3D::UpdateForWindowSizeChange()
 {
+    // TODO: fix this
     if (m_window->Bounds.Width != m_windowBounds.Width ||
         m_window->Bounds.Height != m_windowBounds.Height ||
         m_orientation != DisplayProperties::CurrentOrientation)

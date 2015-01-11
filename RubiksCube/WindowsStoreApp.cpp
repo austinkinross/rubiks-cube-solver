@@ -29,7 +29,7 @@ void WindowsStoreApp::Initialize(CoreApplicationView^ applicationView)
 	CoreApplication::Resuming +=
         ref new EventHandler<Platform::Object^>(this, &WindowsStoreApp::OnResuming);
 
-	m_renderer = ref new AppRenderer();
+	m_renderer = ref new AgnosticApplication();
 }
 
 void WindowsStoreApp::SetWindow(CoreWindow^ window)
@@ -51,7 +51,7 @@ void WindowsStoreApp::SetWindow(CoreWindow^ window)
 	window->PointerMoved +=
 		ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &WindowsStoreApp::OnPointerMoved);
 
-	m_renderer->Initialize(CoreWindow::GetForCurrentThread());
+    m_renderer->Initialize(CoreWindow::GetForCurrentThread()->Bounds.Width, CoreWindow::GetForCurrentThread()->Bounds.Height);
 }
 
 void WindowsStoreApp::Load(Platform::String^ entryPoint)

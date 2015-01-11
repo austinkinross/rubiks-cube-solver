@@ -77,7 +77,6 @@
     <ClCompile Include="Sticker.cpp">
       <Filter>CubeStuff\Cube</Filter>
     </ClCompile>
-    <ClCompile Include="AppRenderer.cpp" />
     <ClCompile Include="RendererD3D.cpp">
       <Filter>Renderer\D3D</Filter>
     </ClCompile>
@@ -87,6 +86,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>WindowsStore</Filter>
     </ClCompile>
+    <ClCompile Include="AgnosticApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CubePlayer.h">
@@ -110,7 +110,6 @@
     <ClInclude Include="Sticker.h">
       <Filter>CubeStuff\Cube</Filter>
     </ClInclude>
-    <ClInclude Include="AppRenderer.h" />
     <ClInclude Include="RendererD3D.h">
       <Filter>Renderer\D3D</Filter>
     </ClInclude>
@@ -129,6 +128,7 @@
     <ClInclude Include="pch.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
+    <ClInclude Include="AgnosticApplication.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
