@@ -474,6 +474,11 @@ void RendererD3D::InitializeStickerResources()
 
 void RendererD3D::RenderSticker(Sticker* pSticker, XMFLOAT4X4 *pWorldMatrix, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
 {
+    if (!mStickerLoadingComplete)
+    {
+        return;
+    }
+
     mStickerConstantBufferData.color = ColorToXMFLOAT4(pSticker->GetColor());
 
     mStickerConstantBufferData.model = *pWorldMatrix;
