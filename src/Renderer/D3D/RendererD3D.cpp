@@ -1,11 +1,9 @@
 #include "pch.h"
+
 #include "RendererD3D.h"
 
-#include "pch.h"
-#include "CubeHelperFunctions.h"
-#include "Sticker.h"
-#include "Renderer.h"
-#include "WindowsStore\DirectXHelper.h"
+#include "..\..\..\RubiksCube\pch.h"
+#include "..\..\..\..\RubiksCube\RubiksCube\WindowsStore\DirectXHelper.h"
 
 using namespace DirectX;
 using namespace Microsoft::WRL;

@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "RendererGL.h"
 #include "ShaderCompilerGL.h"
-#include "Sticker.h"
 
 #define STRING(s) #s
 

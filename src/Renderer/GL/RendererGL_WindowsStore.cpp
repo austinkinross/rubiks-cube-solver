@@ -5,12 +5,6 @@
 #include "RendererGL.h"
 #include "ShaderCompilerGL.h"
 
-#include "pch.h"
-#include "CubeHelperFunctions.h"
-#include "Sticker.h"
-#include "Renderer.h"
-#include "WindowsStore\DirectXHelper.h"
-
 // ANGLE include for Windows Store
 #include <angle_windowsstore.h>
 

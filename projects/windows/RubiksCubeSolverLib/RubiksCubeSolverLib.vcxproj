@@ -115,6 +115,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +128,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,6 +141,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,6 +154,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -163,6 +167,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -175,6 +180,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -183,30 +189,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\RubiksCube\Cube.h" />
-    <ClInclude Include="..\..\..\RubiksCube\CubeCommandList.h" />
-    <ClInclude Include="..\..\..\RubiksCube\CubeHelperFunctions.h" />
-    <ClInclude Include="..\..\..\RubiksCube\CubePlayer.h" />
-    <ClInclude Include="..\..\..\RubiksCube\CubeSolver.h" />
-    <ClInclude Include="..\..\..\RubiksCube\Slice.h" />
-    <ClInclude Include="..\..\..\RubiksCube\Sticker.h" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="..\..\..\RubiksCube\pch.h" />
+    <ClInclude Include="..\..\..\src\Cube\Cube.h" />
+    <ClInclude Include="..\..\..\src\Cube\CubeCommandList.h" />
+    <ClInclude Include="..\..\..\src\Cube\CubeHelperFunctions.h" />
+    <ClInclude Include="..\..\..\src\Cube\CubePlayer.h" />
+    <ClInclude Include="..\..\..\src\Cube\CubeSolver.h" />
+    <ClInclude Include="..\..\..\src\Cube\Slice.h" />
+    <ClInclude Include="..\..\..\src\Cube\Sticker.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\RubiksCube\Cube.cpp" />
-    <ClCompile Include="..\..\..\RubiksCube\CubeCommandList.cpp" />
-    <ClCompile Include="..\..\..\RubiksCube\CubePlayer.cpp" />
-    <ClCompile Include="..\..\..\RubiksCube\CubeSolver.cpp" />
-    <ClCompile Include="..\..\..\RubiksCube\Slice.cpp" />
-    <ClCompile Include="..\..\..\RubiksCube\Sticker.cpp" />
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="..\..\..\RubiksCube\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\Cube\Cube.cpp" />
+    <ClCompile Include="..\..\..\src\Cube\CubeCommandList.cpp" />
+    <ClCompile Include="..\..\..\src\Cube\CubePlayer.cpp" />
+    <ClCompile Include="..\..\..\src\Cube\CubeSolver.cpp" />
+    <ClCompile Include="..\..\..\src\Cube\Slice.cpp" />
+    <ClCompile Include="..\..\..\src\Cube\Sticker.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

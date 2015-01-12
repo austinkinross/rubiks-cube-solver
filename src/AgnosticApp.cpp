@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "AgnosticApp.h"
-#include "RendererD3D.h"
-#include "RendererGL.h"
+#include "Renderer\D3D\RendererD3D.h"
+#include "Renderer\GL\RendererGL.h"
 
 using namespace DirectX;
 

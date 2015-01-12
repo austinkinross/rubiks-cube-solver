@@ -1,7 +1,7 @@
 #pragma once
 
-#include "pch.h"
-#include "Renderer.h"
+#include "..\..\..\RubiksCube\pch.h"
+#include "..\Renderer.h"
 
 using namespace DirectX;
 

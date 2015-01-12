@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "Cube.h"
-#include "CubeSolver.h"
+#include "..\src\Cube\Cube.h"
+#include "..\src\Cube\CubeSolver.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

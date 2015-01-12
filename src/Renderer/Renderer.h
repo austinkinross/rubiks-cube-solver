@@ -1,8 +1,8 @@
 #pragma once
 
-#include "pch.h"
-#include "Cube.h"
-#include "sticker.h"
+#include "..\..\RubiksCube\pch.h"
+#include "..\Cube\Cube.h"
+#include "..\Cube\Sticker.h"
 
 using namespace DirectX;
 

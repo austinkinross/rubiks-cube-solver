@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "CubePlayer.h"
-#include "CubeSolver.h"
-#include "Renderer.h"
+#include "Cube/CubePlayer.h"
+#include "Cube/CubeSolver.h"
+#include "Renderer/Renderer.h"
 
 ref class AgnosticApp sealed
 {

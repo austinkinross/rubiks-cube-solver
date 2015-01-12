@@ -21,48 +21,48 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="..\..\..\RubiksCube\Cube.cpp">
+    <ClCompile Include="..\..\..\src\Cube\Cube.cpp">
       <Filter>CubeStuff\Cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\RubiksCube\Slice.cpp">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\RubiksCube\Sticker.cpp">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\RubiksCube\CubeCommandList.cpp">
+    <ClCompile Include="..\..\..\src\Cube\CubeCommandList.cpp">
       <Filter>CubeStuff\CubeCommandList</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\RubiksCube\CubePlayer.cpp">
+    <ClCompile Include="..\..\..\src\Cube\Slice.cpp">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Cube\Sticker.cpp">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Cube\CubePlayer.cpp">
       <Filter>CubeStuff\CubePlayer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\RubiksCube\CubeSolver.cpp">
+    <ClCompile Include="..\..\..\src\Cube\CubeSolver.cpp">
       <Filter>CubeStuff\CubeSolver</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\RubiksCube\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="..\..\..\RubiksCube\Cube.h">
+    <ClInclude Include="..\..\..\src\Cube\Cube.h">
       <Filter>CubeStuff\Cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\Slice.h">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\Sticker.h">
-      <Filter>CubeStuff\Cube</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\CubeCommandList.h">
+    <ClInclude Include="..\..\..\src\Cube\CubeCommandList.h">
       <Filter>CubeStuff\CubeCommandList</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\CubeHelperFunctions.h">
+    <ClInclude Include="..\..\..\src\Cube\Sticker.h">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Cube\Slice.h">
+      <Filter>CubeStuff\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Cube\CubeHelperFunctions.h">
       <Filter>CubeStuff\CubeHelperFunctions</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\CubePlayer.h">
+    <ClInclude Include="..\..\..\src\Cube\CubePlayer.h">
       <Filter>CubeStuff\CubePlayer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\CubeSolver.h">
+    <ClInclude Include="..\..\..\src\Cube\CubeSolver.h">
       <Filter>CubeStuff\CubeSolver</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\RubiksCube\pch.h" />
   </ItemGroup>
 </Project>
