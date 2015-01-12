@@ -3,8 +3,6 @@
 #include "..\Cube\Cube.h"
 #include "..\Cube\Sticker.h"
 
-using namespace DirectX;
-
 class Renderer
 {
 public:

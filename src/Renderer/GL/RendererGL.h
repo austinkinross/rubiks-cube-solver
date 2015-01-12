@@ -1,13 +1,5 @@
 #pragma once
 
-#include "..\Renderer.h"
-
-using namespace DirectX;
-
-#include <agile.h>
-
-class Sticker;
-
 // OpenGL ES includes
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
@@ -16,6 +8,12 @@ class Sticker;
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <EGL/eglplatform.h>
+
+#include <agile.h>
+
+#include "..\Renderer.h"
+
+class Sticker;
 
 class RendererGL : public Renderer
 {

@@ -4,8 +4,6 @@
 
 #include <d3d11_1.h>
 
-using namespace DirectX;
-
 #include <agile.h>
 
 class Sticker;

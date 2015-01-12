@@ -77,7 +77,7 @@ void CubePlayer::Update(float timeTotal, float timeDelta)
 
 		// Now that we've performed the actual twist (if it was needed), we should update the slices' angles
 
-		float fRotationAngle = (-fCurrentCommandProportion*fCurrentCommandProportion*fCurrentCommandProportion + 2*fCurrentCommandProportion*fCurrentCommandProportion) * (float)(XM_PIDIV2);
+		float fRotationAngle = (-fCurrentCommandProportion*fCurrentCommandProportion*fCurrentCommandProportion + 2*fCurrentCommandProportion*fCurrentCommandProportion) * (float)(3.141592f / 2);
 		if (IsPrimeCubeCommand(currentCommand))
 		{
 			fRotationAngle *= -1;

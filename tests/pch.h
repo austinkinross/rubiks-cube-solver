@@ -12,8 +12,6 @@
 
 #include <SDKDDKVer.h>
 
-#include <DirectXMath.h>
-
 // Headers for CppUnitTest
 #include "CppUnitTest.h"
 

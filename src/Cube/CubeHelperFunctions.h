@@ -1,6 +1,5 @@
 #pragma once
 
-#include <DirectXMath.h>
 #include <..\..\..\third_party\glm\glm.hpp>
 #include <..\..\..\third_party\glm\gtc\matrix_transform.hpp>
 

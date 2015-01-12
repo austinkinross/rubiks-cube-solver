@@ -4,8 +4,6 @@
 
 class Renderer;
 
-using namespace DirectX;
-
 struct SideCubeConstantBuffer
 {
     glm::mat4 model;
