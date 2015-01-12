@@ -65,17 +65,16 @@ void AgnosticApplication::Render()
 {
     mRenderer->Clear();
 
-    mCubePlayer->GetCube()->Draw(mRenderer, &m_viewMatrix, &m_projectionMatrix);
+    mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
 
 	XMVECTOR eye = XMVectorSet(7.7f, +7.7f, -7.5f, 0.0f);
 	XMVECTOR at = XMVectorSet(0.0f, -0.1f, 0.0f, 0.0f);
 	XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
 	XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMMatrixRotationY(0 / 2.0f), XMMatrixLookAtRH(eye, at, up)));
-
 	XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMLoadFloat4x4(&m_viewMatrix), XMMatrixTranslation(10, 0, 0)));
 
-    mCubePlayer->GetCube()->Draw(mRenderer, &m_viewMatrix, &m_projectionMatrix);
+    mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
 }
 
 // This method is called in the event handler for the SizeChanged event.

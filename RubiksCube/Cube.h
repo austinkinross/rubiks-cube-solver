@@ -3,7 +3,8 @@
 #include "pch.h"
 #include "Slice.h"
 #include "CubeHelperFunctions.h"
-#include "Renderer.h"
+
+class Renderer;
 
 class Cube
 {

@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Sticker.h"
+#include "Renderer.h"
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // A "Sticker" represents a single face of a single cublet.

@@ -2,7 +2,8 @@
 
 #include "pch.h"
 #include "CubeHelperFunctions.h"
-#include "Renderer.h"
+
+class Renderer;
 
 using namespace DirectX;
 
