@@ -11,7 +11,7 @@
 
 #include <agile.h>
 
-#include "..\Renderer.h"
+#include "Renderer\Renderer.h"
 
 class Sticker;
 

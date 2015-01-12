@@ -1,7 +1,7 @@
 #include "RendererD3D.h"
 #include "AsyncFileLoader.h"
 
-#include "..\..\Helpers.h"
+#include "Helpers.h"
 
 using namespace Microsoft::WRL;
 using namespace Windows::UI::Core;

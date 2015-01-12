@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "..\..\src\AgnosticApp.h"
+#include "AgnosticApp.h"
 
 ref class WindowsStoreApp sealed : public Windows::ApplicationModel::Core::IFrameworkView
 {

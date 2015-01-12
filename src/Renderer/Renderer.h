@@ -1,7 +1,7 @@
 #pragma once
 
-#include "..\Cube\Cube.h"
-#include "..\Cube\Sticker.h"
+#include "Cube\Cube.h"
+#include "Cube\Sticker.h"
 
 class Renderer
 {
