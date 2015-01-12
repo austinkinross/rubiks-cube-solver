@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Cube.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -77,13 +76,13 @@ void Cube::InitializeSlices()
 	pBottomSlice->AssociatePartialFace(3, leftFaceStickers[2][2],	leftFaceStickers[1][2],		leftFaceStickers[0][2]);
 };
 
-void Cube::Randomize(UINT seed)
+void Cube::Randomize(unsigned int seed)
 {
-    UINT primes[] = { 29, 73, 107, 37, 59, 67, 151, 89, 13, 71, 29, 199, 11, 61, 109, 139, 257, 499, 151, 89, 73, 23, 401, 37, 433, 223, 251 };
+    unsigned int primes[] = { 29, 73, 107, 37, 59, 67, 151, 89, 13, 71, 29, 199, 11, 61, 109, 139, 257, 499, 151, 89, 73, 23, 401, 37, 433, 223, 251 };
 
-    for (int i = 0; i < _countof(primes); i++)
+    for (int i = 0; i < sizeof(primes)/sizeof(primes[0]); i++)
     {
-        UINT rot = (seed / primes[i]) % 12;
+        unsigned int rot = (seed / primes[i]) % 12;
 
         switch (rot)
         {

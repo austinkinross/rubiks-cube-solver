@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CubeCommandList.h"
 
 CubeCommandList::CubeCommandList()
@@ -6,7 +5,7 @@ CubeCommandList::CubeCommandList()
 	uiCommandVectorSize = 0;
 }
 
-CubeCommand CubeCommandList::GetCommandAt(UINT uiPos)
+CubeCommand CubeCommandList::GetCommandAt(unsigned int uiPos)
 {
 	if (0 <= uiPos && uiPos < uiCommandVectorSize)
 	{
@@ -26,7 +25,7 @@ void CubeCommandList::AppendCommand(CubeCommand command)
 	uiCommandVectorSize +=1;
 }
 
-UINT CubeCommandList::GetLength()
+unsigned int CubeCommandList::GetLength()
 {
 	return uiCommandVectorSize;
 }
@@ -44,7 +43,7 @@ void CubeCommandList::Optimize()
 	{
 		bMadeChanges = false;
 
-		for (UINT i = 0; i < uiCommandVectorSize - 2; i++)
+		for (unsigned int i = 0; i < uiCommandVectorSize - 2; i++)
 		{
 			if (commandVector[i] == commandVector[i+1] && commandVector[i+1] == commandVector[i+2])
 			{
@@ -56,7 +55,7 @@ void CubeCommandList::Optimize()
 			}
 		}
 
-		for (UINT i = 0; i < uiCommandVectorSize - 1; i++)
+		for (unsigned int i = 0; i < uiCommandVectorSize - 1; i++)
 		{
 			if (commandVector[i] == OppositeCommand(commandVector[i+1]))
 			{
@@ -75,12 +74,12 @@ void CubeCommandList::Optimize()
 void CubeCommandList::RemoveCubeRotateY()
 {
 	vector<CubeCommand> newCommandVector;
-	UINT newCommandVectorSize = 0;
+	unsigned int newCommandVectorSize = 0;
 
 	// How many times did the original command list perform CubeRotateY, before the current move
-	UINT cubeRotateYCount = 0;
+	unsigned int cubeRotateYCount = 0;
 
-	for (UINT i = 0; i < uiCommandVectorSize; i++)
+	for (unsigned int i = 0; i < uiCommandVectorSize; i++)
 	{
 		if (commandVector[i] == CubeRotateY)
 		{

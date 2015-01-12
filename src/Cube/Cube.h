@@ -1,6 +1,5 @@
 #pragma once
 
-#include "pch.h"
 #include "Slice.h"
 #include "CubeHelperFunctions.h"
 
@@ -11,7 +10,7 @@ class Cube
 public:
     Cube();
 
-	void Randomize(UINT seed);
+	void Randomize(unsigned int seed);
 
 	void Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
 	void SilentlyRotateY();

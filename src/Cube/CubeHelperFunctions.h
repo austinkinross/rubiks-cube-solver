@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DirectXMath.h>
+
 enum StickerColor
 {
 	CUBE_RED		= 1 << 0,

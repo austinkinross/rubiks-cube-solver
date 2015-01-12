@@ -112,10 +112,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -196,7 +198,6 @@
     <ClInclude Include="..\..\..\src\Cube\CubeSolver.h" />
     <ClInclude Include="..\..\..\src\Cube\Slice.h" />
     <ClInclude Include="..\..\..\src\Cube\Sticker.h" />
-    <ClInclude Include="..\..\..\src\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\Cube\Cube.cpp" />
@@ -205,9 +206,6 @@
     <ClCompile Include="..\..\..\src\Cube\CubeSolver.cpp" />
     <ClCompile Include="..\..\..\src\Cube\Slice.cpp" />
     <ClCompile Include="..\..\..\src\Cube\Sticker.cpp" />
-    <ClCompile Include="..\..\..\src\pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

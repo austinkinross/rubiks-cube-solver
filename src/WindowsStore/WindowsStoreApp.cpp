@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "WindowsStoreApp.h"
+﻿#include "WindowsStoreApp.h"
 #include "BasicTimer.h"
 #include <ppltasks.h>
 

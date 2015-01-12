@@ -1,6 +1,5 @@
 #pragma once
 
-#include "pch.h"
 #include <vector>
 
 #include "CubeHelperFunctions.h"
@@ -11,13 +10,13 @@ class CubeCommandList
 {
 public:
 	CubeCommandList();
-	CubeCommand GetCommandAt(UINT pos);
+	CubeCommand GetCommandAt(unsigned int pos);
 	void AppendCommand(CubeCommand command);
-	UINT GetLength();
+	unsigned int GetLength();
 	void Optimize();
 	void RemoveCubeRotateY();
 
 private:
 	vector<CubeCommand> commandVector;
-	UINT uiCommandVectorSize;
+	unsigned int uiCommandVectorSize;
 };

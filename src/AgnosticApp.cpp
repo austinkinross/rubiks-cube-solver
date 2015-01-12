@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "AgnosticApp.h"
+﻿#include "AgnosticApp.h"
 #include "Renderer\D3D\RendererD3D.h"
 #include "Renderer\GL\RendererGL.h"
 

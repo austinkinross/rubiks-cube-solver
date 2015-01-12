@@ -46,9 +46,6 @@
     <ClCompile Include="..\..\..\src\WindowsStore\WindowsStoreApp.cpp">
       <Filter>WindowsStore</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\pch.cpp">
-      <Filter>WindowsStore</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\AgnosticApp.h" />
@@ -71,9 +68,6 @@
       <Filter>WindowsStore</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\WindowsStore\WindowsStoreApp.h">
-      <Filter>WindowsStore</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\pch.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
   </ItemGroup>

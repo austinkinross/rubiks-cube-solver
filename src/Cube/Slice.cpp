@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Slice.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -35,7 +34,7 @@ void Slice::AssociateFace(Sticker *paCubeSides[3][3])
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // This lets the cube attach 3 stickers that are not on the slice's main face, but get rotated when the slice is rotated
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
-void Slice::AssociatePartialFace(UINT faceID, Sticker *pSticker1, Sticker *pSticker2, Sticker *pSticker3)
+void Slice::AssociatePartialFace(unsigned int faceID, Sticker *pSticker1, Sticker *pSticker2, Sticker *pSticker3)
 {
 	if(faceID == 0)
 	{

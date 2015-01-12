@@ -1,6 +1,4 @@
-#include "pch.h"
-
-#ifdef WIN32
+#if 1
 
 #include "RendererGL.h"
 #include "ShaderCompilerGL.h"

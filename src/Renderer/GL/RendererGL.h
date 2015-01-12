@@ -1,6 +1,5 @@
 #pragma once
 
-#include "..\..\..\src\pch.h"
 #include "..\Renderer.h"
 
 using namespace DirectX;

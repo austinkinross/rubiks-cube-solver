@@ -661,11 +661,11 @@ void CubeSolver::SolveStage3()
 {
 
 	bool bSolvedStage3 = false;
-	UINT attempts = 0;
+	unsigned int attempts = 0;
 
 	while (!bSolvedStage3 && attempts < 4)
 	{
-		UINT cubeStage3Serial = SerializeCubeStage3Orientation();
+		unsigned int cubeStage3Serial = SerializeCubeStage3Orientation();
 
 		if (cubeStage3Serial == SerializeOrientation(0, 1, 2, 3, 4, 5, 6, 7, 8))
 		{
@@ -1039,9 +1039,9 @@ void CubeSolver::SolveStage3()
 
 }
 
-UINT CubeSolver::SerializeCubeStage3Orientation()
+unsigned int CubeSolver::SerializeCubeStage3Orientation()
 {
-	UINT serializedValue = 0;
+	unsigned int serializedValue = 0;
     StickerColor topColor = mCube->topFaceStickers[1][1]->GetColor();
 
 	if (CC(cTop, 0, 0) == topColor)
@@ -1094,9 +1094,9 @@ UINT CubeSolver::SerializeCubeStage3Orientation()
 	return serializedValue;
 }
 
-UINT CubeSolver::SerializeOrientation(UINT pos1, UINT pos2, UINT pos3, UINT pos4, UINT pos5, UINT pos6, UINT pos7, UINT pos8, UINT pos9)
+unsigned int CubeSolver::SerializeOrientation(unsigned int pos1, unsigned int pos2, unsigned int pos3, unsigned int pos4, unsigned int pos5, unsigned int pos6, unsigned int pos7, unsigned int pos8, unsigned int pos9)
 {
-	UINT serializedValue = 0;
+	unsigned int serializedValue = 0;
 	serializedValue += 1 << pos1;
 	serializedValue += 1 << pos2;
 	serializedValue += 1 << pos3;
@@ -1112,8 +1112,8 @@ UINT CubeSolver::SerializeOrientation(UINT pos1, UINT pos2, UINT pos3, UINT pos4
 void CubeSolver::SolveStage4()
 {
 	bool bSolvedStage4 = false;
-	UINT cubeYRotationsMade = 0;	// Gets reset every time we make moves, e.g. if we solve corners we might need to rotate four more times to solve edges...
-    UINT topRotationsMade = 0;
+	unsigned int cubeYRotationsMade = 0;	// Gets reset every time we make moves, e.g. if we solve corners we might need to rotate four more times to solve edges...
+    unsigned int topRotationsMade = 0;
 
     while (!bSolvedStage4 && topRotationsMade < 4)
     {
@@ -1256,9 +1256,9 @@ void CubeSolver::ApplyCommand(CubeCommand command)
     mCube->ApplyCommand(command);
 }
 
-void CubeSolver::ParseCommandString(char *pCommandString, UINT stringLength)
+void CubeSolver::ParseCommandString(char *pCommandString, unsigned int stringLength)
 {
-	for (UINT i = 0; i < stringLength - 1; i++)
+	for (unsigned int i = 0; i < stringLength - 1; i++)
 	{
 		char c = pCommandString[i];
 		switch (c)

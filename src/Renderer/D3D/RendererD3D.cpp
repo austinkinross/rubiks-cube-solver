@@ -1,8 +1,4 @@
-#include "pch.h"
-
 #include "RendererD3D.h"
-
-#include "..\..\..\src\pch.h"
 #include "..\..\..\src\WindowsStore\DirectXHelper.h"
 
 using namespace DirectX;

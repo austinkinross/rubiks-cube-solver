@@ -26,7 +26,7 @@ private:
     Cube* mCube;
 	CubeCommandList* mCubeCommandList;
 
-	UINT uiCurrentCommandPos;
+	unsigned int uiCurrentCommandPos;
 	float fCurrentCommandProportion;
 	bool bPaused;
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "..\..\src\pch.h"
 #include "..\Cube\Cube.h"
 #include "..\Cube\Sticker.h"
 

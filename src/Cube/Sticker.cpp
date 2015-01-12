@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Sticker.h"
 #include "..\Renderer\Renderer.h"
 
@@ -15,9 +14,9 @@
 Sticker::Sticker(StickerColor color, XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotation, int pos1, int pos2)
 {
 	this->color = color;
-	pRotation1 = NULL;
-	pRotation2 = NULL;
-	pRotation3 = NULL;
+	pRotation1 = nullptr;
+    pRotation2 = nullptr;
+    pRotation3 = nullptr;
 
     XMStoreFloat4x4(&worldMatrix, XMMatrixMultiply(XMMatrixTranslation(2.0f * pos1 - 2.0f, 0.0f, 2.0f * pos2 - 2.0f), XMLoadFloat4x4(&sideRotation)));
 
@@ -26,17 +25,17 @@ Sticker::Sticker(StickerColor color, XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRota
 
 void Sticker::AttachRotationMatrix(XMFLOAT4X4 *pRotationMatrix)
 {
-	if (pRotation1 == NULL)
+    if (pRotation1 == nullptr)
 	{
 		pRotation1 = pRotationMatrix;
 		return;
 	}
-	if (pRotation2 == NULL)
+    if (pRotation2 == nullptr)
 	{
 		pRotation2 = pRotationMatrix;
 		return;
 	}
-	if (pRotation3 == NULL)
+    if (pRotation3 == nullptr)
 	{
 		pRotation3 = pRotationMatrix;
 		return;
@@ -70,17 +69,17 @@ void Sticker::ConfigureShaderMatrices(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProj
 
     // cumulativeWorld = worldMatrix, then rotation1, then rotation2, then rotation3, then cubeWorld
 
-    if (pRotation1 != NULL)
+    if (pRotation1 != nullptr)
     {
         XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation1)));
     }
 
-    if (pRotation2 != NULL)
+    if (pRotation2 != nullptr)
     {
         XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation2)));
     }
 
-    if (pRotation3 != NULL)
+    if (pRotation3 != nullptr)
     {
         XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation3)));
     }

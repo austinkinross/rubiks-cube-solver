@@ -104,8 +104,10 @@
       <AdditionalDependencies>$(AngleBinPath)lib\libGLESv2.lib;$(AngleBinPath)lib\libEGL.lib;d2d1.lib; d3d11.lib; dxgi.lib; ole32.lib; windowscodecs.lib; dwrite.lib; %(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ClCompile>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(AngleIncPath);$(ProjectDir);$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4453</DisableSpecificWarnings>
     </ClCompile>
@@ -118,6 +120,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -128,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\AgnosticApp.h" />
-    <ClInclude Include="..\..\..\src\pch.h" />
     <ClInclude Include="..\..\..\src\Renderer\D3D\RendererD3D.h" />
     <ClInclude Include="..\..\..\src\Renderer\GL\RendererGL.h" />
     <ClInclude Include="..\..\..\src\Renderer\GL\ShaderCompilerGL.h" />
@@ -139,9 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />
-    <ClCompile Include="..\..\..\src\pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\Renderer\D3D\RendererD3D.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp" />

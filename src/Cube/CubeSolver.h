@@ -36,12 +36,12 @@ public:
 private:
 
     bool SolveStage2Helper(bool bUseRealColors);
-    UINT SerializeCubeStage3Orientation();
-    UINT SerializeOrientation(UINT pos1, UINT pos2, UINT pos3, UINT pos4, UINT pos5, UINT pos6, UINT pos7, UINT pos8, UINT pos9);
+    unsigned int SerializeCubeStage3Orientation();
+    unsigned int SerializeOrientation(unsigned int pos1, unsigned int pos2, unsigned int pos3, unsigned int pos4, unsigned int pos5, unsigned int pos6, unsigned int pos7, unsigned int pos8, unsigned int pos9);
 
 	StickerColor CC(CubeSide side, int i, int j);
 	void CubeSolver::ApplyCommand(CubeCommand command);
-	void ParseCommandString(char *pCommandString, UINT stringLength);
+	void ParseCommandString(char *pCommandString, unsigned int stringLength);
 
     Cube* mCube;
 	CubeCommandList* mCubeCommandList;

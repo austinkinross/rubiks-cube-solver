@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "RendererGL.h"
 #include "ShaderCompilerGL.h"
 

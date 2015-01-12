@@ -1,6 +1,5 @@
 #pragma once
 
-#include "pch.h"
 #include "Sticker.h"
 #include "CubeHelperFunctions.h"
 
@@ -21,7 +20,7 @@ public:
 
 	void AssociateFace(Sticker *paCubeSides[3][3]);
 	void ApplyTwist(TwistType rot);
-	void AssociatePartialFace(UINT faceID, Sticker *pSticker1, Sticker *pSticker2, Sticker *pSticker3);
+	void AssociatePartialFace(unsigned int faceID, Sticker *pSticker1, Sticker *pSticker2, Sticker *pSticker3);
 	void Slice::SetAngle(float angle);
 
 private:
