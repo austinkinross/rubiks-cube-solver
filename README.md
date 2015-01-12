@@ -1,9 +1,12 @@
 C++ Rubik's Cube Solver
 ==================
-Personal project. Unaffiliated with Microsoft or Microsoft Open Tech Inc.
+Personal project.
 
-Not endorsed or related to any official "Rubik's Cube" product or company.
+Not endorsed by (or affiliated with) anything by:
+- Microsoft Corp.
+- Microsoft Open Tech Inc.
+- Any official "Rubik's Cube" company or product.
 
 About
 =====
-This is a work-in-progress C++ Rubik's Cube solver. 
+Work-in-progress C++ Rubik's Cube solver. 
