@@ -127,34 +127,25 @@
     <Image Include="Assets\SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ShaderCompilerGL.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="RendererD3D.h" />
-    <ClInclude Include="RendererGL.h" />
-    <ClInclude Include="AgnosticApp.h" />
-    <ClInclude Include="WindowsStore\BasicTimer.h" />
-    <ClInclude Include="WindowsStore\DirectXHelper.h" />
-    <ClInclude Include="WindowsStore\WindowsStoreApp.h" />
+    <ClInclude Include="..\..\..\RubiksCube\AgnosticApp.h" />
+    <ClInclude Include="..\..\..\RubiksCube\pch.h" />
+    <ClInclude Include="..\..\..\RubiksCube\Renderer.h" />
+    <ClInclude Include="..\..\..\RubiksCube\RendererD3D.h" />
+    <ClInclude Include="..\..\..\RubiksCube\RendererGL.h" />
+    <ClInclude Include="..\..\..\RubiksCube\ShaderCompilerGL.h" />
+    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\BasicTimer.h" />
+    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\DirectXHelper.h" />
+    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\WindowsStoreApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="..\..\..\RubiksCube\AgnosticApp.cpp" />
+    <ClCompile Include="..\..\..\RubiksCube\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="RendererD3D.cpp" />
-    <ClCompile Include="RendererGL.cpp" />
-    <ClCompile Include="RendererGL_WindowsStore.cpp" />
-    <ClCompile Include="AgnosticApp.cpp" />
-    <ClCompile Include="WindowsStore\WindowsStoreApp.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="SimplePixelShader.hlsl">
-      <ShaderType>Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="SimpleVertexShader.hlsl">
-      <ShaderType>Vertex</ShaderType>
-    </FxCompile>
+    <ClCompile Include="..\..\..\RubiksCube\RendererD3D.cpp" />
+    <ClCompile Include="..\..\..\RubiksCube\RendererGL.cpp" />
+    <ClCompile Include="..\..\..\RubiksCube\RendererGL_WindowsStore.cpp" />
+    <ClCompile Include="..\..\..\RubiksCube\WindowsStore\WindowsStoreApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(AngleBinPath)libEGL.dll">
@@ -163,15 +154,33 @@
     <None Include="$(AngleBinPath)libGLESv2.dll">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </None>
-    <None Include="WindowsStore\RubiksCube_TemporaryKey.pfx" />
+    <None Include="..\..\..\RubiksCube\WindowsStore\RubiksCube_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="WindowsStore\Package.appxmanifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RubiksCubeSolver\RubiksCubeSolver.vcxproj">
+    <ProjectReference Include="..\RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj">
       <Project>{93d11dd0-9621-4f25-81d6-c302917ec4aa}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\..\RubiksCube\SimplePixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="..\..\..\RubiksCube\SimpleVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="..\..\..\RubiksCube\WindowsStore\Package.appxmanifest" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

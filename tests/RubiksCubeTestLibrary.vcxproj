@@ -251,7 +251,7 @@
     <None Include="RubiksCubeTestLibrary_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RubiksCubeSolver\RubiksCubeSolver.vcxproj">
+    <ProjectReference Include="..\projects\windows\RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj">
       <Project>{93d11dd0-9621-4f25-81d6-c302917ec4aa}</Project>
     </ProjectReference>
   </ItemGroup>

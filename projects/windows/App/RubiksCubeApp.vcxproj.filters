@@ -33,71 +33,71 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="SimpleVertexShader.hlsl">
-      <Filter>Renderer\D3D</Filter>
-    </FxCompile>
-    <FxCompile Include="SimplePixelShader.hlsl">
-      <Filter>Renderer\D3D</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="RendererD3D.cpp">
+    <ClCompile Include="..\..\..\RubiksCube\AgnosticApp.cpp" />
+    <ClCompile Include="..\..\..\RubiksCube\RendererD3D.cpp">
       <Filter>Renderer\D3D</Filter>
     </ClCompile>
-    <ClCompile Include="WindowsStore\WindowsStoreApp.cpp">
-      <Filter>WindowsStore</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>WindowsStore</Filter>
-    </ClCompile>
-    <ClCompile Include="RendererGL.cpp">
+    <ClCompile Include="..\..\..\RubiksCube\RendererGL.cpp">
       <Filter>Renderer\GL</Filter>
     </ClCompile>
-    <ClCompile Include="RendererGL_WindowsStore.cpp">
+    <ClCompile Include="..\..\..\RubiksCube\RendererGL_WindowsStore.cpp">
       <Filter>Renderer\GL</Filter>
     </ClCompile>
-    <ClCompile Include="AgnosticApp.cpp" />
+    <ClCompile Include="..\..\..\RubiksCube\WindowsStore\WindowsStoreApp.cpp">
+      <Filter>WindowsStore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\RubiksCube\pch.cpp">
+      <Filter>WindowsStore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RendererD3D.h">
+    <ClInclude Include="..\..\..\RubiksCube\AgnosticApp.h" />
+    <ClInclude Include="..\..\..\RubiksCube\RendererD3D.h">
       <Filter>Renderer\D3D</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="..\..\..\RubiksCube\RendererGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\RubiksCube\ShaderCompilerGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\RubiksCube\Renderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsStore\BasicTimer.h">
+    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\BasicTimer.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsStore\DirectXHelper.h">
+    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\DirectXHelper.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsStore\WindowsStoreApp.h">
+    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\WindowsStoreApp.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="..\..\..\RubiksCube\pch.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="RendererGL.h">
-      <Filter>Renderer\GL</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderCompilerGL.h">
-      <Filter>Renderer\GL</Filter>
-    </ClInclude>
-    <ClInclude Include="AgnosticApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="WindowsStore\RubiksCube_TemporaryKey.pfx">
-      <Filter>WindowsStore</Filter>
-    </None>
     <None Include="$(AngleBinPath)libEGL.dll">
       <Filter>Renderer\GL\Binaries</Filter>
     </None>
     <None Include="$(AngleBinPath)libGLESv2.dll">
       <Filter>Renderer\GL\Binaries</Filter>
     </None>
+    <None Include="..\..\..\RubiksCube\WindowsStore\RubiksCube_TemporaryKey.pfx">
+      <Filter>WindowsStore</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="WindowsStore\Package.appxmanifest">
+    <FxCompile Include="..\..\..\RubiksCube\SimplePixelShader.hlsl">
+      <Filter>Renderer\D3D</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\RubiksCube\SimpleVertexShader.hlsl">
+      <Filter>Renderer\D3D</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="..\..\..\RubiksCube\WindowsStore\Package.appxmanifest">
       <Filter>WindowsStore</Filter>
     </AppxManifest>
   </ItemGroup>

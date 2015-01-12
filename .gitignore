@@ -25,6 +25,7 @@
 *.opensdf
 *.sdf
 *.ipch
+*.suo
 
 *.tlog
 

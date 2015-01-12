@@ -18,8 +18,6 @@ class Sticker;
 #include <EGL/eglext.h>
 #include <EGL/eglplatform.h>
 
-#include <wrl.h>
-
 class RendererGL : public Renderer
 {
 public:
