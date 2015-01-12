@@ -2,7 +2,7 @@ C++ Rubik's Cube Solver
 ==================
 Personal project.
 
-Not endorsed by (or affiliated with) anything by:
+Not endorsed by (or affiliated with):
 - Microsoft Corp.
 - Microsoft Open Tech Inc.
 - Any official "Rubik's Cube" company or product.
