@@ -79,7 +79,7 @@
     <None Include="$(AngleBinPath)libGLESv2.dll">
       <Filter>Renderer\GL\Binaries</Filter>
     </None>
-    <None Include="..\..\..\src\WindowsStore\RubiksCube_TemporaryKey.pfx">
+    <None Include="RubiksCube_TemporaryKey.pfx">
       <Filter>WindowsStore</Filter>
     </None>
   </ItemGroup>
@@ -92,7 +92,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="..\..\..\src\WindowsStore\Package.appxmanifest">
+    <AppxManifest Include="Package.appxmanifest">
       <Filter>WindowsStore</Filter>
     </AppxManifest>
   </ItemGroup>

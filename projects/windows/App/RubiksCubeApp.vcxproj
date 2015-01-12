@@ -154,7 +154,7 @@
     <None Include="$(AngleBinPath)libGLESv2.dll">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </None>
-    <None Include="..\..\..\src\WindowsStore\RubiksCube_TemporaryKey.pfx" />
+    <None Include="RubiksCube_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj">
@@ -180,7 +180,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="..\..\..\src\WindowsStore\Package.appxmanifest" />
+    <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
