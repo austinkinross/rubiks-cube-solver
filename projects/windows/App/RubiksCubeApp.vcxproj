@@ -157,11 +157,6 @@
     <None Include="..\..\..\RubiksCube\WindowsStore\RubiksCube_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj">
-      <Project>{93d11dd0-9621-4f25-81d6-c302917ec4aa}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <FxCompile Include="..\..\..\RubiksCube\SimplePixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
@@ -181,6 +176,11 @@
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="..\..\..\RubiksCube\WindowsStore\Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj">
+      <Project>{93d11dd0-9621-4f25-81d6-c302917ec4aa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
