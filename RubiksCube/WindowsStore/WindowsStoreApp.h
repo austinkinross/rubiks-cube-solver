@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "pch.h"
-#include "AgnosticApplication.h"
+#include "AgnosticApp.h"
 
 ref class WindowsStoreApp sealed : public Windows::ApplicationModel::Core::IFrameworkView
 {
@@ -28,7 +28,7 @@ protected:
 	void OnPointerMoved(Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::PointerEventArgs^ args);
 
 private:
-	AgnosticApplication^ m_renderer;
+	AgnosticApp^ m_renderer;
 	bool m_windowClosed;
 	bool m_windowVisible;
 };

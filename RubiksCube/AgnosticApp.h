@@ -4,10 +4,10 @@
 #include "CubeSolver.h"
 #include "Renderer.h"
 
-ref class AgnosticApplication sealed
+ref class AgnosticApp sealed
 {
 public:
-    AgnosticApplication();
+    AgnosticApp();
 
     void Initialize(float windowWidth, float windowHeight);
 

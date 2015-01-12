@@ -3,64 +3,36 @@
 
 CubeSolver::CubeSolver()
 {
-    pCube = new Cube();
+    mCube = new Cube();
+    mCubeCommandList = new CubeCommandList();
 }
 
 CubeSolver::~CubeSolver()
 {
-    delete pCube;
+    delete mCube;
 }
 
 void CubeSolver::Solve()
 {
-	PrepareForSolve();
-
-	AddRandomMoves();
  	SolveStage1();
 	SolveStage2();
 	SolveStage3();
 	SolveStage4();
 }
 
-void CubeSolver::PrepareForSolve()
-{
-	m_pCubeCommandList = new CubeCommandList();
-}
-
 void CubeSolver::GetCubeCommandList(CubeCommandList **ppCommandList)
 {
-	*ppCommandList = m_pCubeCommandList;
+    // TODO: copy the command list, instead of just setting the pointer
+    *ppCommandList = mCubeCommandList;
 }
-
-void CubeSolver::AddRandomMoves()
-{
-//	ApplyCommand(CubeCommandRightPrime);
-//	ApplyCommand(CubeCommandRight);
-
-	return;
-
-	// For now, hard code some commands into the command list
-	for (int i = 0; i < 10; i++)
-	{
-		m_pCubeCommandList->AppendCommand(CubeCommandFront);
-		m_pCubeCommandList->AppendCommand(CubeCommandBack);
-		m_pCubeCommandList->AppendCommand(CubeCommandTop);
-		m_pCubeCommandList->AppendCommand(CubeCommandLeft);
-		m_pCubeCommandList->AppendCommand(CubeCommandFrontPrime);
-		m_pCubeCommandList->AppendCommand(CubeCommandFrontPrime);
-		m_pCubeCommandList->AppendCommand(CubeCommandBack);
-		m_pCubeCommandList->AppendCommand(CubeCommandBottomPrime);
-	}
-}
-
 
 // Solves for the cross on the bottom
 void CubeSolver::SolveStage1()
 {
 	for (int i = 0; i < 4; i++)
 	{
-        StickerColor rightColor = pCube->rightFaceStickers[1][1]->GetColor();
-        StickerColor bottomColor = pCube->bottomFaceStickers[1][1]->GetColor();
+        StickerColor rightColor = mCube->rightFaceStickers[1][1]->GetColor();
+        StickerColor bottomColor = mCube->bottomFaceStickers[1][1]->GetColor();
 
 		// continue;
 
@@ -240,7 +212,7 @@ void CubeSolver::SolveStage2()
 	// 2) Try this for each bottom corner of the cube.
 	// 3) This might not work, eg if bottom corners are permutations of each other. In this case, try putting a dummy piece into the current corner (a piece with the top color on it!). Then start again...
 
-    StickerColor rightColor = pCube->topFaceStickers[1][1]->GetColor(); // CUBE_ANY; // pPrivateCube->rightFaceStickers[1][1]->GetColor();
+    StickerColor rightColor = mCube->topFaceStickers[1][1]->GetColor(); // CUBE_ANY; // pPrivateCube->rightFaceStickers[1][1]->GetColor();
 	StickerColor backColor = CUBE_ANY; // pPrivateCube->backFaceStickers[1][1]->GetColor();
 	StickerColor bottomColor = CUBE_ANY; // pPrivateCube->bottomFaceStickers[1][1]->GetColor();
 
@@ -347,16 +319,16 @@ bool CubeSolver::SolveStage2Helper(bool bUseRealColors)
 
 	if (bUseRealColors)
 	{
-        rightColor = pCube->rightFaceStickers[1][1]->GetColor();
-        backColor = pCube->backFaceStickers[1][1]->GetColor();
-        bottomColor = pCube->bottomFaceStickers[1][1]->GetColor();
+        rightColor = mCube->rightFaceStickers[1][1]->GetColor();
+        backColor = mCube->backFaceStickers[1][1]->GetColor();
+        bottomColor = mCube->bottomFaceStickers[1][1]->GetColor();
 		AND_OR = (&AND);
 	}
 	else
 	{
-        rightColor = pCube->topFaceStickers[1][1]->GetColor();
-        backColor = pCube->topFaceStickers[1][1]->GetColor();
-        bottomColor = pCube->topFaceStickers[1][1]->GetColor();
+        rightColor = mCube->topFaceStickers[1][1]->GetColor();
+        backColor = mCube->topFaceStickers[1][1]->GetColor();
+        bottomColor = mCube->topFaceStickers[1][1]->GetColor();
 		AND_OR = (&OR);
 	}
 
@@ -1070,7 +1042,7 @@ void CubeSolver::SolveStage3()
 UINT CubeSolver::SerializeCubeStage3Orientation()
 {
 	UINT serializedValue = 0;
-    StickerColor topColor = pCube->topFaceStickers[1][1]->GetColor();
+    StickerColor topColor = mCube->topFaceStickers[1][1]->GetColor();
 
 	if (CC(cTop, 0, 0) == topColor)
 		serializedValue += 1 << 0;
@@ -1149,10 +1121,10 @@ void CubeSolver::SolveStage4()
 
         while (!bSolvedStage4 && cubeYRotationsMade < 4)
         {
-            StickerColor frontColor = pCube->frontFaceStickers[1][1]->GetColor();
-            StickerColor backColor = pCube->backFaceStickers[1][1]->GetColor();
-            StickerColor leftColor = pCube->leftFaceStickers[1][1]->GetColor();
-            StickerColor rightColor = pCube->rightFaceStickers[1][1]->GetColor();
+            StickerColor frontColor = mCube->frontFaceStickers[1][1]->GetColor();
+            StickerColor backColor = mCube->backFaceStickers[1][1]->GetColor();
+            StickerColor leftColor = mCube->leftFaceStickers[1][1]->GetColor();
+            StickerColor rightColor = mCube->rightFaceStickers[1][1]->GetColor();
 
             bool bNoEdges = false;
             bool bNoCorners = false;
@@ -1239,10 +1211,10 @@ void CubeSolver::SolveStage4()
             }
         }
 
-        StickerColor frontColor = pCube->frontFaceStickers[1][1]->GetColor();
-        StickerColor backColor = pCube->backFaceStickers[1][1]->GetColor();
-        StickerColor leftColor = pCube->leftFaceStickers[1][1]->GetColor();
-        StickerColor rightColor = pCube->rightFaceStickers[1][1]->GetColor();
+        StickerColor frontColor = mCube->frontFaceStickers[1][1]->GetColor();
+        StickerColor backColor = mCube->backFaceStickers[1][1]->GetColor();
+        StickerColor leftColor = mCube->leftFaceStickers[1][1]->GetColor();
+        StickerColor rightColor = mCube->rightFaceStickers[1][1]->GetColor();
 
         if (! (CC(cFront, 0, 0) == frontColor && CC(cFront, 1, 0) == frontColor && CC(cFront, 2, 0) == frontColor &&
             CC(cLeft, 0, 0) == leftColor && CC(cLeft, 1, 0) == leftColor && CC(cLeft, 2, 0) == leftColor &&
@@ -1261,17 +1233,17 @@ StickerColor CubeSolver::CC(CubeSide side, int i, int j)
 	switch(side)
 	{
 	case cRight:
-		return pCube->rightFaceStickers[i][j]->GetColor();
+        return mCube->rightFaceStickers[i][j]->GetColor();
 	case cLeft:
-        return pCube->leftFaceStickers[i][j]->GetColor();
+        return mCube->leftFaceStickers[i][j]->GetColor();
 	case cTop:
-        return pCube->topFaceStickers[i][j]->GetColor();
+        return mCube->topFaceStickers[i][j]->GetColor();
 	case cBottom:
-        return pCube->bottomFaceStickers[i][j]->GetColor();
+        return mCube->bottomFaceStickers[i][j]->GetColor();
 	case cFront:
-        return pCube->frontFaceStickers[i][j]->GetColor();
+        return mCube->frontFaceStickers[i][j]->GetColor();
 	case cBack:
-        return pCube->backFaceStickers[i][j]->GetColor();
+        return mCube->backFaceStickers[i][j]->GetColor();
 	}
 
 	assert(false);
@@ -1280,8 +1252,8 @@ StickerColor CubeSolver::CC(CubeSide side, int i, int j)
 
 void CubeSolver::ApplyCommand(CubeCommand command)
 {
-	m_pCubeCommandList->AppendCommand(command);
-    pCube->ApplyCommand(command);
+	mCubeCommandList->AppendCommand(command);
+    mCube->ApplyCommand(command);
 }
 
 void CubeSolver::ParseCommandString(char *pCommandString, UINT stringLength)

@@ -16,7 +16,6 @@ enum SliceRotationType
 
 class Slice 
 {
-
 public:
 	Slice(SliceRotationType rotationType);
 
@@ -36,6 +35,4 @@ private:
 	Sticker* partialFace1[3];
 	Sticker* partialFace2[3];
 	Sticker* partialFace3[3];
-
-
 };

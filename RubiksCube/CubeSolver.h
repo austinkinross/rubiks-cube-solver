@@ -25,29 +25,24 @@ public:
 
 	void GetCubeCommandList(CubeCommandList **ppCommandList);
 
-    Cube* GetCube() { return pCube; };
+    Cube* GetCube() { return mCube; };
 
 	// Public for unit tests to access
-	void PrepareForSolve();
-
 	void SolveStage1();
-
 	void SolveStage2();
-	bool SolveStage2Helper(bool bUseRealColors);
-	
 	void SolveStage3();
-	UINT SerializeCubeStage3Orientation();
-	UINT SerializeOrientation(UINT pos1, UINT pos2, UINT pos3, UINT pos4, UINT pos5, UINT pos6, UINT pos7, UINT pos8, UINT pos9);
-
 	void SolveStage4();
 
 private:
 
+    bool SolveStage2Helper(bool bUseRealColors);
+    UINT SerializeCubeStage3Orientation();
+    UINT SerializeOrientation(UINT pos1, UINT pos2, UINT pos3, UINT pos4, UINT pos5, UINT pos6, UINT pos7, UINT pos8, UINT pos9);
+
 	StickerColor CC(CubeSide side, int i, int j);
 	void CubeSolver::ApplyCommand(CubeCommand command);
 	void ParseCommandString(char *pCommandString, UINT stringLength);
-	void CubeSolver::AddRandomMoves(); //temporary
 
-    Cube *pCube;
-	CubeCommandList *m_pCubeCommandList;
+    Cube* mCube;
+	CubeCommandList* mCubeCommandList;
 };

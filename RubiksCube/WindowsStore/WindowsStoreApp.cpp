@@ -29,7 +29,7 @@ void WindowsStoreApp::Initialize(CoreApplicationView^ applicationView)
 	CoreApplication::Resuming +=
         ref new EventHandler<Platform::Object^>(this, &WindowsStoreApp::OnResuming);
 
-	m_renderer = ref new AgnosticApplication();
+	m_renderer = ref new AgnosticApp();
 }
 
 void WindowsStoreApp::SetWindow(CoreWindow^ window)

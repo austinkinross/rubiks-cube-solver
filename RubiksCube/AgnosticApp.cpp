@@ -1,16 +1,16 @@
 ﻿#include "pch.h"
-#include "AgnosticApplication.h"
+#include "AgnosticApp.h"
 #include "RendererD3D.h"
 #include "RendererGL.h"
 
 using namespace DirectX;
 
-AgnosticApplication::AgnosticApplication()
+AgnosticApp::AgnosticApp()
 {
 
 }
 
-void AgnosticApplication::Initialize(float windowWidth, float windowHeight)
+void AgnosticApp::Initialize(float windowWidth, float windowHeight)
 {
     // Set up the projection matrices for the scene
     float aspectRatio = (float)windowWidth / (float)windowHeight;
@@ -39,7 +39,7 @@ void AgnosticApplication::Initialize(float windowWidth, float windowHeight)
     mCubePlayer->UseCommandList(commandList);
 }
 
-void AgnosticApplication::Update(float timeTotal, float timeDelta)
+void AgnosticApp::Update(float timeTotal, float timeDelta)
 {
 	(void) timeDelta; // Unused parameter.
 
@@ -61,7 +61,7 @@ void AgnosticApplication::Update(float timeTotal, float timeDelta)
 	XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMMatrixRotationY(timeTotal / 2.0f), XMMatrixLookAtRH(eye, at, up)));
 }
 
-void AgnosticApplication::Render()
+void AgnosticApp::Render()
 {
     mRenderer->Clear();
 
@@ -78,12 +78,12 @@ void AgnosticApplication::Render()
 }
 
 // This method is called in the event handler for the SizeChanged event.
-void AgnosticApplication::UpdateForWindowSizeChange()
+void AgnosticApp::UpdateForWindowSizeChange()
 {
     mRenderer->UpdateForWindowSizeChange();
 }
 
-void AgnosticApplication::Present()
+void AgnosticApp::Present()
 {
     mRenderer->Swap();
 }

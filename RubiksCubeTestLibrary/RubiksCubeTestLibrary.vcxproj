@@ -37,7 +37,7 @@
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
     <AppxBundle>Never</AppxBundle>
-    <ProjectName>RubiksCubeTestLibrary</ProjectName>
+    <ProjectName>RubiksCubeSolverLibTests</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -120,7 +120,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\RubiksCube;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
@@ -130,7 +130,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\RubiksCube;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
@@ -219,21 +219,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\RubiksCube\Cube.h" />
-    <ClInclude Include="..\RubiksCube\CubeCommandList.h" />
-    <ClInclude Include="..\RubiksCube\CubeHelperFunctions.h" />
-    <ClInclude Include="..\RubiksCube\CubeSolver.h" />
-    <ClInclude Include="..\RubiksCube\Slice.h" />
-    <ClInclude Include="..\RubiksCube\Sticker.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\RubiksCube\Cube.cpp" />
-    <ClCompile Include="..\RubiksCube\CubeCommandList.cpp" />
-    <ClCompile Include="..\RubiksCube\CubeSolver.cpp" />
-    <ClCompile Include="..\RubiksCube\Slice.cpp" />
-    <ClCompile Include="..\RubiksCube\Sticker.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -260,17 +248,12 @@
     <Image Include="Images\UnitTestStoreLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RubiksCube\RubiksCube.vcxproj">
-      <Project>{8b0f8eb7-55a9-47f2-bf68-b7065d571f32}</Project>
-      <Private>false</Private>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
+    <None Include="RubiksCubeTestLibrary_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="RubiksCubeTestLibrary_TemporaryKey.pfx" />
+    <ProjectReference Include="..\RubiksCubeSolver\RubiksCubeSolver.vcxproj">
+      <Project>{93d11dd0-9621-4f25-81d6-c302917ec4aa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

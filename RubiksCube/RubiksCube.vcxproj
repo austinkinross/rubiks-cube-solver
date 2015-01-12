@@ -34,6 +34,7 @@
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
+    <ProjectName>RubiksCubeApp</ProjectName>
   </PropertyGroup>
   <PropertyGroup Label="ANGLE">
     <AngleIncPath Condition=" '$(AngleIncPath)' == '' ">$(AngleRootPath)\include\</AngleIncPath>
@@ -126,38 +127,25 @@
     <Image Include="Assets\SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cube.h" />
-    <ClInclude Include="CubeCommandList.h" />
-    <ClInclude Include="CubeHelperFunctions.h" />
-    <ClInclude Include="CubePlayer.h" />
     <ClInclude Include="ShaderCompilerGL.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererD3D.h" />
-    <ClInclude Include="CubeSolver.h" />
     <ClInclude Include="RendererGL.h" />
-    <ClInclude Include="Slice.h" />
-    <ClInclude Include="AgnosticApplication.h" />
-    <ClInclude Include="Sticker.h" />
+    <ClInclude Include="AgnosticApp.h" />
     <ClInclude Include="WindowsStore\BasicTimer.h" />
     <ClInclude Include="WindowsStore\DirectXHelper.h" />
     <ClInclude Include="WindowsStore\WindowsStoreApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Cube.cpp" />
-    <ClCompile Include="CubeCommandList.cpp" />
-    <ClCompile Include="CubePlayer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RendererD3D.cpp" />
-    <ClCompile Include="CubeSolver.cpp" />
     <ClCompile Include="RendererGL.cpp" />
     <ClCompile Include="RendererGL_WindowsStore.cpp" />
-    <ClCompile Include="Slice.cpp" />
-    <ClCompile Include="AgnosticApplication.cpp" />
-    <ClCompile Include="Sticker.cpp" />
+    <ClCompile Include="AgnosticApp.cpp" />
     <ClCompile Include="WindowsStore\WindowsStoreApp.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +167,11 @@
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="WindowsStore\Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RubiksCubeSolver\RubiksCubeSolver.vcxproj">
+      <Project>{93d11dd0-9621-4f25-81d6-c302917ec4aa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

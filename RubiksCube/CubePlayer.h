@@ -18,13 +18,13 @@ public:
 	void Play();
 	void Pause();
 
-    Cube* GetCube() { return pCube; };
+    Cube* GetCube() { return mCube; };
 
 private:
 	void Reset();
 
-    Cube *pCube;
-	CubeCommandList *pCommandList;
+    Cube* mCube;
+	CubeCommandList* mCubeCommandList;
 
 	UINT uiCurrentCommandPos;
 	float fCurrentCommandProportion;

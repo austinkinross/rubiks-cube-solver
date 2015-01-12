@@ -1,3 +1,8 @@
+﻿//
+// pch.h
+// Header for standard system include files.
+//
+
 #pragma once
 
 // Including SDKDDKVer.h defines the highest available Windows platform.
@@ -6,3 +11,10 @@
 // set the _WIN32_WINNT macro to the platform you wish to support before including SDKDDKVer.h.
 
 #include <SDKDDKVer.h>
+
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+#endif
+
+// Windows Header Files:
+#include <windows.h>

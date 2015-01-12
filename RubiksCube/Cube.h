@@ -9,9 +9,9 @@ class Renderer;
 class Cube
 {
 public:
-    EXPORTFORTEST Cube();
+    Cube();
 
-	EXPORTFORTEST void Randomize(UINT seed);
+	void Randomize(UINT seed);
 
 	void Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
 	void SilentlyRotateY();

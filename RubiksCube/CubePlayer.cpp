@@ -4,14 +4,14 @@
 
 CubePlayer::CubePlayer()
 {
-	pCube = new Cube();
+	mCube = new Cube();
 	Reset();
 	bPaused = false;
 }
 
 CubePlayer::~CubePlayer()
 {
-    delete pCube;
+    delete mCube;
 }
 
 void CubePlayer::Reset()
@@ -22,13 +22,13 @@ void CubePlayer::Reset()
 
 void CubePlayer::UseCommandList(CubeCommandList *pCommandList)
 {
-	this->pCommandList = pCommandList;
+	mCubeCommandList = pCommandList;
 	Reset();
 }
 
 void CubePlayer::Pause()
 {
-	// bPaused = true;
+	bPaused = true;
 }
 
 void CubePlayer::Play()
@@ -45,29 +45,29 @@ void CubePlayer::Update(float timeTotal, float timeDelta)
 {
 //	XMStoreFloat4x4(&pPlaybackCube->worldMatrix, XMMatrixTranspose(XMMatrixMultiply(XMMatrixRotationY(timeTotal * XM_PIDIV4), XMMatrixRotationX((float) sin(0/3) * XM_PIDIV4))));
 
-	if (!bPaused && uiCurrentCommandPos < pCommandList->GetLength())
+	if (!bPaused && uiCurrentCommandPos < mCubeCommandList->GetLength())
 	{
-		CubeCommand currentCommand = pCommandList->GetCommandAt(uiCurrentCommandPos);
+		CubeCommand currentCommand = mCubeCommandList->GetCommandAt(uiCurrentCommandPos);
 
 		fCurrentCommandProportion += timeDelta / fTimePerMove;
 
 		if (fCurrentCommandProportion >= 1.0f)
 		{
-            pCube->ApplyCommand(currentCommand);
+            mCube->ApplyCommand(currentCommand);
 
 			fCurrentCommandProportion = 0.0f;
 			uiCurrentCommandPos += 1;
 
-			if (uiCurrentCommandPos < pCommandList->GetLength())
+			if (uiCurrentCommandPos < mCubeCommandList->GetLength())
 			{
-				CubeCommand nextCommand = pCommandList->GetCommandAt(uiCurrentCommandPos);
-				while (nextCommand == CubeRotateY && uiCurrentCommandPos < pCommandList->GetLength())
+				CubeCommand nextCommand = mCubeCommandList->GetCommandAt(uiCurrentCommandPos);
+				while (nextCommand == CubeRotateY && uiCurrentCommandPos < mCubeCommandList->GetLength())
 				{
-                    pCube->ApplyCommand(nextCommand);
+                    mCube->ApplyCommand(nextCommand);
 					uiCurrentCommandPos += 1;	
-					if (uiCurrentCommandPos < pCommandList->GetLength())
+					if (uiCurrentCommandPos < mCubeCommandList->GetLength())
 					{
-						nextCommand = pCommandList->GetCommandAt(uiCurrentCommandPos);
+						nextCommand = mCubeCommandList->GetCommandAt(uiCurrentCommandPos);
 					}
 				}
 			}
@@ -87,27 +87,27 @@ void CubePlayer::Update(float timeTotal, float timeDelta)
 		{
 		case CubeCommandLeft:
 		case CubeCommandLeftPrime:
-            pCube->pLeftSlice->SetAngle(fRotationAngle);
+            mCube->pLeftSlice->SetAngle(fRotationAngle);
 			break;
 		case CubeCommandRight:
 		case CubeCommandRightPrime:
-            pCube->pRightSlice->SetAngle(fRotationAngle);
+            mCube->pRightSlice->SetAngle(fRotationAngle);
 			break;
 		case CubeCommandTop:
 		case CubeCommandTopPrime:
-            pCube->pTopSlice->SetAngle(fRotationAngle);
+            mCube->pTopSlice->SetAngle(fRotationAngle);
 			break;
 		case CubeCommandBottom:
 		case CubeCommandBottomPrime:
-            pCube->pBottomSlice->SetAngle(fRotationAngle);
+            mCube->pBottomSlice->SetAngle(fRotationAngle);
 			break;
 		case CubeCommandFront:
 		case CubeCommandFrontPrime:
-            pCube->pFrontSlice->SetAngle(fRotationAngle);
+            mCube->pFrontSlice->SetAngle(fRotationAngle);
 			break;
 		case CubeCommandBack:
 		case CubeCommandBackPrime:
-            pCube->pBackSlice->SetAngle(fRotationAngle);
+            mCube->pBackSlice->SetAngle(fRotationAngle);
 			break;
 		}
 		

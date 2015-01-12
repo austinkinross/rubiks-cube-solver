@@ -1,9 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "../RubiksCube/Cube.h"
-#include "../RubiksCube/CubeSolver.h"
-// #pragma comment(lib, "../Debug/RubiksCube/RubiksCube.lib")
+#include "Cube.h"
+#include "CubeSolver.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -38,7 +37,6 @@ namespace UnitTestLibrary
 
 				CubeSolver *pCubeSolver = new CubeSolver();
                 pCubeSolver->GetCube()->Randomize(seed);
-				pCubeSolver->PrepareForSolve();
 				pCubeSolver->SolveStage1();
 
 				// Ensure there is a cross shape on the bottom face
@@ -61,7 +59,6 @@ namespace UnitTestLibrary
 
 				CubeSolver *pCubeSolver = new CubeSolver();
                 pCubeSolver->GetCube()->Randomize(seed);
-				pCubeSolver->PrepareForSolve();
 				pCubeSolver->SolveStage1();
 				pCubeSolver->SolveStage2();
 
@@ -85,7 +82,6 @@ namespace UnitTestLibrary
 
 				CubeSolver *pCubeSolver = new CubeSolver();
                 pCubeSolver->GetCube()->Randomize(seed);
-				pCubeSolver->PrepareForSolve();
 				pCubeSolver->SolveStage1();
 				pCubeSolver->SolveStage2();
 				pCubeSolver->SolveStage3();
@@ -110,7 +106,6 @@ namespace UnitTestLibrary
 
                 CubeSolver *pCubeSolver = new CubeSolver();
                 pCubeSolver->GetCube()->Randomize(seed);
-				pCubeSolver->PrepareForSolve();
 				pCubeSolver->SolveStage1();
 				pCubeSolver->SolveStage2();
 				pCubeSolver->SolveStage3();
