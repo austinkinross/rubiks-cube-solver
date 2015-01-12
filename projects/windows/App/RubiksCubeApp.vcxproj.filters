@@ -33,12 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\RubiksCube\WindowsStore\WindowsStoreApp.cpp">
-      <Filter>WindowsStore</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\RubiksCube\pch.cpp">
-      <Filter>WindowsStore</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\D3D\RendererD3D.cpp">
       <Filter>Renderer\D3D</Filter>
@@ -49,20 +43,14 @@
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp">
       <Filter>Renderer\GL</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\WindowsStore\WindowsStoreApp.cpp">
+      <Filter>WindowsStore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\pch.cpp">
+      <Filter>WindowsStore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\BasicTimer.h">
-      <Filter>WindowsStore</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\DirectXHelper.h">
-      <Filter>WindowsStore</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\WindowsStore\WindowsStoreApp.h">
-      <Filter>WindowsStore</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\pch.h">
-      <Filter>WindowsStore</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\AgnosticApp.h" />
     <ClInclude Include="..\..\..\src\Renderer\D3D\RendererD3D.h">
       <Filter>Renderer\D3D</Filter>
@@ -76,6 +64,18 @@
     <ClInclude Include="..\..\..\src\Renderer\Renderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\WindowsStore\DirectXHelper.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\WindowsStore\WindowsStoreApp.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\pch.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(AngleBinPath)libEGL.dll">
@@ -84,14 +84,9 @@
     <None Include="$(AngleBinPath)libGLESv2.dll">
       <Filter>Renderer\GL\Binaries</Filter>
     </None>
-    <None Include="..\..\..\RubiksCube\WindowsStore\RubiksCube_TemporaryKey.pfx">
+    <None Include="..\..\..\src\WindowsStore\RubiksCube_TemporaryKey.pfx">
       <Filter>WindowsStore</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="..\..\..\RubiksCube\WindowsStore\Package.appxmanifest">
-      <Filter>WindowsStore</Filter>
-    </AppxManifest>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\..\src\Renderer\D3D\SimplePixelShader.hlsl">
@@ -100,5 +95,10 @@
     <FxCompile Include="..\..\..\src\Renderer\D3D\SimpleVertexShader.hlsl">
       <Filter>Renderer\D3D</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="..\..\..\src\WindowsStore\Package.appxmanifest">
+      <Filter>WindowsStore</Filter>
+    </AppxManifest>
   </ItemGroup>
 </Project>

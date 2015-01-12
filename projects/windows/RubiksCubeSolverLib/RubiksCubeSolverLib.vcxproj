@@ -189,7 +189,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\RubiksCube\pch.h" />
     <ClInclude Include="..\..\..\src\Cube\Cube.h" />
     <ClInclude Include="..\..\..\src\Cube\CubeCommandList.h" />
     <ClInclude Include="..\..\..\src\Cube\CubeHelperFunctions.h" />
@@ -197,17 +196,18 @@
     <ClInclude Include="..\..\..\src\Cube\CubeSolver.h" />
     <ClInclude Include="..\..\..\src\Cube\Slice.h" />
     <ClInclude Include="..\..\..\src\Cube\Sticker.h" />
+    <ClInclude Include="..\..\..\src\pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\RubiksCube\pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\Cube\Cube.cpp" />
     <ClCompile Include="..\..\..\src\Cube\CubeCommandList.cpp" />
     <ClCompile Include="..\..\..\src\Cube\CubePlayer.cpp" />
     <ClCompile Include="..\..\..\src\Cube\CubeSolver.cpp" />
     <ClCompile Include="..\..\..\src\Cube\Slice.cpp" />
     <ClCompile Include="..\..\..\src\Cube\Sticker.cpp" />
+    <ClCompile Include="..\..\..\src\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

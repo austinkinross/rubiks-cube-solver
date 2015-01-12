@@ -39,7 +39,7 @@
     <ClCompile Include="..\..\..\src\Cube\CubeSolver.cpp">
       <Filter>CubeStuff\CubeSolver</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\RubiksCube\pch.cpp" />
+    <ClCompile Include="..\..\..\src\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\Cube\Cube.h">
@@ -63,6 +63,6 @@
     <ClInclude Include="..\..\..\src\Cube\CubeSolver.h">
       <Filter>CubeStuff\CubeSolver</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\RubiksCube\pch.h" />
+    <ClInclude Include="..\..\..\src\pch.h" />
   </ItemGroup>
 </Project>
