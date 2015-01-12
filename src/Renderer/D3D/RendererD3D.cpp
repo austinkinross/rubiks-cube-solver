@@ -1,5 +1,7 @@
 #include "RendererD3D.h"
-#include "..\..\..\src\WindowsStore\DirectXHelper.h"
+#include "AsyncFileLoader.h"
+
+#include "..\..\Helpers.h"
 
 using namespace DirectX;
 using namespace Microsoft::WRL;
@@ -65,7 +67,7 @@ void RendererD3D::CreateDeviceResources()
     // Create the Direct3D 11 API device object and a corresponding context.
     ComPtr<ID3D11Device> device;
     ComPtr<ID3D11DeviceContext> context;
-    DX::ThrowIfFailed(
+    ThrowIfFailed(
         D3D11CreateDevice(
         nullptr, // Specify nullptr to use the default adapter.
         D3D_DRIVER_TYPE_HARDWARE,
@@ -81,11 +83,11 @@ void RendererD3D::CreateDeviceResources()
         );
 
     // Get the Direct3D 11.1 API device and context interfaces.
-    DX::ThrowIfFailed(
+    ThrowIfFailed(
         device.As(&mDevice)
         );
 
-    DX::ThrowIfFailed(
+    ThrowIfFailed(
         context.As(&mContext)
         );
 }
@@ -114,7 +116,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
     if (m_swapChain != nullptr)
     {
         // If the swap chain already exists, resize it.
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             m_swapChain->ResizeBuffers(
             2, // Double-buffered swap chain.
             static_cast<UINT>(m_renderTargetSize.Width),
@@ -141,17 +143,17 @@ void RendererD3D::CreateWindowSizeDependentResources()
         swapChainDesc.Flags = 0;
 
         ComPtr<IDXGIDevice1>  dxgiDevice;
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             mDevice.As(&dxgiDevice)
             );
 
         ComPtr<IDXGIAdapter> dxgiAdapter;
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             dxgiDevice->GetAdapter(&dxgiAdapter)
             );
 
         ComPtr<IDXGIFactory2> dxgiFactory;
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             dxgiAdapter->GetParent(
             __uuidof(IDXGIFactory2),
             &dxgiFactory
@@ -159,7 +161,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
             );
 
         Windows::UI::Core::CoreWindow^ window = m_window.Get();
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             dxgiFactory->CreateSwapChainForCoreWindow(
             mDevice.Get(),
             reinterpret_cast<IUnknown*>(window),
@@ -171,7 +173,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
 
         // Ensure that DXGI does not queue more than one frame at a time. This both reduces latency and
         // ensures that the application will only render after each VSync, minimizing power consumption.
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             dxgiDevice->SetMaximumFrameLatency(1)
             );
     }
@@ -225,13 +227,13 @@ void RendererD3D::CreateWindowSizeDependentResources()
         throw ref new Platform::FailureException();
     }
 
-    DX::ThrowIfFailed(
+    ThrowIfFailed(
         m_swapChain->SetRotation(rotation)
         );
 
     // Create a render target view of the swap chain back buffer.
     ComPtr<ID3D11Texture2D> backBuffer;
-    DX::ThrowIfFailed(
+    ThrowIfFailed(
         m_swapChain->GetBuffer(
         0,
         __uuidof(ID3D11Texture2D),
@@ -239,7 +241,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
         )
         );
 
-    DX::ThrowIfFailed(
+    ThrowIfFailed(
         mDevice->CreateRenderTargetView(
         backBuffer.Get(),
         nullptr,
@@ -258,7 +260,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
         );
 
     ComPtr<ID3D11Texture2D> depthStencil;
-    DX::ThrowIfFailed(
+    ThrowIfFailed(
         mDevice->CreateTexture2D(
         &depthStencilDesc,
         nullptr,
@@ -267,7 +269,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
         );
 
     CD3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc(D3D11_DSV_DIMENSION_TEXTURE2D);
-    DX::ThrowIfFailed(
+    ThrowIfFailed(
         mDevice->CreateDepthStencilView(
         depthStencil.Get(),
         &depthStencilViewDesc,
@@ -335,7 +337,7 @@ void RendererD3D::Swap()
     }
     else
     {
-        DX::ThrowIfFailed(hr);
+        ThrowIfFailed(hr);
     }
 }
 
@@ -350,11 +352,11 @@ void RendererD3D::InitializeStickerResources()
 {
     // Initialize data to render a sticker
 
-    auto loadVSTask = DX::ReadDataAsync("SimpleVertexShader.cso");
-    auto loadPSTask = DX::ReadDataAsync("SimplePixelShader.cso");
+    auto loadVSTask = ReadDataAsync("SimpleVertexShader.cso");
+    auto loadPSTask = ReadDataAsync("SimplePixelShader.cso");
 
     auto createVSTask = loadVSTask.then([this](Platform::Array<byte>^ fileData) {
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             mDevice->CreateVertexShader(
             fileData->Data,
             fileData->Length,
@@ -369,7 +371,7 @@ void RendererD3D::InitializeStickerResources()
             { "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
         };
 
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             mDevice->CreateInputLayout(
             vertexDesc,
             ARRAYSIZE(vertexDesc),
@@ -382,7 +384,7 @@ void RendererD3D::InitializeStickerResources()
 
 
     auto createPSTask = loadPSTask.then([this](Platform::Array<byte>^ fileData) {
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             mDevice->CreatePixelShader(
             fileData->Data,
             fileData->Length,
@@ -392,7 +394,7 @@ void RendererD3D::InitializeStickerResources()
             );
 
         CD3D11_BUFFER_DESC constantBufferDesc(sizeof(SideCubeConstantBuffer2), D3D11_BIND_CONSTANT_BUFFER);
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             mDevice->CreateBuffer(
             &constantBufferDesc,
             nullptr,
@@ -426,7 +428,7 @@ void RendererD3D::InitializeStickerResources()
         vertexBufferData.SysMemPitch = 0;
         vertexBufferData.SysMemSlicePitch = 0;
         CD3D11_BUFFER_DESC vertexBufferDesc(sizeof(cubeVertices), D3D11_BIND_VERTEX_BUFFER);
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             mDevice->CreateBuffer(
             &vertexBufferDesc,
             &vertexBufferData,
@@ -452,7 +454,7 @@ void RendererD3D::InitializeStickerResources()
         indexBufferData.SysMemPitch = 0;
         indexBufferData.SysMemSlicePitch = 0;
         CD3D11_BUFFER_DESC indexBufferDesc(sizeof(cubeIndices), D3D11_BIND_INDEX_BUFFER);
-        DX::ThrowIfFailed(
+        ThrowIfFailed(
             mDevice->CreateBuffer(
             &indexBufferDesc,
             &indexBufferData,

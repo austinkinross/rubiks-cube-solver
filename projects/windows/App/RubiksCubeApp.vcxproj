@@ -131,12 +131,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\AgnosticApp.h" />
+    <ClInclude Include="..\..\..\src\Helpers.h" />
+    <ClInclude Include="..\..\..\src\Renderer\D3D\AsyncFileLoader.h" />
     <ClInclude Include="..\..\..\src\Renderer\D3D\RendererD3D.h" />
     <ClInclude Include="..\..\..\src\Renderer\GL\RendererGL.h" />
     <ClInclude Include="..\..\..\src\Renderer\GL\ShaderCompilerGL.h" />
     <ClInclude Include="..\..\..\src\Renderer\Renderer.h" />
     <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h" />
-    <ClInclude Include="..\..\..\src\WindowsStore\DirectXHelper.h" />
     <ClInclude Include="..\..\..\src\WindowsStore\WindowsStoreApp.h" />
   </ItemGroup>
   <ItemGroup>

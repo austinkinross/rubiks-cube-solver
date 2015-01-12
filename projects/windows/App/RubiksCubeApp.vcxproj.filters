@@ -64,12 +64,13 @@
     <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\WindowsStore\DirectXHelper.h">
-      <Filter>WindowsStore</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\WindowsStore\WindowsStoreApp.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\D3D\AsyncFileLoader.h">
+      <Filter>Renderer\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Helpers.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(AngleBinPath)libEGL.dll">
