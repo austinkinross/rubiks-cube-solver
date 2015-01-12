@@ -8,39 +8,39 @@ using namespace DirectX;
 
 struct SideCubeConstantBuffer
 {
-    DirectX::XMFLOAT4X4 model;
-    DirectX::XMFLOAT4X4 view;
-    DirectX::XMFLOAT4X4 projection;
-    DirectX::XMFLOAT4 color;
+    glm::mat4 model;
+    glm::mat4 view;
+    glm::mat4 projection;
+    glm::vec4 color;
 };
 
 class Sticker 
 {
 public:
 	Sticker();
-    Sticker(StickerColor color, XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotation, int pos1, int pos2);
+    Sticker(StickerColor color, glm::mat4 *pCubeWorld, glm::mat4 *sideRotation, int pos1, int pos2);
 
-    virtual void Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
+    virtual void Draw(Renderer* pRenderer, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix);
 
-	void AttachRotationMatrix(XMFLOAT4X4 *pRotationMatrix);
+	void AttachRotationMatrix(glm::mat4 *pRotationMatrix);
 	void SetColor(StickerColor color);
 	StickerColor GetColor();
 
 protected:
 
-    void ConfigureShaderMatrices(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
+    void ConfigureShaderMatrices(glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix);
 
 	StickerColor color;
 
-    XMFLOAT4X4* pCubeProjection;
-	XMFLOAT4X4* pCubeView;
-	XMFLOAT4X4* pCubeWorld;
+    glm::mat4* pCubeProjection;
+	glm::mat4* pCubeView;
+	glm::mat4* pCubeWorld;
 
-	XMFLOAT4X4* pRotation1;
-	XMFLOAT4X4* pRotation2;
-	XMFLOAT4X4* pRotation3;
+	glm::mat4* pRotation1;
+	glm::mat4* pRotation2;
+	glm::mat4* pRotation3;
 
-	XMFLOAT4X4 worldMatrix;
+	glm::mat4 worldMatrix;
 
     SideCubeConstantBuffer m_constantBufferData;
 };

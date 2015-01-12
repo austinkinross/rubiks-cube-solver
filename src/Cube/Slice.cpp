@@ -13,7 +13,7 @@
 Slice::Slice(SliceRotationType rotationType)
 {
 	this->rotationType = rotationType;
-	XMStoreFloat4x4(&this->rotationMatrix, XMMatrixIdentity());
+    this->rotationMatrix = glm::mat4();
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,31 +71,31 @@ void Slice::AssociatePartialFace(unsigned int faceID, Sticker *pSticker1, Sticke
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 void Slice::SetAngle(float angle)
 {
-	XMMATRIX tempRotationMatrix;
+	glm::mat4 tempRotationMatrix;
 
 	switch(rotationType)
 	{
 	case SliceRotationType_PositiveX:
-		tempRotationMatrix = XMMatrixRotationX(angle);
+        tempRotationMatrix = glm::rotate(glm::mat4(), angle, glm::vec3(1, 0, 0));
 		break;
 	case SliceRotationType_NegativeX:
-		tempRotationMatrix = XMMatrixRotationX(-angle);
+        tempRotationMatrix = glm::rotate(glm::mat4(), -angle, glm::vec3(1, 0, 0));
 		break;
 	case SliceRotationType_PositiveY:
-		tempRotationMatrix = XMMatrixRotationY(angle);
+        tempRotationMatrix = glm::rotate(glm::mat4(), angle, glm::vec3(0, 1, 0));
 		break;
 	case SliceRotationType_NegativeY:
-		tempRotationMatrix = XMMatrixRotationY(-angle);
+        tempRotationMatrix = glm::rotate(glm::mat4(), -angle, glm::vec3(0, 1, 0));
 		break;
 	case SliceRotationType_PositiveZ:
-		tempRotationMatrix = XMMatrixRotationZ(angle);
+        tempRotationMatrix = glm::rotate(glm::mat4(), angle, glm::vec3(0, 0, 1));
 		break;
 	case SliceRotationType_NegativeZ:
-		tempRotationMatrix = XMMatrixRotationZ(-angle);
+        tempRotationMatrix = glm::rotate(glm::mat4(), - angle, glm::vec3(0, 0, 1));
 		break;
 	}
 
-	XMStoreFloat4x4(&this->rotationMatrix, XMMatrixTranspose(tempRotationMatrix));
+    rotationMatrix = glm::transpose(tempRotationMatrix);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -7,23 +7,31 @@
 
 Cube::Cube()
 {
-    XMStoreFloat4x4(&worldMatrix, XMMatrixRotationX(0.23835f));
+    worldMatrix = glm::rotate(glm::mat4(), 0.23835f, glm::vec3(0, 1, 0));
+
+    float pi = 3.1415926535897f;
 
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
-            leftFaceStickers[i][j] = new Sticker(CUBE_RED, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PIDIV2), XMMatrixRotationZ(-XM_PIDIV2))), i, j);
+            glm::mat4 leftSideRotation = glm::rotate(glm::mat4(), -pi / 2, glm::vec3(0, 0, 1)) * glm::rotate(glm::mat4(), pi/2, glm::vec3(0, 1, 0));
+            leftFaceStickers[i][j] = new Sticker(CUBE_RED, &(this->worldMatrix), &leftSideRotation, i, j);
 
-            rightFaceStickers[i][j] = new Sticker(CUBE_ORANGE, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(-XM_PIDIV2), XMMatrixRotationZ(XM_PIDIV2))), i, j);
+            glm::mat4 rightSideRotation = glm::rotate(glm::mat4(), pi/2, glm::vec3(0, 0, 1)) * glm::rotate(glm::mat4(), -pi/2, glm::vec3(0, 1, 0));
+            rightFaceStickers[i][j] = new Sticker(CUBE_ORANGE, &(this->worldMatrix), &rightSideRotation, i, j);
 
-            topFaceStickers[i][j] = new Sticker(CUBE_GREEN, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixRotationY(0)), i, j);
+            glm::mat4 topSideRotation = glm::rotate(glm::mat4(), 0.0f, glm::vec3(0, 1, 0));
+            topFaceStickers[i][j] = new Sticker(CUBE_GREEN, &(this->worldMatrix), &topSideRotation, i, j);
 
-            bottomFaceStickers[i][j] = new Sticker(CUBE_BLUE, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PIDIV2), XMMatrixRotationZ(XM_PI))), i, j);
+            glm::mat4 bottomSideRotation = glm::rotate(glm::mat4(), pi, glm::vec3(0, 0, 1)) * glm::rotate(glm::mat4(), pi / 2, glm::vec3(0, 1, 0));
+            bottomFaceStickers[i][j] = new Sticker(CUBE_BLUE, &(this->worldMatrix), &bottomSideRotation, i, j);
 
-            frontFaceStickers[i][j] = new Sticker(CUBE_YELLOW, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixRotationX(XM_PIDIV2)), i, j);
+            glm::mat4 frontSideRotation = glm::rotate(glm::mat4(), pi / 2, glm::vec3(1, 0, 0));
+            frontFaceStickers[i][j] = new Sticker(CUBE_YELLOW, &(this->worldMatrix), &frontSideRotation, i, j);
 
-            backFaceStickers[i][j] = new Sticker(CUBE_WHITE, &(this->worldMatrix), XMMATRIXToXMFLOAT4X4(&XMMatrixMultiply(XMMatrixRotationY(XM_PI), XMMatrixRotationX(-XM_PIDIV2))), i, j);
+            glm::mat4 backSideRotation = glm::rotate(glm::mat4(), -pi / 2, glm::vec3(1, 0, 0)) * glm::rotate(glm::mat4(), pi, glm::vec3(0, 1, 0));
+            backFaceStickers[i][j] = new Sticker(CUBE_WHITE, &(this->worldMatrix), &backSideRotation, i, j);
         }
     }
 
@@ -118,7 +126,7 @@ void Cube::Randomize(unsigned int seed)
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // Draws the cube in the given context, with the given view/projection matrices
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
-void Cube::Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void Cube::Draw(Renderer* pRenderer, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix)
 {
 	for (int i = 0; i  < 3; i++)
 	{
@@ -221,7 +229,7 @@ void Cube::SilentlyRotateY()
 	}
 
 	
-	XMStoreFloat4x4(&worldMatrix, XMMatrixMultiply(XMMatrixRotationY(XM_PIDIV2), XMLoadFloat4x4(&worldMatrix)));
+    worldMatrix = glm::rotate(glm::mat4(), 3.141592f / 2, glm::vec3(0, 1, 0)) * worldMatrix;
 }
 
 void Cube::ApplyCommand(CubeCommand command)

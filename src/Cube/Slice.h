@@ -27,7 +27,7 @@ private:
 
 	// The rotationType determines what axis, and which direction, the slice needs to move in to move clockwise when looking at it
 	SliceRotationType rotationType;
-	XMFLOAT4X4 rotationMatrix;	
+	glm::mat4 rotationMatrix;	
 
 	Sticker* face[3][3];
 	Sticker* partialFace0[3];

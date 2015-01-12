@@ -61,7 +61,7 @@ void RendererGL::GenerateStickerResources()
     mStickerColorUniformPos = glGetUniformLocation(mStickerProgram, "uColor");
 }
 
-void RendererGL::RenderSticker(Sticker* pSticker, XMFLOAT4X4 *pWorldMatrix, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void RendererGL::RenderSticker(Sticker* pSticker, glm::mat4 *pWorldMatrix, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix)
 {
     GLfloat vertices[] =
     {
@@ -80,7 +80,7 @@ void RendererGL::RenderSticker(Sticker* pSticker, XMFLOAT4X4 *pWorldMatrix, XMFL
     glUniformMatrix4fv(mStickerViewUniformPos, 1, GL_FALSE, (GLfloat*)pViewMatrix);
     glUniformMatrix4fv(mStickerProjectionUniformPos, 1, GL_FALSE, (GLfloat*)pProjectionMatrix);
 
-    XMFLOAT4 color = ColorToXMFLOAT4(pSticker->GetColor());
+    glm::vec4 color = ColorToVec4(pSticker->GetColor());
     glUniform3fv(mStickerColorUniformPos, 1, (GLfloat*)&color);
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

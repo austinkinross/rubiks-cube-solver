@@ -1,6 +1,8 @@
 #pragma once
 
 #include <DirectXMath.h>
+#include <..\..\..\third_party\glm\glm.hpp>
+#include <..\..\..\third_party\glm\gtc\matrix_transform.hpp>
 
 enum StickerColor
 {
@@ -74,45 +76,38 @@ inline CubeCommand OppositeCommand(CubeCommand command)
     return CubeRotateY;
 }
 
-inline DirectX::XMFLOAT4 ColorToXMFLOAT4(StickerColor c)
+inline glm::vec4 ColorToVec4(StickerColor c)
 {
     switch (c)
     {
     case CUBE_RED:
-        return DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+        return glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
     case CUBE_WHITE:
-        return DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+        return glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
     case CUBE_ORANGE:
-        return DirectX::XMFLOAT4(1.0f, 0.45f, 0.0f, 1.0f);
+        return glm::vec4(1.0f, 0.45f, 0.0f, 1.0f);
     case CUBE_BLUE:
-        return DirectX::XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
+        return glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
     case CUBE_GREEN:
-        return DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
+        return glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
     case CUBE_YELLOW:
-        return DirectX::XMFLOAT4(1.0f, 0.8f, 0.0f, 1.0f);
+        return glm::vec4(1.0f, 0.8f, 0.0f, 1.0f);
     case CUBE_PINK:
-        return DirectX::XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f);
+        return glm::vec4(1.0f, 0.0f, 1.0f, 1.0f);
     case CUBE_BLACK:
     default:
-        return DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+        return glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
     }
 }
 
-inline DirectX::XMFLOAT4X4 XMMATRIXToXMFLOAT4X4(DirectX::XMMATRIX *pInput)
+inline glm::vec3 AddXM3(glm::vec3 input1, glm::vec3 input2)
 {
-    DirectX::XMFLOAT4X4 a;
-    DirectX::XMStoreFloat4x4(&a, *pInput);
-    return a;
+    return glm::vec3(input1.x + input2.x, input1.y + input2.y, input1.z + input2.z);
 }
 
-inline DirectX::XMFLOAT3 AddXM3(DirectX::XMFLOAT3 input1, DirectX::XMFLOAT3 input2)
+inline glm::vec3 MultXM3(glm::vec3 input1, float input2)
 {
-    return DirectX::XMFLOAT3(input1.x + input2.x, input1.y + input2.y, input1.z + input2.z);
-}
-
-inline DirectX::XMFLOAT3 MultXM3(DirectX::XMFLOAT3 input1, float input2)
-{
-    return DirectX::XMFLOAT3(input1.x * input2, input1.y * input2, input1.z * input2);
+    return glm::vec3(input1.x * input2, input1.y * input2, input1.z * input2);
 }
 
 inline bool IsPrimeCubeCommand(CubeCommand com)

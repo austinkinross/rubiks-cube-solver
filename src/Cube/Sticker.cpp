@@ -11,19 +11,19 @@
 // The sticker's final world matrix is the product of these matrices.
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Sticker::Sticker(StickerColor color, XMFLOAT4X4 *pCubeWorld, XMFLOAT4X4 sideRotation, int pos1, int pos2)
+Sticker::Sticker(StickerColor color, glm::mat4 *pCubeWorld, glm::mat4 *sideRotation, int pos1, int pos2)
 {
 	this->color = color;
 	pRotation1 = nullptr;
     pRotation2 = nullptr;
     pRotation3 = nullptr;
 
-    XMStoreFloat4x4(&worldMatrix, XMMatrixMultiply(XMMatrixTranslation(2.0f * pos1 - 2.0f, 0.0f, 2.0f * pos2 - 2.0f), XMLoadFloat4x4(&sideRotation)));
+    worldMatrix = *sideRotation * glm::translate(glm::mat4(), glm::vec3(2.0f * pos1 - 2.0f, 0.0f, 2.0f * pos2 - 2.0f));
 
     this->pCubeWorld = pCubeWorld;
 }
 
-void Sticker::AttachRotationMatrix(XMFLOAT4X4 *pRotationMatrix)
+void Sticker::AttachRotationMatrix(glm::mat4 *pRotationMatrix)
 {
     if (pRotation1 == nullptr)
 	{
@@ -53,7 +53,7 @@ StickerColor Sticker::GetColor()
 	return this->color;
 }
 
-void Sticker::Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void Sticker::Draw(Renderer* pRenderer, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix)
 {
     ConfigureShaderMatrices(pViewMatrix, pProjectionMatrix);
 
@@ -63,31 +63,31 @@ void Sticker::Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pPr
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // This sets up the sticker's constant buffer before it is drawn
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
-void Sticker::ConfigureShaderMatrices(XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void Sticker::ConfigureShaderMatrices(glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix)
 {
-    XMFLOAT4X4 cumulativeWorld = worldMatrix;
+    glm::mat4 cumulativeWorld = worldMatrix;
 
     // cumulativeWorld = worldMatrix, then rotation1, then rotation2, then rotation3, then cubeWorld
 
     if (pRotation1 != nullptr)
     {
-        XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation1)));
+        cumulativeWorld = *pRotation1 * cumulativeWorld;
     }
 
     if (pRotation2 != nullptr)
     {
-        XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation2)));
+        cumulativeWorld = *pRotation2 * cumulativeWorld;
     }
 
     if (pRotation3 != nullptr)
     {
-        XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pRotation3)));
+        cumulativeWorld = *pRotation3 * cumulativeWorld;
     }
 
-    XMStoreFloat4x4(&cumulativeWorld, XMMatrixMultiply(XMLoadFloat4x4(&cumulativeWorld), XMLoadFloat4x4(pCubeWorld)));
+    cumulativeWorld = *pCubeWorld * cumulativeWorld;
 
     // Set final values. Note, the matrices must be transposed for the shaders!
-    XMStoreFloat4x4(&m_constantBufferData.model, XMMatrixTranspose((XMLoadFloat4x4(&cumulativeWorld))));
-    XMStoreFloat4x4(&m_constantBufferData.view, XMMatrixTranspose(XMLoadFloat4x4(pViewMatrix)));
-    XMStoreFloat4x4(&m_constantBufferData.projection, XMMatrixTranspose(XMLoadFloat4x4(pProjectionMatrix)));
+    m_constantBufferData.model = glm::transpose(cumulativeWorld);
+    m_constantBufferData.view = glm::transpose(*pViewMatrix);
+    m_constantBufferData.projection = glm::transpose(*pProjectionMatrix);
 }

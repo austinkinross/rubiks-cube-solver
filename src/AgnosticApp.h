@@ -21,6 +21,6 @@ private:
     Renderer* mRenderer;
 	CubePlayer* mCubePlayer;
 
-	XMFLOAT4X4 m_viewMatrix;
-	XMFLOAT4X4 m_projectionMatrix;
+	glm::mat4 m_viewMatrix;
+	glm::mat4 m_projectionMatrix;
 };

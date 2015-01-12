@@ -12,7 +12,7 @@ public:
 
 	void Randomize(unsigned int seed);
 
-	void Draw(Renderer* pRenderer, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
+	void Draw(Renderer* pRenderer, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix);
 	void SilentlyRotateY();
 	void ApplyCommand(CubeCommand command);
 
@@ -23,7 +23,7 @@ public:
 	Slice* pFrontSlice;
 	Slice* pBackSlice;
 
-	XMFLOAT4X4 worldMatrix;
+	glm::mat4 worldMatrix;
 
 	Sticker* leftFaceStickers[3][3];
 	Sticker* rightFaceStickers[3][3];

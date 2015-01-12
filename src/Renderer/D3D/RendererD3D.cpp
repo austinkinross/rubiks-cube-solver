@@ -11,8 +11,8 @@ using namespace Windows::Graphics::Display;
 
 struct VertexPositionColor
 {
-    DirectX::XMFLOAT3 pos;
-    DirectX::XMFLOAT3 color;
+    glm::vec3 pos;
+    glm::vec3 color;
 };
 
 RendererD3D::RendererD3D()
@@ -185,7 +185,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
     {
     case DisplayOrientations::Landscape:
         rotation = DXGI_MODE_ROTATION_IDENTITY;
-        m_orientationTransform3D = XMFLOAT4X4( // 0-degree Z-rotation
+        m_orientationTransform3D = glm::mat4( // 0-degree Z-rotation
                                               1.0f, 0.0f, 0.0f, 0.0f,
                                               0.0f, 1.0f, 0.0f, 0.0f,
                                               0.0f, 0.0f, 1.0f, 0.0f,
@@ -195,7 +195,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
 
     case DisplayOrientations::Portrait:
         rotation = DXGI_MODE_ROTATION_ROTATE270;
-        m_orientationTransform3D = XMFLOAT4X4( // 90-degree Z-rotation
+        m_orientationTransform3D = glm::mat4( // 90-degree Z-rotation
                                               0.0f, 1.0f, 0.0f, 0.0f,
                                               -1.0f, 0.0f, 0.0f, 0.0f,
                                               0.0f, 0.0f, 1.0f, 0.0f,
@@ -205,7 +205,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
 
     case DisplayOrientations::LandscapeFlipped:
         rotation = DXGI_MODE_ROTATION_ROTATE180;
-        m_orientationTransform3D = XMFLOAT4X4( // 180-degree Z-rotation
+        m_orientationTransform3D = glm::mat4( // 180-degree Z-rotation
                                               -1.0f, 0.0f, 0.0f, 0.0f,
                                               0.0f, -1.0f, 0.0f, 0.0f,
                                               0.0f, 0.0f, 1.0f, 0.0f,
@@ -215,7 +215,7 @@ void RendererD3D::CreateWindowSizeDependentResources()
 
     case DisplayOrientations::PortraitFlipped:
         rotation = DXGI_MODE_ROTATION_ROTATE90;
-        m_orientationTransform3D = XMFLOAT4X4( // 270-degree Z-rotation
+        m_orientationTransform3D = glm::mat4( // 270-degree Z-rotation
                                               0.0f, -1.0f, 0.0f, 0.0f,
                                               1.0f, 0.0f, 0.0f, 0.0f,
                                               0.0f, 0.0f, 1.0f, 0.0f,
@@ -406,16 +406,16 @@ void RendererD3D::InitializeStickerResources()
     auto createCubeTask = (createPSTask && createVSTask).then([this]() {
         VertexPositionColor cubeVertices[] =
         {
-            { XMFLOAT3(-0.95f, 3.0f, -0.95f), XMFLOAT3(0, 0, 0) },
-            { XMFLOAT3(-0.95f, 3.0f, +0.95f), XMFLOAT3(0, 0, 0) },
-            { XMFLOAT3(+0.95f, 3.0f, -0.95f), XMFLOAT3(0, 0, 0) },
-            { XMFLOAT3(+0.95f, 3.0f, +0.95f), XMFLOAT3(0, 0, 0) },
+            { glm::vec3(-0.95f, 3.0f, -0.95f), glm::vec3(0, 0, 0) },
+            { glm::vec3(-0.95f, 3.0f, +0.95f), glm::vec3(0, 0, 0) },
+            { glm::vec3(+0.95f, 3.0f, -0.95f), glm::vec3(0, 0, 0) },
+            { glm::vec3(+0.95f, 3.0f, +0.95f), glm::vec3(0, 0, 0) },
 
             // Cheap way to draw some black back faces
-            /*		{XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(0,0,0)},
-            {XMFLOAT3(-1.0f, 1.0f, +1.0f), XMFLOAT3(0,0,0)},
-            {XMFLOAT3(+1.0f, 1.0f, -1.0f), XMFLOAT3(0,0,0)},
-            {XMFLOAT3(+1.0f, 1.0f, +1.0f), XMFLOAT3(0,0,0)},
+            /*		{glm::vec3(-1.0f, 1.0f, -1.0f), glm::vec3(0,0,0)},
+            {glm::vec3(-1.0f, 1.0f, +1.0f), glm::vec3(0,0,0)},
+            {glm::vec3(+1.0f, 1.0f, -1.0f), glm::vec3(0,0,0)},
+            {glm::vec3(+1.0f, 1.0f, +1.0f), glm::vec3(0,0,0)},
             {AddXM3(AddXM3(cubeCenter, MultXM3(dir1, (float)pos1 - 1.0f)), MultXM3(dir2, (float)pos2 - 1.0f)), color},
             {AddXM3(AddXM3(cubeCenter, MultXM3(dir1, (float)pos1 - 1.0f)), MultXM3(dir2, (float)pos2 + 1.0f)), color},
             {AddXM3(AddXM3(cubeCenter, MultXM3(dir1, (float)pos1 + 1.0f)), MultXM3(dir2, (float)pos2 - 1.0f)), color},
@@ -468,14 +468,14 @@ void RendererD3D::InitializeStickerResources()
     });
 }
 
-void RendererD3D::RenderSticker(Sticker* pSticker, XMFLOAT4X4 *pWorldMatrix, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix)
+void RendererD3D::RenderSticker(Sticker* pSticker, glm::mat4 *pWorldMatrix, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix)
 {
     if (!mStickerLoadingComplete)
     {
         return;
     }
 
-    mStickerConstantBufferData.color = ColorToXMFLOAT4(pSticker->GetColor());
+    mStickerConstantBufferData.color = ColorToVec4(pSticker->GetColor());
 
     mStickerConstantBufferData.model = *pWorldMatrix;
     mStickerConstantBufferData.view = *pViewMatrix;

@@ -14,12 +14,14 @@ void AgnosticApp::Initialize(float windowWidth, float windowHeight)
     // Set up the projection matrices for the scene
     float aspectRatio = (float)windowWidth / (float)windowHeight;
     float fovAngleY = 70.0f * XM_PI / 180.0f;
-    XMStoreFloat4x4(&m_projectionMatrix, XMMatrixPerspectiveFovRH(fovAngleY, aspectRatio, 0.01f, 100.0f));
+//    XMStoreFloat4x4(&m_projectionMatrix, XMMatrixPerspectiveFovRH(fovAngleY, aspectRatio, 0.01f, 100.0f));
+
+    m_projectionMatrix = glm::perspectiveFov(fovAngleY, windowWidth, windowHeight, 0.01f, 100.0f);
 
     UINT seed = 4741;
 
     // One renderer can be shared across all cubes. This uses a D3D11 backend to render the cubes
-    mRenderer = new RendererD3D();
+    mRenderer = new RendererGL();
 
     // Get the list of moves required to solve the cube
     CubeSolver* solver = new CubeSolver();
@@ -53,11 +55,17 @@ void AgnosticApp::Update(float timeTotal, float timeDelta)
 
     mCubePlayer->Update(timeTotal, timeDelta);
 
-	XMVECTOR eye = XMVectorSet(7.7f, -7.7f, -7.5f, 0.0f);
-	XMVECTOR at = XMVectorSet(0.0f, -0.1f, 0.0f, 0.0f);
-	XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	//XMVECTOR eye = XMVectorSet(7.7f, -7.7f, -7.5f, 0.0f);
+	//XMVECTOR at = XMVectorSet(0.0f, -0.1f, 0.0f, 0.0f);
+	//XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
-	XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMMatrixRotationY(timeTotal / 2.0f), XMMatrixLookAtRH(eye, at, up)));
+    glm::vec3 eye = glm::vec3(7.7f, -7.7f, -7.5f);
+    glm::vec3 at = glm::vec3(0.0f, -0.1f, 0.0f);
+    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+    m_viewMatrix = glm::lookAt(eye, at, up) * glm::rotate(glm::mat4(), timeTotal / 2.0f, glm::vec3(0, 1, 0));
+
+	// XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMMatrixRotationY(timeTotal / 2.0f), XMMatrixLookAtRH(eye, at, up)));
 }
 
 void AgnosticApp::Render()
@@ -66,14 +74,16 @@ void AgnosticApp::Render()
 
     mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
 
-	XMVECTOR eye = XMVectorSet(7.7f, +7.7f, -7.5f, 0.0f);
-	XMVECTOR at = XMVectorSet(0.0f, -0.1f, 0.0f, 0.0f);
-	XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+ //   glm::vec3 eye = glm::vec3(7.7f, -7.7f, -7.5f);
+ //   glm::vec3 at = glm::vec3(0.0f, -0.1f, 0.0f);
+ //   glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
-	XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMMatrixRotationY(0 / 2.0f), XMMatrixLookAtRH(eye, at, up)));
-	XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMLoadFloat4x4(&m_viewMatrix), XMMatrixTranslation(10, 0, 0)));
+ //   m_viewMatrix = glm::lookAt(eye, at, up) * glm::rotate(glm::mat4(), 0 / 2.0f, glm::vec3(0, 1, 0));
+ //   m_viewMatrix *= glm::translate(glm::mat4(), glm::vec3(-5, 0, -5));
 
-    mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
+	//// XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMLoadFloat4x4(&m_viewMatrix), XMMatrixTranslation(10, 0, 0)));
+
+ //   mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
 }
 
 // This method is called in the event handler for the SizeChanged event.

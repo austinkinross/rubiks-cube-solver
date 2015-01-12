@@ -12,10 +12,10 @@ class Sticker;
 
 struct SideCubeConstantBuffer2
 {
-    DirectX::XMFLOAT4X4 model;
-    DirectX::XMFLOAT4X4 view;
-    DirectX::XMFLOAT4X4 projection;
-    DirectX::XMFLOAT4 color;
+    glm::mat4 model;
+    glm::mat4 view;
+    glm::mat4 projection;
+    glm::vec4 color;
 };
 
 class RendererD3D : public Renderer
@@ -23,7 +23,7 @@ class RendererD3D : public Renderer
 public:
     RendererD3D();
 
-    virtual void RenderSticker(Sticker* pSticker, XMFLOAT4X4 *pWorldMatrix, XMFLOAT4X4 *pViewMatrix, XMFLOAT4X4 *pProjectionMatrix);
+    virtual void RenderSticker(Sticker* pSticker, glm::mat4 *pWorldMatrix, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix);
 
     virtual void Swap();
 
@@ -55,7 +55,7 @@ protected:
     Windows::Graphics::Display::DisplayOrientations m_orientation;
 
     // Transform used for display orientation.
-    DirectX::XMFLOAT4X4 m_orientationTransform3D;
+    glm::mat4 m_orientationTransform3D;
 
     Microsoft::WRL::ComPtr<ID3D11InputLayout> mStickerInputLayout;
     Microsoft::WRL::ComPtr<ID3D11Buffer> mStickerVertexBuffer;
