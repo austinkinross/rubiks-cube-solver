@@ -31,26 +31,38 @@ void AgnosticApp::Initialize(float windowWidth, float windowHeight)
     commandList->Optimize();
 
     // Configure the CubePlayer
-    CubePlayerSettings cubePlayerSettings;
-    cubePlayerSettings.UnfoldCubeAtStart = true;
+    CubePlayerDesc cubePlayerDesc;
+    cubePlayerDesc.unfoldCubeAtStart = true;
 
     // Initialize the CubePlayer, which will play back the moves to solve the cube
-    mCubePlayer = new CubePlayer(&cubePlayerSettings);
+    mCubePlayer = new CubePlayer(&cubePlayerDesc);
     mCubePlayer->GetCube()->Randomize(seed);
 
     mCubePlayer->UseCommandList(commandList);
 }
 
+bool tripledSpeed = false;
+
 void AgnosticApp::Update(float timeTotal, float timeDelta)
 {
 	(void) timeDelta; // Unused parameter.
 
-	if (timeTotal >= 7.2f && timeTotal <= 15.2f)
+    if (timeTotal <= 7.2f)
+    {
+        mCubePlayer->Play();
+    }
+    else if(timeTotal <= 10.2f)
 	{
         mCubePlayer->Pause();
 	}
 	else
 	{
+        if (!tripledSpeed)
+        {
+            // Triple speed
+            mCubePlayer->UpdateSolvingSpeed(mCubePlayer->GetDesc().speeds.solvingSpeed / 3);
+            tripledSpeed = true;
+        }
         mCubePlayer->Play();
 	}
 

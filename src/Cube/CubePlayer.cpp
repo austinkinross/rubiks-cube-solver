@@ -2,14 +2,14 @@
 #include "CubePlayer.h"
 
 
-CubePlayer::CubePlayer(CubePlayerSettings* settings)
+CubePlayer::CubePlayer(CubePlayerDesc* desc)
 {
 	mCube = new Cube();
-    mSettings = *settings;
+    mDesc = *desc;
 	Reset();
 	bPaused = false;
 
-    if (mSettings.UnfoldCubeAtStart)
+    if (mDesc.unfoldCubeAtStart)
     {
         mPlaybackState = PLAYBACK_STATE_FOLDING;
         mFoldingAngle = 3.141592653f / 2;
@@ -61,7 +61,7 @@ void CubePlayer::Update(float timeTotal, float timeDelta)
     {
         if (mPlaybackState == PLAYBACK_STATE_FOLDING)
         {
-            mFoldingAngle -= mSettings.FoldingSpeed;
+            mFoldingAngle -= mDesc.speeds.foldingSpeed;
 
             if (mFoldingAngle < 0.0f)
             {
@@ -77,7 +77,7 @@ void CubePlayer::Update(float timeTotal, float timeDelta)
             {
                 CubeCommand currentCommand = mCubeCommandList->GetCommandAt(uiCurrentCommandPos);
 
-                fCurrentCommandProportion += timeDelta / mSettings.SolvingSpeed;
+                fCurrentCommandProportion += timeDelta / mDesc.speeds.solvingSpeed;
 
                 if (fCurrentCommandProportion >= 1.0f)
                 {

@@ -4,26 +4,33 @@
 #include "Cube.h"
 #include "CubeCommandList.h"
 
-struct CubePlayerSettings
+struct CubePlayerSpeeds
 {
-    CubePlayerSettings()
+    CubePlayerSpeeds()
     {
-        UnfoldCubeAtStart = false;
-        SolvingSpeed = 0.3f;
-        FoldingSpeed = 0.005f;
+        solvingSpeed = 0.3f;
+        foldingSpeed = 0.005f;
     }
 
-    bool UnfoldCubeAtStart;
-
-    float FoldingSpeed;
-    float SolvingSpeed;
+    float solvingSpeed = 0.3f;
+    float foldingSpeed = 0.005f;
 };
 
+struct CubePlayerDesc
+{
+    CubePlayerDesc()
+    {
+        unfoldCubeAtStart = false;
+    }
+
+    bool unfoldCubeAtStart;
+    CubePlayerSpeeds speeds;
+};
 
 class CubePlayer
 {
 public:
-    CubePlayer(CubePlayerSettings* settings);
+    CubePlayer(CubePlayerDesc* settings);
     ~CubePlayer();
 
 	void Update(float timeTotal, float timeDelta);
@@ -33,6 +40,9 @@ public:
 	void Pause();
 
     Cube* GetCube() { return mCube; };
+
+    CubePlayerDesc GetDesc() { return mDesc; };
+    void UpdateSolvingSpeed(float newSpeed) { mDesc.speeds.solvingSpeed = newSpeed; };
 
 private:
 
@@ -57,5 +67,5 @@ private:
 	float fCurrentCommandProportion;
 	bool bPaused;
 
-    CubePlayerSettings mSettings;
+    CubePlayerDesc mDesc;
 };
