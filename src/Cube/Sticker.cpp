@@ -1,7 +1,6 @@
 #include "Sticker.h"
 #include "Renderer\Renderer.h"
 
-
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 // A "Sticker" represents a single face of a single cublet.
 // It has several matrices associated with it:
@@ -56,16 +55,6 @@ StickerColor Sticker::GetColor()
 
 void Sticker::Draw(Renderer* pRenderer, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix)
 {
-    ConfigureShaderMatrices(pViewMatrix, pProjectionMatrix);
-
-    pRenderer->RenderSticker(this, &m_constantBufferData.model, &m_constantBufferData.view, &m_constantBufferData.projection);
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------------
-// This sets up the sticker's constant buffer before it is drawn
-//-------------------------------------------------------------------------------------------------------------------------------------------------------
-void Sticker::ConfigureShaderMatrices(glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix)
-{
     glm::mat4 cumulativeWorld = worldMatrix;
 
     // cumulativeWorld = worldMatrix, then rotation1, then rotation2, then rotation3, then cubeWorld
@@ -88,7 +77,9 @@ void Sticker::ConfigureShaderMatrices(glm::mat4 *pViewMatrix, glm::mat4 *pProjec
     cumulativeWorld = *pCubeWorld * *mFaceMatrix * cumulativeWorld;
 
     // Set final values. Note, the matrices must be transposed for the shaders!
-    m_constantBufferData.model = glm::transpose(cumulativeWorld);
-    m_constantBufferData.view = glm::transpose(*pViewMatrix);
-    m_constantBufferData.projection = glm::transpose(*pProjectionMatrix);
+    glm::mat4 model = glm::transpose(cumulativeWorld);
+    glm::mat4 view = glm::transpose(*pViewMatrix);
+    glm::mat4 projection = glm::transpose(*pProjectionMatrix);
+
+    pRenderer->RenderSticker(this, &model, &view, &projection);
 }

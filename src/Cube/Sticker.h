@@ -4,14 +4,6 @@
 
 class Renderer;
 
-struct SideCubeConstantBuffer
-{
-    glm::mat4 model;
-    glm::mat4 view;
-    glm::mat4 projection;
-    glm::vec4 color;
-};
-
 class Sticker 
 {
 public:
@@ -25,9 +17,6 @@ public:
 	StickerColor GetColor();
 
 protected:
-
-    void ConfigureShaderMatrices(glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix);
-
 	StickerColor color;
 
     glm::mat4* pCubeProjection;
@@ -40,6 +29,4 @@ protected:
 
 	glm::mat4 worldMatrix;
     glm::mat4* mFaceMatrix;
-
-    SideCubeConstantBuffer m_constantBufferData;
 };
