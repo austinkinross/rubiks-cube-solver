@@ -12,10 +12,7 @@ AgnosticApp::AgnosticApp()
 void AgnosticApp::Initialize(float windowWidth, float windowHeight)
 {
     // Set up the projection matrices for the scene
-    float aspectRatio = (float)windowWidth / (float)windowHeight;
     float fovAngleY = 70.0f * XM_PI / 180.0f;
-//    XMStoreFloat4x4(&m_projectionMatrix, XMMatrixPerspectiveFovRH(fovAngleY, aspectRatio, 0.01f, 100.0f));
-
     m_projectionMatrix = glm::perspectiveFov(fovAngleY, windowWidth, windowHeight, 0.01f, 100.0f);
 
     UINT seed = 4741;
@@ -33,63 +30,36 @@ void AgnosticApp::Initialize(float windowWidth, float windowHeight)
     // Cut things like repetition out of the solution
     commandList->Optimize();
 
+    // Configure the CubePlayer
+    CubePlayerSettings cubePlayerSettings;
+    cubePlayerSettings.UnfoldCubeAtStart = true;
+
     // Initialize the CubePlayer, which will play back the moves to solve the cube
-    mCubePlayer = new CubePlayer();
+    mCubePlayer = new CubePlayer(&cubePlayerSettings);
     mCubePlayer->GetCube()->Randomize(seed);
 
     mCubePlayer->UseCommandList(commandList);
 }
 
-float angle = 0.0f;
-bool incAngle = true;
-
 void AgnosticApp::Update(float timeTotal, float timeDelta)
 {
 	(void) timeDelta; // Unused parameter.
 
-	//if (timeTotal >= 7.2f && timeTotal <= 15.2f)
-	//{
- //       mCubePlayer->Pause();
-	//}
-	//else
-	//{
- //       mCubePlayer->Play();
-	//}
+	if (timeTotal >= 7.2f && timeTotal <= 15.2f)
+	{
+        mCubePlayer->Pause();
+	}
+	else
+	{
+        mCubePlayer->Play();
+	}
 
-   // mCubePlayer->Update(timeTotal, timeDelta);
-
-	//XMVECTOR eye = XMVectorSet(7.7f, -7.7f, -7.5f, 0.0f);
-	//XMVECTOR at = XMVectorSet(0.0f, -0.1f, 0.0f, 0.0f);
-	//XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-
-    if (incAngle)
-    {
-        angle += 0.02f;
-    }
-    else
-    {
-        angle -= 0.02f;
-    }
-
-    if (angle > 3.141592f / 2)
-    {
-        incAngle = false;
-    }
-    
-    if (angle < 0.0f)
-    {
-        incAngle = true;
-    }
-
-    mCubePlayer->GetCube()->SetFoldAngle(angle);
+    mCubePlayer->Update(timeTotal, timeDelta);
 
     glm::vec3 eye = glm::vec3(7.7f, -7.7f, -7.5f);
     glm::vec3 at = glm::vec3(0.0f, -0.1f, 0.0f);
     glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-
     m_viewMatrix = glm::lookAt(eye, at, up) * glm::rotate(glm::mat4(), timeTotal / 2.0f, glm::vec3(0, 1, 0));
-
-	// XMStoreFloat4x4(&m_viewMatrix, XMMatrixMultiply(XMMatrixRotationY(timeTotal / 2.0f), XMMatrixLookAtRH(eye, at, up)));
 }
 
 void AgnosticApp::Render()
