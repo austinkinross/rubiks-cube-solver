@@ -1,5 +1,6 @@
 #pragma once
 
+#define GLM_FORCE_PURE // shuts the compiler up about "object allocated on the heap may not be aligned 16"
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 

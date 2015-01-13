@@ -40,6 +40,9 @@ void AgnosticApp::Initialize(float windowWidth, float windowHeight)
     mCubePlayer->UseCommandList(commandList);
 }
 
+float angle = 0.0f;
+bool incAngle = true;
+
 void AgnosticApp::Update(float timeTotal, float timeDelta)
 {
 	(void) timeDelta; // Unused parameter.
@@ -53,11 +56,32 @@ void AgnosticApp::Update(float timeTotal, float timeDelta)
  //       mCubePlayer->Play();
 	//}
 
-    mCubePlayer->Update(timeTotal, timeDelta);
+   // mCubePlayer->Update(timeTotal, timeDelta);
 
 	//XMVECTOR eye = XMVectorSet(7.7f, -7.7f, -7.5f, 0.0f);
 	//XMVECTOR at = XMVectorSet(0.0f, -0.1f, 0.0f, 0.0f);
 	//XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+
+    if (incAngle)
+    {
+        angle += 0.02f;
+    }
+    else
+    {
+        angle -= 0.02f;
+    }
+
+    if (angle > 3.141592f / 2)
+    {
+        incAngle = false;
+    }
+    
+    if (angle < 0.0f)
+    {
+        incAngle = true;
+    }
+
+    mCubePlayer->GetCube()->SetFoldAngle(angle);
 
     glm::vec3 eye = glm::vec3(7.7f, -7.7f, -7.5f);
     glm::vec3 at = glm::vec3(0.0f, -0.1f, 0.0f);

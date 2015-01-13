@@ -16,6 +16,8 @@ public:
 	void SilentlyRotateY();
 	void ApplyCommand(CubeCommand command);
 
+    void SetFoldAngle(float cubeFoldAngle);
+
 	Slice* pLeftSlice;
 	Slice* pRightSlice;
 	Slice* pTopSlice;
@@ -31,6 +33,13 @@ public:
 	Sticker* bottomFaceStickers[3][3];
 	Sticker* frontFaceStickers[3][3];
 	Sticker* backFaceStickers[3][3];
+
+    glm::mat4 leftFaceWorldMatrix;
+    glm::mat4 rightFaceWorldMatrix;
+    glm::mat4 topFaceWorldMatrix;
+    glm::mat4 bottomFaceWorldMatrix;
+    glm::mat4 frontFaceWorldMatrix;
+    glm::mat4 backFaceWorldMatrix;
 
 protected:
     void InitializeSlices();

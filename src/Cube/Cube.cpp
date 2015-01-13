@@ -11,27 +11,29 @@ Cube::Cube()
 
     float pi = 3.1415926535897f;
 
+    SetFoldAngle(0);
+
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
             glm::mat4 leftSideRotation = glm::rotate(glm::mat4(), -pi / 2, glm::vec3(0, 0, 1)) * glm::rotate(glm::mat4(), pi/2, glm::vec3(0, 1, 0));
-            leftFaceStickers[i][j] = new Sticker(CUBE_RED, &(this->worldMatrix), &leftSideRotation, i, j);
+            leftFaceStickers[i][j] = new Sticker(CUBE_RED, &(this->worldMatrix), &leftSideRotation, &leftFaceWorldMatrix, i, j);
 
             glm::mat4 rightSideRotation = glm::rotate(glm::mat4(), pi/2, glm::vec3(0, 0, 1)) * glm::rotate(glm::mat4(), -pi/2, glm::vec3(0, 1, 0));
-            rightFaceStickers[i][j] = new Sticker(CUBE_ORANGE, &(this->worldMatrix), &rightSideRotation, i, j);
+            rightFaceStickers[i][j] = new Sticker(CUBE_ORANGE, &(this->worldMatrix), &rightSideRotation, &rightFaceWorldMatrix, i, j);
 
             glm::mat4 topSideRotation = glm::rotate(glm::mat4(), 0.0f, glm::vec3(0, 1, 0));
-            topFaceStickers[i][j] = new Sticker(CUBE_GREEN, &(this->worldMatrix), &topSideRotation, i, j);
+            topFaceStickers[i][j] = new Sticker(CUBE_GREEN, &(this->worldMatrix), &topSideRotation, &topFaceWorldMatrix, i, j);
 
             glm::mat4 bottomSideRotation = glm::rotate(glm::mat4(), pi, glm::vec3(0, 0, 1)) * glm::rotate(glm::mat4(), pi / 2, glm::vec3(0, 1, 0));
-            bottomFaceStickers[i][j] = new Sticker(CUBE_BLUE, &(this->worldMatrix), &bottomSideRotation, i, j);
+            bottomFaceStickers[i][j] = new Sticker(CUBE_BLUE, &(this->worldMatrix), &bottomSideRotation, &bottomFaceWorldMatrix, i, j);
 
             glm::mat4 frontSideRotation = glm::rotate(glm::mat4(), pi / 2, glm::vec3(1, 0, 0));
-            frontFaceStickers[i][j] = new Sticker(CUBE_YELLOW, &(this->worldMatrix), &frontSideRotation, i, j);
+            frontFaceStickers[i][j] = new Sticker(CUBE_YELLOW, &(this->worldMatrix), &frontSideRotation, &frontFaceWorldMatrix, i, j);
 
             glm::mat4 backSideRotation = glm::rotate(glm::mat4(), -pi / 2, glm::vec3(1, 0, 0)) * glm::rotate(glm::mat4(), pi, glm::vec3(0, 1, 0));
-            backFaceStickers[i][j] = new Sticker(CUBE_WHITE, &(this->worldMatrix), &backSideRotation, i, j);
+            backFaceStickers[i][j] = new Sticker(CUBE_WHITE, &(this->worldMatrix), &backSideRotation, &backFaceWorldMatrix, i, j);
         }
     }
 
@@ -266,4 +268,14 @@ void Cube::ApplyCommand(CubeCommand command)
 		SilentlyRotateY();
 	}
 		
+}
+
+void Cube::SetFoldAngle(float cubeFoldAngle)
+{
+    leftFaceWorldMatrix = glm::translate(glm::mat4(), glm::vec3(3, 0, 3)) *  glm::rotate(glm::mat4(), -cubeFoldAngle, glm::vec3(0, 1, 0)) * glm::translate(glm::mat4(), glm::vec3(-3, 0, -3));
+    rightFaceWorldMatrix = glm::translate(glm::mat4(), glm::vec3(-3, 0, 3))*  glm::rotate(glm::mat4(), cubeFoldAngle, glm::vec3(0, 1, 0)) * glm::translate(glm::mat4(), glm::vec3(3, 0, -3));
+    frontFaceWorldMatrix = glm::mat4();
+    backFaceWorldMatrix = leftFaceWorldMatrix * glm::translate(glm::mat4(), glm::vec3(3, 0, -3)) *  glm::rotate(glm::mat4(), -cubeFoldAngle, glm::vec3(0, 1, 0)) *  glm::translate(glm::mat4(), glm::vec3(-3, 0, 3));
+    topFaceWorldMatrix = rightFaceWorldMatrix * glm::translate(glm::mat4(), glm::vec3(-3, 3, 0)) *  glm::rotate(glm::mat4(), cubeFoldAngle, glm::vec3(0, 0, 1)) *  glm::translate(glm::mat4(), glm::vec3(3, -3, 0));
+    bottomFaceWorldMatrix = backFaceWorldMatrix * glm::translate(glm::mat4(), glm::vec3(0, -3, -3)) *  glm::rotate(glm::mat4(), cubeFoldAngle, glm::vec3(1, 0, 0)) *  glm::translate(glm::mat4(), glm::vec3(0, 3, 3));
 }

@@ -16,7 +16,7 @@ class Sticker
 {
 public:
 	Sticker();
-    Sticker(StickerColor color, glm::mat4 *pCubeWorld, glm::mat4 *sideRotation, int pos1, int pos2);
+    Sticker(StickerColor color, glm::mat4 *pCubeWorld, glm::mat4 *sideRotation, glm::mat4 *faceWorld, int pos1, int pos2);
 
     virtual void Draw(Renderer* pRenderer, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix);
 
@@ -39,6 +39,7 @@ protected:
 	glm::mat4* pRotation3;
 
 	glm::mat4 worldMatrix;
+    glm::mat4* mFaceMatrix;
 
     SideCubeConstantBuffer m_constantBufferData;
 };

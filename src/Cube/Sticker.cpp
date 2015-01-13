@@ -11,7 +11,7 @@
 // The sticker's final world matrix is the product of these matrices.
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Sticker::Sticker(StickerColor color, glm::mat4 *pCubeWorld, glm::mat4 *sideRotation, int pos1, int pos2)
+Sticker::Sticker(StickerColor color, glm::mat4 *pCubeWorld, glm::mat4 *sideRotation, glm::mat4 *faceWorld, int pos1, int pos2)
 {
 	this->color = color;
 	pRotation1 = nullptr;
@@ -19,6 +19,7 @@ Sticker::Sticker(StickerColor color, glm::mat4 *pCubeWorld, glm::mat4 *sideRotat
     pRotation3 = nullptr;
 
     worldMatrix = *sideRotation * glm::translate(glm::mat4(), glm::vec3(2.0f * pos1 - 2.0f, 0.0f, 2.0f * pos2 - 2.0f));
+    mFaceMatrix = faceWorld;
 
     this->pCubeWorld = pCubeWorld;
 }
@@ -84,7 +85,7 @@ void Sticker::ConfigureShaderMatrices(glm::mat4 *pViewMatrix, glm::mat4 *pProjec
         cumulativeWorld = *pRotation3 * cumulativeWorld;
     }
 
-    cumulativeWorld = *pCubeWorld * cumulativeWorld;
+    cumulativeWorld = *pCubeWorld * *mFaceMatrix * cumulativeWorld;
 
     // Set final values. Note, the matrices must be transposed for the shaders!
     m_constantBufferData.model = glm::transpose(cumulativeWorld);
