@@ -125,6 +125,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Image Include="..\..\..\src\WICTextureLoader\cube.jpg" />
+    <Image Include="..\..\..\src\WICTextureLoader\cube2.jpg" />
+    <Image Include="..\..\..\src\WICTextureLoader\cube3.jpg" />
+    <Image Include="..\..\..\src\WICTextureLoader\cube4.jpg" />
+    <Image Include="..\..\..\src\WICTextureLoader\cube5.jpg" />
+    <Image Include="..\..\..\src\WICTextureLoader\cube6.jpg" />
+    <Image Include="..\..\..\src\WICTextureLoader\cube7.jpg" />
     <Image Include="Assets\Logo.png" />
     <Image Include="Assets\SmallLogo.png" />
     <Image Include="Assets\StoreLogo.png" />

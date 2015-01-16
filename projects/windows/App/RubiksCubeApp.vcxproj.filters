@@ -34,6 +34,24 @@
     <Image Include="..\..\..\src\WICTextureLoader\cube.jpg">
       <Filter>WICTextureLoader</Filter>
     </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube3.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube2.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube6.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube7.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube4.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube5.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />

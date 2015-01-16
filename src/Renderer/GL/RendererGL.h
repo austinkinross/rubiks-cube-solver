@@ -49,5 +49,11 @@ protected:
     GLint mStickerProjectionUniformPos;
     GLint mStickerColorUniformPos;
 
-    CubeAnalyzerProto* mCubeAnalyzerProto;
+    CubeAnalyzerProto* mCubeAnalyzerProto1;
+    CubeAnalyzerProto* mCubeAnalyzerProto2;
+    CubeAnalyzerProto* mCubeAnalyzerProto3;
+    CubeAnalyzerProto* mCubeAnalyzerProto4;
+    CubeAnalyzerProto* mCubeAnalyzerProto5;
+    CubeAnalyzerProto* mCubeAnalyzerProto6;
+    CubeAnalyzerProto* mCubeAnalyzerProto7;
 };

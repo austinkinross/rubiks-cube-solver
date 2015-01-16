@@ -11,10 +11,14 @@
 
 #include <agile.h>
 
+#include <fstream>
+#include <vector>
+#include <wrl.h>
+
 class CubeAnalyzerProto
 {
 public:
-    CubeAnalyzerProto();
+    CubeAnalyzerProto(std::wstring file, int offsetX, int offsetY);
     ~CubeAnalyzerProto();
 
     void Draw();
@@ -22,4 +26,7 @@ public:
 private:
     GLuint mProtoTexture;
     GLuint mBasicProgram;
+
+    int mOffsetX;
+    int mOffsetY;
 };
