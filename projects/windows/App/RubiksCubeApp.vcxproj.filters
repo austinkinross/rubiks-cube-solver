@@ -46,6 +46,9 @@
     <ClCompile Include="..\..\..\src\WindowsStore\WindowsStoreApp.cpp">
       <Filter>WindowsStore</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp">
+      <Filter>WICTextureLoader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\AgnosticApp.h" />
@@ -71,6 +74,9 @@
       <Filter>Renderer\D3D</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\Helpers.h" />
+    <ClInclude Include="..\..\..\src\WICTextureLoader\WICTextureLoader.h">
+      <Filter>WICTextureLoader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(AngleBinPath)libEGL.dll">
@@ -95,5 +101,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <Filter>WindowsStore</Filter>
     </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="WICTextureLoader">
+      <UniqueIdentifier>{8a4eb8c5-8e93-4327-941a-b7fa96ada0ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

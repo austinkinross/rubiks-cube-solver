@@ -137,6 +137,7 @@
     <ClInclude Include="..\..\..\src\Renderer\GL\RendererGL.h" />
     <ClInclude Include="..\..\..\src\Renderer\GL\ShaderCompilerGL.h" />
     <ClInclude Include="..\..\..\src\Renderer\Renderer.h" />
+    <ClInclude Include="..\..\..\src\WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h" />
     <ClInclude Include="..\..\..\src\WindowsStore\WindowsStoreApp.h" />
   </ItemGroup>
@@ -145,6 +146,7 @@
     <ClCompile Include="..\..\..\src\Renderer\D3D\RendererD3D.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp" />
+    <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="..\..\..\src\WindowsStore\WindowsStoreApp.cpp" />
   </ItemGroup>
   <ItemGroup>
