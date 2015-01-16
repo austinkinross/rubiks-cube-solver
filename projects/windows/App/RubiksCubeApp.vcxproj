@@ -124,6 +124,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Image Include="..\..\..\src\WICTextureLoader\cube.jpg" />
     <Image Include="Assets\Logo.png" />
     <Image Include="Assets\SmallLogo.png" />
     <Image Include="Assets\StoreLogo.png" />
@@ -134,6 +135,7 @@
     <ClInclude Include="..\..\..\src\Helpers.h" />
     <ClInclude Include="..\..\..\src\Renderer\D3D\AsyncFileLoader.h" />
     <ClInclude Include="..\..\..\src\Renderer\D3D\RendererD3D.h" />
+    <ClInclude Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.h" />
     <ClInclude Include="..\..\..\src\Renderer\GL\RendererGL.h" />
     <ClInclude Include="..\..\..\src\Renderer\GL\ShaderCompilerGL.h" />
     <ClInclude Include="..\..\..\src\Renderer\Renderer.h" />
@@ -144,6 +146,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\D3D\RendererD3D.cpp" />
+    <ClCompile Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp" />
     <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp" />

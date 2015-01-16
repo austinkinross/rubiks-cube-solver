@@ -31,6 +31,9 @@
     <Filter Include="WindowsStore\Assets">
       <UniqueIdentifier>9700237c-e205-4e7d-b3cd-c676a2d7e20e</UniqueIdentifier>
     </Filter>
+    <Image Include="..\..\..\src\WICTextureLoader\cube.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />
@@ -48,6 +51,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp">
       <Filter>WICTextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.cpp">
+      <Filter>Renderer\GL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +82,9 @@
     <ClInclude Include="..\..\..\src\Helpers.h" />
     <ClInclude Include="..\..\..\src\WICTextureLoader\WICTextureLoader.h">
       <Filter>WICTextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.h">
+      <Filter>Renderer\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

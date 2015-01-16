@@ -40,6 +40,8 @@
 
 #include "WICTextureLoader.h"
 
+#include <GLES2\/gl2.h>
+
 #if (_WIN32_WINNT >= 0x0602 /*_WIN32_WINNT_WIN8*/) && !defined(DXGI_1_2_FORMATS)
 #define DXGI_1_2_FORMATS
 #endif
@@ -265,11 +267,8 @@ static size_t _WICBitsPerPixel(REFGUID targetGuid)
 }
 
 //---------------------------------------------------------------------------------
-static HRESULT CreateTextureFromWIC(_In_ ID3D11Device* d3dDevice,
-                                    _In_opt_ ID3D11DeviceContext* d3dContext,
-                                    _In_ IWICBitmapFrameDecode *frame,
-                                    _Out_opt_ ID3D11Resource** texture,
-                                    _Out_opt_ ID3D11ShaderResourceView** textureView,
+static HRESULT CreateTextureFromWIC(_In_ IWICBitmapFrameDecode *frame,
+                                    GLuint* outTexture,
                                     _In_ size_t maxsize)
 {
     UINT width, height;
@@ -279,33 +278,7 @@ static HRESULT CreateTextureFromWIC(_In_ ID3D11Device* d3dDevice,
 
     assert(width > 0 && height > 0);
 
-    if (!maxsize)
-    {
-        // This is a bit conservative because the hardware could support larger textures than
-        // the Feature Level defined minimums, but doing it this way is much easier and more
-        // performant for WIC than the 'fail and retry' model used by DDSTextureLoader
-
-        switch (d3dDevice->GetFeatureLevel())
-        {
-        case D3D_FEATURE_LEVEL_9_1:
-        case D3D_FEATURE_LEVEL_9_2:
-            maxsize = 2048 /*D3D_FL9_1_REQ_TEXTURE2D_U_OR_V_DIMENSION*/;
-            break;
-
-        case D3D_FEATURE_LEVEL_9_3:
-            maxsize = 4096 /*D3D_FL9_3_REQ_TEXTURE2D_U_OR_V_DIMENSION*/;
-            break;
-
-        case D3D_FEATURE_LEVEL_10_0:
-        case D3D_FEATURE_LEVEL_10_1:
-            maxsize = 8192 /*D3D10_REQ_TEXTURE2D_U_OR_V_DIMENSION*/;
-            break;
-
-        default:
-            maxsize = D3D11_REQ_TEXTURE2D_U_OR_V_DIMENSION;
-            break;
-        }
-    }
+    maxsize = 4096;
 
     assert(maxsize > 0);
 
@@ -368,18 +341,6 @@ static HRESULT CreateTextureFromWIC(_In_ ID3D11Device* d3dDevice,
 
     if (!bpp)
         return E_FAIL;
-
-    // Verify our target format is supported by the current device
-    // (handles WDDM 1.0 or WDDM 1.1 device driver cases as well as DirectX 11.0 Runtime without 16bpp format support)
-    UINT support = 0;
-    hr = d3dDevice->CheckFormatSupport(format, &support);
-    if (FAILED(hr) || !(support & D3D11_FORMAT_SUPPORT_TEXTURE2D))
-    {
-        // Fallback to RGBA 32-bit format which is supported by all devices
-        memcpy(&convertGUID, &GUID_WICPixelFormat32bppRGBA, sizeof(WICPixelFormatGUID));
-        format = DXGI_FORMAT_R8G8B8A8_UNORM;
-        bpp = 32;
-    }
 
     // Allocate temporary memory for image
     size_t rowPitch = (twidth * bpp + 7) / 8;
@@ -462,94 +423,27 @@ static HRESULT CreateTextureFromWIC(_In_ ID3D11Device* d3dDevice,
             return hr;
     }
 
-    // See if format is supported for auto-gen mipmaps (varies by feature level)
-    bool autogen = false;
-    if (d3dContext != 0 && textureView != 0) // Must have context and shader-view to auto generate mipmaps
-    {
-        UINT fmtSupport = 0;
-        hr = d3dDevice->CheckFormatSupport(format, &fmtSupport);
-        if (SUCCEEDED(hr) && (fmtSupport & D3D11_FORMAT_SUPPORT_MIP_AUTOGEN))
-        {
-            autogen = true;
-        }
-    }
+    GLuint gennedTexture;
+    glGenTextures(1, &gennedTexture);
+    glBindTexture(GL_TEXTURE_2D, gennedTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    // Create texture
-    D3D11_TEXTURE2D_DESC desc;
-    desc.Width = twidth;
-    desc.Height = theight;
-    desc.MipLevels = (autogen) ? 0 : 1;
-    desc.ArraySize = 1;
-    desc.Format = format;
-    desc.SampleDesc.Count = 1;
-    desc.SampleDesc.Quality = 0;
-    desc.Usage = D3D11_USAGE_DEFAULT;
-    desc.BindFlags = (autogen) ? (D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET) : (D3D11_BIND_SHADER_RESOURCE);
-    desc.CPUAccessFlags = 0;
-    desc.MiscFlags = (autogen) ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0;
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, twidth, theight, 0, GL_RGBA, GL_UNSIGNED_BYTE, temp.get());
 
-    D3D11_SUBRESOURCE_DATA initData;
-    initData.pSysMem = temp.get();
-    initData.SysMemPitch = static_cast<UINT>(rowPitch);
-    initData.SysMemSlicePitch = static_cast<UINT>(imageSize);
-
-    ID3D11Texture2D* tex = nullptr;
-    hr = d3dDevice->CreateTexture2D(&desc, (autogen) ? nullptr : &initData, &tex);
-    if (SUCCEEDED(hr) && tex != 0)
-    {
-        if (textureView != 0)
-        {
-            D3D11_SHADER_RESOURCE_VIEW_DESC SRVDesc;
-            memset(&SRVDesc, 0, sizeof(SRVDesc));
-            SRVDesc.Format = format;
-            SRVDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
-            SRVDesc.Texture2D.MipLevels = (autogen) ? -1 : 1;
-
-            hr = d3dDevice->CreateShaderResourceView(tex, &SRVDesc, textureView);
-            if (FAILED(hr))
-            {
-                tex->Release();
-                return hr;
-            }
-
-            if (autogen)
-            {
-                assert(d3dContext != 0);
-                d3dContext->UpdateSubresource(tex, 0, nullptr, temp.get(), static_cast<UINT>(rowPitch), static_cast<UINT>(imageSize));
-                d3dContext->GenerateMips(*textureView);
-            }
-        }
-
-        if (texture != 0)
-        {
-            *texture = tex;
-        }
-        else
-        {
-#if defined(_DEBUG) || defined(PROFILE)
-            tex->SetPrivateData(WKPDID_D3DDebugObjectName,
-                                sizeof("WICTextureLoader") - 1,
-                                "WICTextureLoader"
-                                );
-#endif
-            tex->Release();
-        }
-    }
+    *outTexture = gennedTexture;
 
     return hr;
 }
 
 //--------------------------------------------------------------------------------------
-HRESULT CreateWICTextureFromMemory(_In_ ID3D11Device* d3dDevice,
-                                   _In_opt_ ID3D11DeviceContext* d3dContext,
-                                   _In_bytecount_(wicDataSize) const uint8_t* wicData,
+HRESULT CreateWICTextureFromMemory(_In_bytecount_(wicDataSize) const uint8_t* wicData,
                                    _In_ size_t wicDataSize,
-                                   _Out_opt_ ID3D11Resource** texture,
-                                   _Out_opt_ ID3D11ShaderResourceView** textureView,
+                                   GLuint* outTexture,
                                    _In_ size_t maxsize
                                    )
 {
-    if (!d3dDevice || !wicData || (!texture && !textureView))
+    if (!wicData)
     {
         return E_INVALIDARG;
     }
@@ -589,44 +483,18 @@ HRESULT CreateWICTextureFromMemory(_In_ ID3D11Device* d3dDevice,
     if (FAILED(hr))
         return hr;
 
-    hr = CreateTextureFromWIC(d3dDevice, d3dContext, frame.Get(), texture, textureView, maxsize);
+    hr = CreateTextureFromWIC(frame.Get(), outTexture, maxsize);
     if (FAILED(hr))
         return hr;
-
-#if defined(_DEBUG) || defined(PROFILE)
-    if (texture != 0 && *texture != 0)
-    {
-        (*texture)->SetPrivateData(WKPDID_D3DDebugObjectName,
-                                   sizeof("WICTextureLoader") - 1,
-                                   "WICTextureLoader"
-                                   );
-    }
-
-    if (textureView != 0 && *textureView != 0)
-    {
-        (*textureView)->SetPrivateData(WKPDID_D3DDebugObjectName,
-                                       sizeof("WICTextureLoader") - 1,
-                                       "WICTextureLoader"
-                                       );
-    }
-#endif
 
     return hr;
 }
 
 //--------------------------------------------------------------------------------------
-HRESULT CreateWICTextureFromFile(_In_ ID3D11Device* d3dDevice,
-                                 _In_opt_ ID3D11DeviceContext* d3dContext,
-                                 _In_z_ const wchar_t* fileName,
-                                 _Out_opt_ ID3D11Resource** texture,
-                                 _Out_opt_ ID3D11ShaderResourceView** textureView,
+HRESULT CreateWICTextureFromFile(_In_z_ const wchar_t* fileName,
+                                 GLuint* outTexture,
                                  _In_ size_t maxsize)
 {
-    if (!d3dDevice || !fileName || (!texture && !textureView))
-    {
-        return E_INVALIDARG;
-    }
-
     IWICImagingFactory* pWIC = _GetWIC();
     if (!pWIC)
         return E_NOINTERFACE;
@@ -642,12 +510,12 @@ HRESULT CreateWICTextureFromFile(_In_ ID3D11Device* d3dDevice,
     if (FAILED(hr))
         return hr;
 
-    hr = CreateTextureFromWIC(d3dDevice, d3dContext, frame.Get(), texture, textureView, maxsize);
+    hr = CreateTextureFromWIC(frame.Get(), outTexture, maxsize);
     if (FAILED(hr))
         return hr;
 
 #if defined(_DEBUG) || defined(PROFILE)
-    if (texture != 0 || textureView != 0)
+    if (*outTexture != 0)
     {
         CHAR strFileA[MAX_PATH];
         WideCharToMultiByte(CP_ACP,
@@ -667,22 +535,6 @@ HRESULT CreateWICTextureFromFile(_In_ ID3D11Device* d3dDevice,
         else
         {
             pstrName++;
-        }
-
-        if (texture != 0 && *texture != 0)
-        {
-            (*texture)->SetPrivateData(WKPDID_D3DDebugObjectName,
-                                       static_cast<UINT>(strnlen_s(pstrName, MAX_PATH)),
-                                       pstrName
-                                       );
-        }
-
-        if (textureView != 0 && *textureView != 0)
-        {
-            (*textureView)->SetPrivateData(WKPDID_D3DDebugObjectName,
-                                           static_cast<UINT>(strnlen_s(pstrName, MAX_PATH)),
-                                           pstrName
-                                           );
         }
     }
 #endif

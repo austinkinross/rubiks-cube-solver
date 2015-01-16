@@ -3,6 +3,8 @@
 
 #define STRING(s) #s
 
+#include "CubeAnalyzerProto.h"
+
 RendererGL::RendererGL()
 {
     CreateWindowResources();
@@ -10,6 +12,8 @@ RendererGL::RendererGL()
     GenerateStickerResources();
 
     glEnable(GL_DEPTH_TEST);
+
+    mCubeAnalyzerProto = new CubeAnalyzerProto();
 }
 
 RendererGL::~RendererGL()
@@ -90,4 +94,6 @@ void RendererGL::Clear()
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    mCubeAnalyzerProto->Draw();
 }

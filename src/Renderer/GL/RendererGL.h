@@ -13,6 +13,8 @@
 
 #include "Renderer\Renderer.h"
 
+#include "CubeAnalyzerProto.h"
+
 class Sticker;
 
 class RendererGL : public Renderer
@@ -46,4 +48,6 @@ protected:
     GLint mStickerViewUniformPos;
     GLint mStickerProjectionUniformPos;
     GLint mStickerColorUniformPos;
+
+    CubeAnalyzerProto* mCubeAnalyzerProto;
 };
