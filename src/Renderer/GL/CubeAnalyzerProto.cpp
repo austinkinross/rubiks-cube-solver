@@ -121,6 +121,8 @@ void CubeAnalyzerProto::Draw()
         glBindTexture(GL_TEXTURE_2D, mCameraTexture);
         glActiveTexture(GL_TEXTURE0);
         glUniform1i(0, 0);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
         glUniform2f(1, 288, 512);
 
@@ -129,6 +131,92 @@ void CubeAnalyzerProto::Draw()
 
     glEnable(GL_DEPTH_TEST);
 
+    std::vector<uint8> pixels(4 * mRenderWidth * mRenderHeight);
+    glReadPixels(0, 0, mRenderWidth, mRenderHeight, GL_RGBA, GL_UNSIGNED_BYTE, &pixels[0]);
+
+    // Find the centers of the cublets
+
+    for (int centerX = 40; centerX < mRenderWidth - 40; centerX += 25)
+    {
+        for (int centerY = 140; centerY < mRenderHeight - 140; centerY += 25)
+        {
+            int right = 0;
+            int left = 0;
+            int top = 0;
+            int bottom = 0;
+
+            for (int x = 0; x < mRenderWidth / 6 && centerX + x < mRenderWidth; x++)
+            {
+                int y = 0;
+                uint8 r = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 0];
+                uint8 g = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 1];
+                uint8 b = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 2];
+                uint8 a = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 3];
+
+                if (r + g + b > 150 && right == 0)
+                {
+                    right = x;
+                }
+            }
+
+            for (int x = 0; x > -mRenderWidth / 6 && centerX + x > 0; x--)
+            {
+                int y = 0;
+                uint8 r = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 0];
+                uint8 g = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 1];
+                uint8 b = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 2];
+                uint8 a = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 3];
+
+                if (r + g + b > 150 && left == 0)
+                {
+                    left = x;
+                }
+            }
+
+            for (int y = 0; y < mRenderWidth / 6 && centerY + y < mRenderHeight; y++)
+            {
+                int x = 0;
+                uint8 r = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 0];
+                uint8 g = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 1];
+                uint8 b = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 2];
+                uint8 a = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 3];
+
+                if (r + g + b > 150 && top == 0)
+                {
+                    top = y;
+                }
+            }
+
+            for (int y = 0; y > -mRenderWidth / 6 && centerY + y > 0; y--)
+            {
+                int x = 0;
+                uint8 r = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 0];
+                uint8 g = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 1];
+                uint8 b = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 2];
+                uint8 a = pixels[((centerY + y) * mRenderWidth + centerX + x) * 4 + 3];
+
+                if (r + g + b > 150 && bottom == 0)
+                {
+                    bottom = y;
+                }
+            }
+
+            if (top != 0 && bottom != 0 && left != 0 && right != 0)
+            {
+                if (top - bottom > 30 && right - left > 30)
+                {
+                    int middleX = (centerX * 2 + right + left) / 2;
+                    int middleY = (centerY * 2 + top + bottom) / 2;
+
+                    glEnable(GL_SCISSOR_TEST);
+                    glScissor(middleX - 5, middleY - 5, 10, 10);
+                    glClearColor(1, 0, 0, 1);
+                    glClear(GL_COLOR_BUFFER_BIT);
+                    glDisable(GL_SCISSOR_TEST);
+                }
+            }
+        }
+    }
 
     // Draw the edge image to the screen
     {
