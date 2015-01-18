@@ -98,9 +98,9 @@ void CubeAnalyzerProto::Draw()
     GLfloat vertTexCoords[] =
     {
          0.0f, 0.0f,
-         0.0f, 512.0f,
-         288.0f, 0.0f,
-         288.0f, 512
+         0.0f, mRenderHeight,
+         mRenderWidth, 0.0f,
+         mRenderWidth, mRenderHeight
     };
 
     glDisable(GL_DEPTH_TEST);
@@ -124,7 +124,7 @@ void CubeAnalyzerProto::Draw()
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-        glUniform2f(1, 288, 512);
+        glUniform2f(1, mRenderWidth, mRenderHeight);
 
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
@@ -222,7 +222,7 @@ void CubeAnalyzerProto::Draw()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        glViewport(100 * mOffsetX, 100 * mOffsetY, 288, 512);
+        glViewport(100 * mOffsetX, 100 * mOffsetY, mRenderWidth, mRenderHeight);
 
         glUseProgram(mBlitProgram);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, vertPos);
