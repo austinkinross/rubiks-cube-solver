@@ -13,4 +13,12 @@ inline void ThrowIfFailed(HRESULT hr)
     }
 }
 
+inline void ThrowIfFalse(bool b)
+{
+    if (!b)
+    {
+        throw Platform::Exception::CreateException(E_FAIL);
+    }
+}
+
 #endif

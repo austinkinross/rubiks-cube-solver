@@ -22,6 +22,7 @@ RendererGL::RendererGL()
     mCubeAnalyzerProto6 = new CubeAnalyzerProto(L"cube6.jpg", 7, 6);
 
     mCubeAnalyzerProto7 = new CubeAnalyzerProto(L"cube7.jpg", 10, 6);
+    mCubeAnalyzerProto8 = new CubeAnalyzerProto(L"cube8.jpg", 10, 1);
 }
 
 RendererGL::~RendererGL()
@@ -110,4 +111,5 @@ void RendererGL::Clear()
     mCubeAnalyzerProto5->Draw();
     mCubeAnalyzerProto6->Draw();
     mCubeAnalyzerProto7->Draw();
+    mCubeAnalyzerProto8->Draw();
 }

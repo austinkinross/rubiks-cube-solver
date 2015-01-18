@@ -52,6 +52,9 @@
     <Image Include="..\..\..\src\WICTextureLoader\cube5.jpg">
       <Filter>WICTextureLoader</Filter>
     </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube8.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />

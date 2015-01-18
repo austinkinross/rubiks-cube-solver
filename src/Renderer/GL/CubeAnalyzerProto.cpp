@@ -1,15 +1,25 @@
 #include "CubeAnalyzerProto.h"
 #include "ShaderCompilerGL.h"
+#include "Helpers.h"
 
 #define STRING(s) #s
-
-
 
 #include "WICTextureLoader/WICTextureLoader.h"
 
 CubeAnalyzerProto::CubeAnalyzerProto(std::wstring file, int offsetX, int offsetY)
 {
-    CreateWICTextureFromFile(file.c_str(), &mProtoTexture);
+    CreateWICTextureFromFile(file.c_str(), &mCameraTexture);
+
+    glGenTextures(1, &mRenderTexture);
+    glBindTexture(GL_TEXTURE_2D, mRenderTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mRenderWidth, mRenderHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glGenFramebuffers(1, &mRenderFramebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, mRenderFramebuffer);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mRenderTexture, 0);
+    ThrowIfFalse(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
 
     // Vertex Shader source
     const std::string vs = STRING
@@ -26,7 +36,7 @@ CubeAnalyzerProto::CubeAnalyzerProto(std::wstring file, int offsetX, int offsetY
     );
 
     // Fragment Shader source
-    const std::string fs = STRING
+    const std::string edgeDetectionFS = STRING
     (
         precision mediump float;
         uniform sampler2D sTexture;
@@ -46,7 +56,22 @@ CubeAnalyzerProto::CubeAnalyzerProto(std::wstring file, int offsetX, int offsetY
         }
     );
 
-    mBasicProgram = CompileProgram(vs, fs);
+    // Fragment Shader source
+    const std::string blitFS = STRING
+    (
+        precision mediump float;
+        uniform sampler2D sTexture;
+        uniform highp vec2 uRenderWidth;
+        varying vec2 vTexCoord;
+        void main()
+        {
+            gl_FragColor = texture2D(sTexture, vec2((vTexCoord.x) / uRenderWidth.x, (vTexCoord.y) / uRenderWidth.y));
+        }
+    );
+
+
+    mEdgeDetectionProgram = CompileProgram(vs, edgeDetectionFS);
+    mBlitProgram = CompileProgram(vs, blitFS);
 
     mOffsetX = offsetX;
     mOffsetY = offsetY;
@@ -54,7 +79,7 @@ CubeAnalyzerProto::CubeAnalyzerProto(std::wstring file, int offsetX, int offsetY
 
 CubeAnalyzerProto::~CubeAnalyzerProto()
 {
-    glDeleteTextures(1, &mProtoTexture);
+    glDeleteTextures(1, &mCameraTexture);
 }
 
 void CubeAnalyzerProto::Draw()
@@ -78,32 +103,54 @@ void CubeAnalyzerProto::Draw()
          288.0f, 512
     };
 
-    glUseProgram(mBasicProgram);
-
-    glViewport(100 * mOffsetX, 100 * mOffsetY, 288, 512);
-
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, vertPos);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, vertTexCoords);
-    glEnableVertexAttribArray(1);
-
-    glBindTexture(GL_TEXTURE_2D, mProtoTexture);
-    glActiveTexture(GL_TEXTURE0);
-    glUniform1i(0, 0);
-
-    glUniform2f(1, 288, 512);
-
-    GLboolean cacheDepth;
-    glGetBooleanv(GL_DEPTH_TEST, &cacheDepth);
     glDisable(GL_DEPTH_TEST);
 
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-    if (!!cacheDepth)
+    // Render the camera texture onto the new framebuffer, using the edge-detection shader
     {
-        glEnable(GL_DEPTH_TEST);
+        glUseProgram(mEdgeDetectionProgram);
+
+        glBindFramebuffer(GL_FRAMEBUFFER, mRenderFramebuffer);
+        glViewport(0, 0, mRenderWidth, mRenderHeight);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, vertPos);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, vertTexCoords);
+        glEnableVertexAttribArray(1);
+
+        glBindTexture(GL_TEXTURE_2D, mCameraTexture);
+        glActiveTexture(GL_TEXTURE0);
+        glUniform1i(0, 0);
+
+        glUniform2f(1, 288, 512);
+
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 
-    glViewport(oldViewport[0], oldViewport[1], oldViewport[2], oldViewport[3]);
+    glEnable(GL_DEPTH_TEST);
+
+
+    // Draw the edge image to the screen
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+        glViewport(100 * mOffsetX, 100 * mOffsetY, 288, 512);
+
+        glUseProgram(mBlitProgram);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, vertPos);
+        glEnableVertexAttribArray(0);
+
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, vertTexCoords);
+        glEnableVertexAttribArray(1);
+
+        glBindTexture(GL_TEXTURE_2D, mRenderTexture);
+        glActiveTexture(GL_TEXTURE0);
+        glUniform1i(0, 0);
+
+        glUniform2f(1, mRenderWidth, mRenderHeight);
+
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+        glViewport(oldViewport[0], oldViewport[1], oldViewport[2], oldViewport[3]);
+    }
 }

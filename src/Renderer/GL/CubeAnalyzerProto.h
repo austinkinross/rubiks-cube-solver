@@ -24,8 +24,15 @@ public:
     void Draw();
 
 private:
-    GLuint mProtoTexture;
-    GLuint mBasicProgram;
+    GLuint mCameraTexture;
+
+    const GLint mRenderWidth = 288;
+    const GLint mRenderHeight = 512;
+    GLuint mRenderTexture;
+    GLuint mRenderFramebuffer;
+
+    GLuint mEdgeDetectionProgram;
+    GLuint mBlitProgram;
 
     int mOffsetX;
     int mOffsetY;

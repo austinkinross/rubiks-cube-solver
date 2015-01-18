@@ -56,4 +56,5 @@ protected:
     CubeAnalyzerProto* mCubeAnalyzerProto5;
     CubeAnalyzerProto* mCubeAnalyzerProto6;
     CubeAnalyzerProto* mCubeAnalyzerProto7;
+    CubeAnalyzerProto* mCubeAnalyzerProto8;
 };
