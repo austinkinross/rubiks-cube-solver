@@ -24,13 +24,13 @@ import android.view.WindowManager;
 import java.io.File;
 
 
-public class GL2JNIActivity extends Activity {
+public class RubiksCubeSolverActivity extends Activity {
 
-    GL2JNIView mView;
+    RubiksCubeSolverView mView;
 
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        mView = new GL2JNIView(getApplication());
+        mView = new RubiksCubeSolverView(getApplication());
 	setContentView(mView);
     }
 

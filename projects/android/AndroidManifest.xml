@@ -22,7 +22,7 @@
     package="com.android.rubikscubesolver">
     <application
             android:label="@string/gl2jni_activity">
-        <activity android:name="com.android.rubikscubesolver.GL2JNIActivity"
+        <activity android:name="com.android.rubikscubesolver.RubiksCubeSolverActivity"
                 android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             	android:launchMode="singleTask"
             	android:configChanges="orientation|keyboardHidden">

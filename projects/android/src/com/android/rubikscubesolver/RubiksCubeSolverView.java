@@ -64,16 +64,16 @@ import javax.microedition.khronos.opengles.GL10;
  *   that matches it exactly (with regards to red/green/blue/alpha channels
  *   bit depths). Failure to do so would result in an EGL_BAD_MATCH error.
  */
-class GL2JNIView extends GLSurfaceView {
+class RubiksCubeSolverView extends GLSurfaceView {
     private static String TAG = "GL2JNIView";
     private static final boolean DEBUG = false;
 
-    public GL2JNIView(Context context) {
+    public RubiksCubeSolverView(Context context) {
         super(context);
         init(false, 0, 0);
     }
 
-    public GL2JNIView(Context context, boolean translucent, int depth, int stencil) {
+    public RubiksCubeSolverView(Context context, boolean translucent, int depth, int stencil) {
         super(context);
         init(translucent, depth, stencil);
     }
