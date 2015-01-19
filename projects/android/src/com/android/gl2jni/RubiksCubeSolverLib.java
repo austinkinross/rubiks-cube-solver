@@ -18,7 +18,7 @@ package com.android.gl2jni;
 
 // Wrapper for native library
 
-public class GL2JNILib {
+public class RubiksCubeSolverLib {
 
      static {
          System.loadLibrary("gl2jni");
