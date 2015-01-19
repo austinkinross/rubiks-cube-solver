@@ -1,3 +1,30 @@
+# Output Folders
+Debug/
+Release/
+TestResults/
+bin/
+obj/
+
+# VS Stuff
+*.ilk
+*.opensdf
+*.sdf
+*.ipch
+*.suo
+*.vsglog
+*.tlog
+
+#Eclipse stuff
+.settings/
+.classpath
+.project
+
+# Executables
+*.exe
+*.out
+*.app
+*.pdb
+
 # Compiled Object files
 *.slo
 *.lo
@@ -15,29 +42,7 @@
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
 
-*.ilk
-*.pdb
-*.opensdf
-*.sdf
-*.ipch
-*.suo
 
-*.tlog
 
-# Graphics Diagnostics files
-*.vsglog
 
-#Eclipse stuff
-.settings/
-
-# Output Folders
-Debug/
-Release/
-TestResults/
-bin/
-obj/
