@@ -21,7 +21,7 @@ package com.android.gl2jni;
 public class RubiksCubeSolverLib {
 
      static {
-         System.loadLibrary("gl2jni");
+         System.loadLibrary("rubikscubesolver");
      }
 
     /**
