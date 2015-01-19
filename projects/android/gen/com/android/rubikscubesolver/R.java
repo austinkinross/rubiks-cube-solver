@@ -13,6 +13,6 @@ public final class R {
     public static final class string {
         /**  Simple strings. 
          */
-        public static final int gl2jni_activity=0x7f020000;
+        public static final int rubikscubesolver_activity=0x7f020000;
     }
 }

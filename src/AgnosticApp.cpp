@@ -78,7 +78,7 @@ void AgnosticApp::Render()
 {
     mRenderer->Clear();
 
- //   mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
+    mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
 
  //   glm::vec3 eye = glm::vec3(7.7f, -7.7f, -7.5f);
  //   glm::vec3 at = glm::vec3(0.0f, -0.1f, 0.0f);

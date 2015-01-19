@@ -21,7 +21,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.rubikscubesolver">
     <application
-            android:label="@string/gl2jni_activity">
+            android:label="@string/rubikscubesolver_activity">
         <activity android:name="com.android.rubikscubesolver.RubiksCubeSolverActivity"
                 android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             	android:launchMode="singleTask"
