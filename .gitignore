@@ -32,7 +32,12 @@
 # Graphics Diagnostics files
 *.vsglog
 
+#Eclipse stuff
+.settings/
+
 # Output Folders
 Debug/
 Release/
 TestResults/
+bin/
+obj/
