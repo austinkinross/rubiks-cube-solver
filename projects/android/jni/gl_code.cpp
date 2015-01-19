@@ -26,7 +26,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define  LOG_TAG    "libgl2jni"
+#define  LOG_TAG    "librubikscubesolver"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
@@ -169,16 +169,16 @@ void renderFrame() {
 }
 
 extern "C" {
-    JNIEXPORT void JNICALL Java_com_android_gl2jni_RubiksCubeSolverLib_init(JNIEnv * env, jobject obj,  jint width, jint height);
-    JNIEXPORT void JNICALL Java_com_android_gl2jni_RubiksCubeSolverLib_step(JNIEnv * env, jobject obj);
+    JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_init(JNIEnv * env, jobject obj,  jint width, jint height);
+    JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_step(JNIEnv * env, jobject obj);
 };
 
-JNIEXPORT void JNICALL Java_com_android_gl2jni_RubiksCubeSolverLib_init(JNIEnv * env, jobject obj,  jint width, jint height)
+JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_init(JNIEnv * env, jobject obj,  jint width, jint height)
 {
     setupGraphics(width, height);
 }
 
-JNIEXPORT void JNICALL Java_com_android_gl2jni_RubiksCubeSolverLib_step(JNIEnv * env, jobject obj)
+JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_step(JNIEnv * env, jobject obj)
 {
     renderFrame();
 }

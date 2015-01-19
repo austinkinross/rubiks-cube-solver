@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.android.gl2jni;
+package com.android.rubikscubesolver;
 
 public final class R {
     public static final class attr {
