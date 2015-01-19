@@ -28,6 +28,7 @@ public class RubiksCubeSolverLib {
      * @param width the current view width
      * @param height the current view height
      */
-     public static native void init(int width, int height);
-     public static native void step();
+     public static native void initialize(int width, int height);
+     public static native void update(float timeTotal, float timeDelta);
+     public static native void render();
 }

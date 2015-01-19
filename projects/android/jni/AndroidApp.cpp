@@ -169,16 +169,22 @@ void renderFrame() {
 }
 
 extern "C" {
-    JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_init(JNIEnv * env, jobject obj,  jint width, jint height);
-    JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_step(JNIEnv * env, jobject obj);
+    JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_initialize(JNIEnv * env, jobject obj, jint width, jint height);
+    JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_update(JNIEnv * env, jobject obj, jfloat totalTime, jfloat timeDelta);
+	JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_render(JNIEnv * env, jobject obj);
 };
 
-JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_init(JNIEnv * env, jobject obj,  jint width, jint height)
+JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_initialize(JNIEnv * env, jobject obj, jint width, jint height)
 {
     setupGraphics(width, height);
 }
 
-JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_step(JNIEnv * env, jobject obj)
+JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_update(JNIEnv * env, jobject obj, jfloat totalTime, jfloat timeDelta)
+{
+    renderFrame();
+}
+
+JNIEXPORT void JNICALL Java_com_android_rubikscubesolver_RubiksCubeSolverLib_render(JNIEnv * env, jobject obj)
 {
     renderFrame();
 }

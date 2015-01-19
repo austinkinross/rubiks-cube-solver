@@ -325,11 +325,11 @@ class RubiksCubeSolverView extends GLSurfaceView {
 
     private static class Renderer implements GLSurfaceView.Renderer {
         public void onDrawFrame(GL10 gl) {
-            RubiksCubeSolverLib.step();
+            RubiksCubeSolverLib.update(0, 0);
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
-            RubiksCubeSolverLib.init(width, height);
+            RubiksCubeSolverLib.initialize(width, height);
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
