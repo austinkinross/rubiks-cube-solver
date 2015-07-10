@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Image Include="Assets\Logo.png">
+      <Filter>WindowsStore\Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>WindowsStore\Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>WindowsStore\Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>WindowsStore\Assets</Filter>
+    </Image>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{ca699fb9-abe8-4f44-811d-a224931541f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\D3D">
+      <UniqueIdentifier>{d624dc42-5466-4027-a9b6-e4afa05b0f19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\GL">
+      <UniqueIdentifier>{04a960c3-8bbe-47a5-bfe8-632c87cd6be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowsStore">
+      <UniqueIdentifier>{485465b6-9f35-4634-a8b3-33bc454a91ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\GL\Binaries">
+      <UniqueIdentifier>{1fd056d2-544f-4507-87f5-f83190e6e047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowsStore\Assets">
+      <UniqueIdentifier>9700237c-e205-4e7d-b3cd-c676a2d7e20e</UniqueIdentifier>
+    </Filter>
+    <Image Include="..\..\..\src\WICTextureLoader\cube.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube3.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube2.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube6.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube7.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube4.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube5.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\..\src\WICTextureLoader\cube8.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />
+    <ClCompile Include="..\..\..\src\Renderer\D3D\RendererD3D.cpp">
+      <Filter>Renderer\D3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\WindowsStore\WindowsStoreApp.cpp">
+      <Filter>WindowsStore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp">
+      <Filter>WICTextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\AgnosticApp.h" />
+    <ClInclude Include="..\..\..\src\Renderer\D3D\RendererD3D.h">
+      <Filter>Renderer\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\GL\RendererGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\GL\ShaderCompilerGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\WindowsStore\WindowsStoreApp.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\D3D\AsyncFileLoader.h">
+      <Filter>Renderer\D3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Helpers.h" />
+    <ClInclude Include="..\..\..\src\WICTextureLoader\WICTextureLoader.h">
+      <Filter>WICTextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(AngleBinPath)libEGL.dll">
+      <Filter>Renderer\GL\Binaries</Filter>
+    </None>
+    <None Include="$(AngleBinPath)libGLESv2.dll">
+      <Filter>Renderer\GL\Binaries</Filter>
+    </None>
+    <None Include="RubiksCube_TemporaryKey.pfx">
+      <Filter>WindowsStore</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\..\src\Renderer\D3D\SimplePixelShader.hlsl">
+      <Filter>Renderer\D3D</Filter>
+    </FxCompile>
+    <FxCompile Include="..\..\..\src\Renderer\D3D\SimpleVertexShader.hlsl">
+      <Filter>Renderer\D3D</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <Filter>WindowsStore</Filter>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="WICTextureLoader">
+      <UniqueIdentifier>{8a4eb8c5-8e93-4327-941a-b7fa96ada0ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
