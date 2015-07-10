@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeApp", "App\RubiksCubeApp.vcxproj", "{8B0F8EB7-55A9-47F2-BF68-B7065D571F32}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeSolverLib", "RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj", "{93D11DD0-9621-4F25-81D6-C302917EC4AA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeSolverLibTests", "..\..\tests\RubiksCubeTestLibrary.vcxproj", "{7EFCCE23-2141-4159-8DD3-89C206BC8368}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeSolverLibTestsWin10", "..\..\tests\RubiksCubeSolverLibTestsWin10.vcxproj", "{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,24 +49,20 @@ Global
 		{93D11DD0-9621-4F25-81D6-C302917EC4AA}.Release|Win32.Build.0 = Release|Win32
 		{93D11DD0-9621-4F25-81D6-C302917EC4AA}.Release|x64.ActiveCfg = Release|x64
 		{93D11DD0-9621-4F25-81D6-C302917EC4AA}.Release|x64.Build.0 = Release|x64
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|ARM.ActiveCfg = Debug|ARM
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|ARM.Build.0 = Debug|ARM
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|ARM.Deploy.0 = Debug|ARM
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|Win32.ActiveCfg = Debug|Win32
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|Win32.Build.0 = Debug|Win32
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|Win32.Deploy.0 = Debug|Win32
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|x64.ActiveCfg = Debug|x64
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|x64.Build.0 = Debug|x64
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Debug|x64.Deploy.0 = Debug|x64
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|ARM.ActiveCfg = Release|ARM
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|ARM.Build.0 = Release|ARM
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|ARM.Deploy.0 = Release|ARM
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|Win32.ActiveCfg = Release|Win32
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|Win32.Build.0 = Release|Win32
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|Win32.Deploy.0 = Release|Win32
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|x64.ActiveCfg = Release|x64
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|x64.Build.0 = Release|x64
-		{7EFCCE23-2141-4159-8DD3-89C206BC8368}.Release|x64.Deploy.0 = Release|x64
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Debug|ARM.Build.0 = Debug|ARM
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Debug|ARM.Deploy.0 = Debug|ARM
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Debug|Win32.Build.0 = Debug|Win32
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Debug|Win32.Deploy.0 = Debug|Win32
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Debug|x64.ActiveCfg = Debug|Win32
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|ARM.ActiveCfg = Release|ARM
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|ARM.Build.0 = Release|ARM
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|ARM.Deploy.0 = Release|ARM
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|Win32.ActiveCfg = Release|Win32
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|Win32.Build.0 = Release|Win32
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|Win32.Deploy.0 = Release|Win32
+		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

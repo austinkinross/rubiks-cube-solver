@@ -109,15 +109,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(AngleBinPath)libEGL.dll">
-      <Filter>Renderer\GL\Binaries</Filter>
-    </None>
-    <None Include="$(AngleBinPath)libGLESv2.dll">
-      <Filter>Renderer\GL\Binaries</Filter>
-    </None>
-    <None Include="RubiksCube_TemporaryKey.pfx">
-      <Filter>WindowsStore</Filter>
-    </None>
+    <None Include="packages.config" />
+    <None Include="$(angle-BinPath)\libEGL.dll" />
+    <None Include="$(angle-BinPath)\libGLESv2.dll" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\..\src\Renderer\D3D\SimplePixelShader.hlsl">
