@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>a76f225c-aad3-4ca7-bb4c-231be2feaf4e</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{11ec3f1e-2902-43f6-9942-11d21e0f14b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{d5a95b22-ff86-46bc-af22-aa54b2072c14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{35b72e2d-8f69-4822-90e2-5cc6f96969a1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RubiksCubeSolverLibTestsWin10_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Logo.scale-100.png" />
+    <Image Include="Images\SmallLogo.scale-100.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\SplashScreen.scale-100.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\StoreLogo.scale-100.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\UnitTestSplashScreen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Images\WideLogo.scale-100.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RubiksCubeTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
