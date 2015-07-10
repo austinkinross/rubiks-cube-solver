@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <angle-DeviceType Condition="'$(TargetPlatformIdentifier)' == 'Windows'">Windows</angle-DeviceType>
+    <angle-DeviceType Condition="'$(TargetPlatformIdentifier)' == 'WindowsPhoneApp'">Phone</angle-DeviceType>
+    <angle-DeviceType Condition="'$(TargetPlatformIdentifier)' == 'UAP'">UAP</angle-DeviceType>
+
+	<angle-BinPath>$(MSBuildThisFileDirectory)..\..\bin\$(angle-DeviceType)\$(Platform)</angle-BinPath>
+  </PropertyGroup>
+
+  <Target Name="angle-DeviceType-Check" BeforeTargets="ResolveAssemblyReferences">
+      <Error Condition="'$(angle-DeviceType)' == ''" Text="Unable to determine if Windows, Windows Phone or UAP app" />
+  </Target>
+
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(angle-BinPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libGLESv2.lib;libEGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <ItemGroup Label="ANGLE">
+    <None Include="$(angle-BinPath)\libEGL.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="$(angle-BinPath)\libGLESv2.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
+
+</Project>
