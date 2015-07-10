@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
+    <AppxManifest Include="Package_Win10.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="RubiksCubeSolverLibTestsWin10_TemporaryKey.pfx" />

@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="RubiksCubeSolverLibTestsWin10_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -50,5 +47,8 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package_Win10.appxmanifest" />
   </ItemGroup>
 </Project>
