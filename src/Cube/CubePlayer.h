@@ -9,11 +9,11 @@ struct CubePlayerSpeeds
     CubePlayerSpeeds()
     {
         solvingSpeed = 0.3f;
-        foldingSpeed = 0.005f;
+        foldingSpeed = 5.0f;
     }
 
     float solvingSpeed = 0.3f;
-    float foldingSpeed = 0.005f;
+    float foldingSpeed = 0.3f;
 };
 
 struct CubePlayerDesc

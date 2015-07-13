@@ -61,7 +61,7 @@ void CubePlayer::Update(float timeTotal, float timeDelta)
     {
         if (mPlaybackState == PLAYBACK_STATE_FOLDING)
         {
-            mFoldingAngle -= mDesc.speeds.foldingSpeed;
+            mFoldingAngle -= timeDelta / mDesc.speeds.foldingSpeed;
 
             if (mFoldingAngle < 0.0f)
             {
