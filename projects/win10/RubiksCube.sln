@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeSolverLib", "Rubi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeSolverLibTestsWin10", "..\..\tests\RubiksCubeSolverLibTestsWin10.vcxproj", "{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeRecognitionLib", "RubiksCubeRecognitionLib\RubiksCubeRecognitionLib.vcxproj", "{6702346E-3F07-48DD-9BB1-E553F15BDFE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -63,6 +65,18 @@ Global
 		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|Win32.Build.0 = Release|Win32
 		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|Win32.Deploy.0 = Release|Win32
 		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|x64.ActiveCfg = Release|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|ARM.ActiveCfg = Debug|ARM
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|ARM.Build.0 = Debug|ARM
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|Win32.Build.0 = Debug|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|x64.ActiveCfg = Debug|x64
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|x64.Build.0 = Debug|x64
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|ARM.ActiveCfg = Release|ARM
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|ARM.Build.0 = Release|ARM
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|Win32.ActiveCfg = Release|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|Win32.Build.0 = Release|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|x64.ActiveCfg = Release|x64
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
