@@ -89,6 +89,14 @@ void RendererD3D::CreateDeviceResources()
     ThrowIfFailed(
         context.As(&mContext)
         );
+
+	ComPtr<ID3D11RasterizerState> noCull;
+	D3D11_RASTERIZER_DESC rastDesc;
+	ZeroMemory(&rastDesc, sizeof(D3D11_RASTERIZER_DESC));
+	rastDesc.FillMode = D3D11_FILL_SOLID;
+	rastDesc.CullMode = D3D11_CULL_NONE;
+	mDevice->CreateRasterizerState(&rastDesc, &noCull);
+	mContext->RSSetState(noCull.Get());
 }
 
 // Allocate all memory resources that change on a window SizeChanged event.
