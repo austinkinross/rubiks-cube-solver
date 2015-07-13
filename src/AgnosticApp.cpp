@@ -18,7 +18,7 @@ void AgnosticApp::Initialize(float windowWidth, float windowHeight)
     UINT seed = 4741;
 
     // One renderer can be shared across all cubes. This uses a D3D11 backend to render the cubes
-    mRenderer = new RendererGL();
+    mRenderer = new RendererD3D();
 
     // Get the list of moves required to solve the cube
     CubeSolver* solver = new CubeSolver();
