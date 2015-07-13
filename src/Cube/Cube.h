@@ -5,6 +5,16 @@
 
 class Renderer;
 
+enum CubeFace
+{
+	CUBE_FACE_LEFT = 1,
+	CUBE_FACE_RIGHT = 2,
+	CUBE_FACE_TOP = 3,
+	CUBE_FACE_BOTTOM = 4,
+	CUBE_FACE_FRONT = 5,
+	CUBE_FACE_BACK = 6,
+};
+
 class Cube
 {
 public:
