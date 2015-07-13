@@ -2,7 +2,10 @@
 
 class Cube;
 
-void colorCubeFace(Cube* cube)
+class CubeRecognizer
 {
+public:
+	// CubeRecognizer();
 
-}
+	void ColorCubeFace(Cube* cube);
+};

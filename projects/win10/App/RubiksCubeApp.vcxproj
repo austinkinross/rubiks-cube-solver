@@ -159,6 +159,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RubiksCubeRecognitionLib\RubiksCubeRecognitionLib.vcxproj">
+      <Project>{6702346e-3f07-48dd-9bb1-e553f15bdfe3}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj">
       <Project>{93d11dd0-9621-4f25-81d6-c302917ec4aa}</Project>
     </ProjectReference>
