@@ -4,6 +4,8 @@
 #include "Cube/CubeSolver.h"
 #include "Renderer/Renderer.h"
 
+class CubeRecognizer;
+
 ref class AgnosticApp sealed
 {
 public:
@@ -20,6 +22,7 @@ public:
 private:
     Renderer* mRenderer;
 	CubePlayer* mCubePlayer;
+	CubeRecognizer* mCubeRecognizer;
 
 	glm::mat4 m_viewMatrix;
 	glm::mat4 m_projectionMatrix;

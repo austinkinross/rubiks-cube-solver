@@ -1,12 +1,15 @@
 ﻿#include "AgnosticApp.h"
 #include "Renderer\D3D\RendererD3D.h"
 #include "Renderer\GL\RendererGL.h"
+#include "..\projects\Win10\RubiksCubeRecognitionLib\RubiksCubeRecognitionLib.h"
 
 using namespace DirectX;
 
 AgnosticApp::AgnosticApp()
 {
-
+	mRenderer = nullptr;
+	mCubePlayer = nullptr;
+	mCubeRecognizer = nullptr;
 }
 
 void AgnosticApp::Initialize(float windowWidth, float windowHeight)
@@ -16,6 +19,8 @@ void AgnosticApp::Initialize(float windowWidth, float windowHeight)
     m_projectionMatrix = glm::perspectiveFov(fovAngleY, windowWidth, windowHeight, 0.01f, 100.0f);
 
     UINT seed = 4741;
+
+	mCubeRecognizer = new CubeRecognizer();
 
     // One renderer can be shared across all cubes. This uses a D3D11 backend to render the cubes
     mRenderer = new RendererD3D();
@@ -77,6 +82,8 @@ void AgnosticApp::Update(float timeTotal, float timeDelta)
 void AgnosticApp::Render()
 {
     mRenderer->Clear();
+
+	mCubeRecognizer->ColorCubeFace(mCubePlayer->GetCube());
 
     mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
 
