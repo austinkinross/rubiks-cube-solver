@@ -4,6 +4,8 @@ Release/
 TestResults/
 bin/
 obj/
+Generated Files/
+Packages/
 
 # VS Stuff
 *.ilk
