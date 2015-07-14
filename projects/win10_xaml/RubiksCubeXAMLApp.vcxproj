@@ -81,7 +81,7 @@
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)/App;$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\third_party;$(ProjectDir)..\..\src;$(ProjectDir);$(ProjectDir)/App;$(IntermediateOutputPath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -99,6 +99,14 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Image Include="..\..\src\WICTextureLoader\cube.jpg" />
+    <Image Include="..\..\src\WICTextureLoader\cube2.jpg" />
+    <Image Include="..\..\src\WICTextureLoader\cube3.jpg" />
+    <Image Include="..\..\src\WICTextureLoader\cube4.jpg" />
+    <Image Include="..\..\src\WICTextureLoader\cube5.jpg" />
+    <Image Include="..\..\src\WICTextureLoader\cube6.jpg" />
+    <Image Include="..\..\src\WICTextureLoader\cube7.jpg" />
+    <Image Include="..\..\src\WICTextureLoader\cube8.jpg" />
     <Image Include="Assets\Logo.scale-100.png" />
     <Image Include="Assets\SmallLogo.scale-100.png" />
     <Image Include="Assets\StoreLogo.scale-100.png" />
@@ -117,6 +125,11 @@
     <Page Include="App\OpenGLESPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\AgnosticApp.cpp" />
+    <ClCompile Include="..\..\src\Renderer\GL\CubeAnalyzerProto.cpp" />
+    <ClCompile Include="..\..\src\Renderer\GL\RendererGL.cpp" />
+    <ClCompile Include="..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp" />
+    <ClCompile Include="..\..\src\WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
@@ -125,16 +138,33 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\AgnosticApp.h" />
+    <ClInclude Include="..\..\src\Helpers.h" />
+    <ClInclude Include="..\..\src\Renderer\GL\CubeAnalyzerProto.h" />
+    <ClInclude Include="..\..\src\Renderer\GL\RendererGL.h" />
+    <ClInclude Include="..\..\src\Renderer\GL\ShaderCompilerGL.h" />
+    <ClInclude Include="..\..\src\Renderer\Renderer.h" />
+    <ClInclude Include="..\..\src\WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
-    <ClInclude Include="App\MathHelper.h" />
     <ClInclude Include="App\OpenGLESPage.xaml.h">
       <DependentUpon>App\OpenGLESPage.xaml</DependentUpon>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\win10\RubiksCubeRecognitionLib\RubiksCubeRecognitionLib.vcxproj">
+      <Project>{6702346e-3f07-48dd-9bb1-e553f15bdfe3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\win10\RubiksCubeRecognitionWinRT\RubiksCubeRecognitionWinRT.csproj">
+      <Project>{90716d8d-c026-4515-92e4-857b1d13d85a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\win10\RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj">
+      <Project>{93d11dd0-9621-4f25-81d6-c302917ec4aa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

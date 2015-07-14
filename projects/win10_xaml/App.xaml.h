@@ -13,5 +13,6 @@ namespace RubiksCubeXAMLApp
 
     private:
         OpenGLESPage^ mPage;
+
     };
 }

@@ -5,9 +5,6 @@
       <UniqueIdentifier>aa158687-9e28-4b00-8879-3abd3e5c5ddd</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
-    <Filter Include="Binaries">
-      <Extensions>dll;</Extensions>
-    </Filter>
     <Image Include="Assets\Logo.scale-100.png">
       <Filter>Assets</Filter>
     </Image>
@@ -23,15 +20,53 @@
     <Image Include="Assets\WideLogo.scale-100.png">
       <Filter>Assets</Filter>
     </Image>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{33253566-8f46-41ff-b2e9-63af4a927720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\GL">
+      <UniqueIdentifier>{708fcf34-0aad-4a79-b57e-a8909b6d5d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WICTextureLoader">
+      <UniqueIdentifier>{8b01f208-6814-4645-83a5-bca70523abad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\OpenGLESPage.xaml.cpp" />
     <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="..\..\src\Renderer\GL\CubeAnalyzerProto.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Renderer\GL\RendererGL.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\AgnosticApp.cpp" />
+    <ClCompile Include="..\..\src\WICTextureLoader\WICTextureLoader.cpp">
+      <Filter>WICTextureLoader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="App\MathHelper.h" />
     <ClInclude Include="App\OpenGLESPage.xaml.h" />
     <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="..\..\src\Renderer\GL\CubeAnalyzerProto.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Renderer\GL\RendererGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Renderer\GL\ShaderCompilerGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Renderer\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AgnosticApp.h" />
+    <ClInclude Include="..\..\src\Helpers.h" />
+    <ClInclude Include="..\..\src\WICTextureLoader\WICTextureLoader.h">
+      <Filter>WICTextureLoader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -44,5 +79,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\src\WICTextureLoader\cube.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\src\WICTextureLoader\cube2.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\src\WICTextureLoader\cube3.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\src\WICTextureLoader\cube4.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\src\WICTextureLoader\cube5.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\src\WICTextureLoader\cube6.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\src\WICTextureLoader\cube7.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
+    <Image Include="..\..\src\WICTextureLoader\cube8.jpg">
+      <Filter>WICTextureLoader</Filter>
+    </Image>
   </ItemGroup>
 </Project>
