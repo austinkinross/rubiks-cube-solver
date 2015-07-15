@@ -21,6 +21,7 @@ struct WindowWrapper
 	// Windows Store XAML
 	void *swapChainPanel;
 	void *cameraPreviewPane;
+	void *cameraErrorText;
 
 	// Android?
 };

@@ -15,8 +15,10 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <CaptureElement Grid.Column="0" x:Name="captureElement" Width="Auto" Height="Auto" Margin="0,0,0,484"/>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,484">
+            <CaptureElement FlowDirection="RightToLeft" x:Name="captureElement" Width="Auto" Height="Auto"/>
+            <TextBlock x:Name="progressText" Text="OpenGL ES and XAML" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" />
+        </StackPanel>
 
-        <TextBlock Text="OpenGL ES and XAML" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" />
   </SwapChainPanel>
 </Page>

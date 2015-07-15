@@ -53,7 +53,7 @@ void OpenGLESPage::CreateAgnosticApp()
 		WindowWrapper windowWrapper;
 		windowWrapper.swapChainPanel = reinterpret_cast<void*>(swapChainPanel);
 		windowWrapper.cameraPreviewPane = reinterpret_cast<void*>(captureElement);
-
+		windowWrapper.cameraErrorText = reinterpret_cast<void*>(progressText);
 
 		mAgnosticApp = new AgnosticApp();
 		mAgnosticApp->Initialize(&windowWrapper, swapChainPanel->ActualWidth, swapChainPanel->ActualHeight);

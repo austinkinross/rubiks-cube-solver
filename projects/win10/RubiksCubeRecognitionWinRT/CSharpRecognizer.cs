@@ -8,11 +8,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace RubiksCubeRecognitionWinRT
 {
-    public sealed class Class1
+    public sealed class CSharpRecognizer
     {
         private MediaCapture mMediaCapture;
 
-        public Class1(CaptureElement captureElement)
+        public CSharpRecognizer(CaptureElement captureElement, TextBlock progressText)
         {
             mMediaCapture = new MediaCapture();
 
@@ -21,7 +21,20 @@ namespace RubiksCubeRecognitionWinRT
                 StreamingCaptureMode = StreamingCaptureMode.Video
             };
 
-            mMediaCapture.InitializeAsync(settings).AsTask().Wait();
+            try
+            {
+                mMediaCapture.InitializeAsync(settings).AsTask().Wait();
+            }
+            catch (Exception)
+            {
+                progressText.Text = "No camera is available.";
+                return;
+            }
+
+            // This doesn't work on ASUST100TAM.
+            // https://msdn.microsoft.com/en-us/library/windows.media.capture.mediacapture.setpreviewmirroring.aspx
+            // Use 'FlowDirection' on the CaptureElement instead
+            // mMediaCapture.SetPreviewMirroring(true);
 
             captureElement.Source = mMediaCapture;
             mMediaCapture.StartPreviewAsync().AsTask().Wait();

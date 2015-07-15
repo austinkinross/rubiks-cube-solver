@@ -15,7 +15,7 @@ public:
 	void ColorCubeFace(Cube* cube) override;
 
 private:
-	Class1^ class1;
+	CSharpRecognizer^ mCSharpRecognizer;
 };
 
 CubeRecognizer* createCubeRecognizer(WindowWrapper *windowWrapper)
@@ -26,7 +26,8 @@ CubeRecognizer* createCubeRecognizer(WindowWrapper *windowWrapper)
 CubeRecognizerWinRT::CubeRecognizerWinRT(WindowWrapper *windowWrapper)
 {
 	CaptureElement^ captureElement = reinterpret_cast<CaptureElement^>(windowWrapper->cameraPreviewPane);
-	class1 = ref new Class1(captureElement);
+	TextBlock^ progressText = reinterpret_cast<TextBlock^>(windowWrapper->cameraErrorText);
+	mCSharpRecognizer = ref new CSharpRecognizer(captureElement, progressText);
 }
 
 void CubeRecognizerWinRT::ColorCubeFace(Cube* cube)
@@ -35,8 +36,7 @@ void CubeRecognizerWinRT::ColorCubeFace(Cube* cube)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			
-			bool b = class1->getBool();
+			bool b = mCSharpRecognizer->getBool();
 
 			if (b)
 			{
