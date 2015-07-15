@@ -27,7 +27,7 @@ protected:
 	void OnPointerMoved(Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::PointerEventArgs^ args);
 
 private:
-	AgnosticApp^ m_renderer;
+	AgnosticApp *m_renderer;
 	bool m_windowClosed;
 	bool m_windowVisible;
 };

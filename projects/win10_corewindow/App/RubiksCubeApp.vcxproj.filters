@@ -107,8 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="$(angle-BinPath)\libEGL.dll" />
-    <None Include="$(angle-BinPath)\libGLESv2.dll" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\..\src\Renderer\D3D\SimplePixelShader.hlsl">

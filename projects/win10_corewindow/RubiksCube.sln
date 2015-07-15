@@ -5,13 +5,13 @@ VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeApp", "App\RubiksCubeApp.vcxproj", "{8B0F8EB7-55A9-47F2-BF68-B7065D571F32}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeSolverLib", "RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj", "{93D11DD0-9621-4F25-81D6-C302917EC4AA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeRecognitionLib", "..\win10\RubiksCubeRecognitionLib\RubiksCubeRecognitionLib.vcxproj", "{6702346E-3F07-48DD-9BB1-E553F15BDFE3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeSolverLib", "..\win10\RubiksCubeSolverLib\RubiksCubeSolverLib.vcxproj", "{93D11DD0-9621-4F25-81D6-C302917EC4AA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeSolverLibTestsWin10", "..\..\tests\RubiksCubeSolverLibTestsWin10.vcxproj", "{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RubiksCubeRecognitionLib", "RubiksCubeRecognitionLib\RubiksCubeRecognitionLib.vcxproj", "{6702346E-3F07-48DD-9BB1-E553F15BDFE3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubiksCubeRecognitionWinRT", "RubiksCubeRecognitionWinRT\RubiksCubeRecognitionWinRT.csproj", "{90716D8D-C026-4515-92E4-857B1D13D85A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubiksCubeRecognitionWinRT", "..\win10\RubiksCubeRecognitionWinRT\RubiksCubeRecognitionWinRT.csproj", "{90716D8D-C026-4515-92E4-857B1D13D85A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +45,20 @@ Global
 		{8B0F8EB7-55A9-47F2-BF68-B7065D571F32}.Release|x64.ActiveCfg = Release|x64
 		{8B0F8EB7-55A9-47F2-BF68-B7065D571F32}.Release|x64.Build.0 = Release|x64
 		{8B0F8EB7-55A9-47F2-BF68-B7065D571F32}.Release|x64.Deploy.0 = Release|x64
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|ARM.ActiveCfg = Debug|ARM
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|ARM.Build.0 = Debug|ARM
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|Win32.Build.0 = Debug|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|x64.ActiveCfg = Debug|x64
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|x64.Build.0 = Debug|x64
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|Any CPU.ActiveCfg = Release|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|ARM.ActiveCfg = Release|ARM
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|ARM.Build.0 = Release|ARM
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|Win32.ActiveCfg = Release|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|Win32.Build.0 = Release|Win32
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|x64.ActiveCfg = Release|x64
+		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|x64.Build.0 = Release|x64
 		{93D11DD0-9621-4F25-81D6-C302917EC4AA}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{93D11DD0-9621-4F25-81D6-C302917EC4AA}.Debug|ARM.ActiveCfg = Debug|ARM
 		{93D11DD0-9621-4F25-81D6-C302917EC4AA}.Debug|ARM.Build.0 = Debug|ARM
@@ -75,20 +89,6 @@ Global
 		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|Win32.Build.0 = Release|Win32
 		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|Win32.Deploy.0 = Release|Win32
 		{A76F225C-AAD3-4CA7-BB4C-231BE2FEAF4E}.Release|x64.ActiveCfg = Release|Win32
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|ARM.ActiveCfg = Debug|ARM
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|ARM.Build.0 = Debug|ARM
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|Win32.Build.0 = Debug|Win32
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|x64.ActiveCfg = Debug|x64
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Debug|x64.Build.0 = Debug|x64
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|Any CPU.ActiveCfg = Release|Win32
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|ARM.ActiveCfg = Release|ARM
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|ARM.Build.0 = Release|ARM
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|Win32.ActiveCfg = Release|Win32
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|Win32.Build.0 = Release|Win32
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|x64.ActiveCfg = Release|x64
-		{6702346E-3F07-48DD-9BB1-E553F15BDFE3}.Release|x64.Build.0 = Release|x64
 		{90716D8D-C026-4515-92E4-857B1D13D85A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90716D8D-C026-4515-92E4-857B1D13D85A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90716D8D-C026-4515-92E4-857B1D13D85A}.Debug|ARM.ActiveCfg = Debug|ARM

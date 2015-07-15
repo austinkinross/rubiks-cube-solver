@@ -25,6 +25,11 @@ void RendererGL::CreateWindowResources(WindowWrapper *windowWrapper)
 	SwapChainPanel^ swapChainPanel;
 	swapChainPanel = reinterpret_cast<SwapChainPanel^>(windowWrapper->swapChainPanel);
 
+	CoreWindow^ coreWindow;
+	coreWindow = reinterpret_cast<CoreWindow^>(windowWrapper->coreWindow);
+
+	assert(!(coreWindow != nullptr && swapChainPanel != nullptr));
+
     const EGLint configAttributes[] =
     {
         EGL_RED_SIZE, 8,
@@ -158,8 +163,7 @@ void RendererGL::CreateWindowResources(WindowWrapper *windowWrapper)
 	}
 	else
 	{
-		// TODO: CoreWindow
-		assert(false);
+		surfaceCreationProperties->Insert(ref new String(EGLNativeWindowTypeProperty), coreWindow);
 	}
 
     //
