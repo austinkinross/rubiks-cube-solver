@@ -5,7 +5,7 @@
 
 #include "CubeAnalyzerProto.h"
 
-RendererGL::RendererGL(void *window) : Renderer(window)
+RendererGL::RendererGL(WindowWrapper *window)
 {
     CreateWindowResources(window);
 
@@ -13,16 +13,16 @@ RendererGL::RendererGL(void *window) : Renderer(window)
 
     glEnable(GL_DEPTH_TEST);
 
-    mCubeAnalyzerProto1 = new CubeAnalyzerProto(L"cube.jpg", 1, 1);
-    mCubeAnalyzerProto2 = new CubeAnalyzerProto(L"cube2.jpg", 4, 1);
-    mCubeAnalyzerProto3 = new CubeAnalyzerProto(L"cube3.jpg", 7, 1);
+    //mCubeAnalyzerProto1 = new CubeAnalyzerProto(L"cube.jpg", 1, 1);
+    ////mCubeAnalyzerProto2 = new CubeAnalyzerProto(L"cube2.jpg", 4, 1);
+    ////mCubeAnalyzerProto3 = new CubeAnalyzerProto(L"cube3.jpg", 7, 1);
 
-    mCubeAnalyzerProto4 = new CubeAnalyzerProto(L"cube4.jpg", 1, 6);
-    mCubeAnalyzerProto5 = new CubeAnalyzerProto(L"cube5.jpg", 4, 6);
-    mCubeAnalyzerProto6 = new CubeAnalyzerProto(L"cube6.jpg", 7, 6);
+    ////mCubeAnalyzerProto4 = new CubeAnalyzerProto(L"cube4.jpg", 1, 6);
+    ////mCubeAnalyzerProto5 = new CubeAnalyzerProto(L"cube5.jpg", 4, 6);
+    ////mCubeAnalyzerProto6 = new CubeAnalyzerProto(L"cube6.jpg", 7, 6);
 
-    mCubeAnalyzerProto7 = new CubeAnalyzerProto(L"cube7.jpg", 10, 6);
-    mCubeAnalyzerProto8 = new CubeAnalyzerProto(L"cube8.jpg", 10, 1);
+    ////mCubeAnalyzerProto7 = new CubeAnalyzerProto(L"cube7.jpg", 10, 6);
+    ////mCubeAnalyzerProto8 = new CubeAnalyzerProto(L"cube8.jpg", 10, 1);
 }
 
 RendererGL::~RendererGL()
@@ -117,7 +117,7 @@ void RendererGL::RenderSticker(Sticker* pSticker, glm::mat4 *pWorldMatrix, glm::
 
 void RendererGL::Clear()
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //mCubeAnalyzerProto1->Draw();

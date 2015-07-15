@@ -6,18 +6,39 @@
 
 class CubeRecognizer;
 
+struct WindowWrapper
+{
+	WindowWrapper()
+	{
+		coreWindow = nullptr;
+		swapChainPanel = nullptr;
+		cameraPreviewPane = nullptr;
+	};
+
+	// Windows Store CoreWindow
+	void *coreWindow;
+
+	// Windows Store XAML
+	void *swapChainPanel;
+	void *cameraPreviewPane;
+
+	// Android?
+};
+
 class AgnosticApp
 {
 public:
     AgnosticApp();
 
-    void Initialize(void* window, float windowWidth, float windowHeight);
+    void Initialize(WindowWrapper *windowWrapper, float windowWidth, float windowHeight);
 
 	void Update(float timeTotal, float timeDelta);
     void UpdateForWindowSizeChange();
 
     void Present();
     void Render();
+
+	void MakeCurrent();
 
 private:
     Renderer* mRenderer;

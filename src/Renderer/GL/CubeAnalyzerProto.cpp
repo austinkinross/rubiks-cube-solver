@@ -16,6 +16,9 @@ CubeAnalyzerProto::CubeAnalyzerProto(std::wstring file, int offsetX, int offsetY
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+	GLint oldFramebuffer;
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldFramebuffer);
+
     glGenFramebuffers(1, &mRenderFramebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, mRenderFramebuffer);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mRenderTexture, 0);
@@ -75,6 +78,8 @@ CubeAnalyzerProto::CubeAnalyzerProto(std::wstring file, int offsetX, int offsetY
 
     mOffsetX = offsetX;
     mOffsetY = offsetY;
+
+	glBindFramebuffer(GL_FRAMEBUFFER, oldFramebuffer);
 }
 
 CubeAnalyzerProto::~CubeAnalyzerProto()

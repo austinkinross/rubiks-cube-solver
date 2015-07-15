@@ -25,9 +25,6 @@
     <Filter Include="WindowsStore">
       <UniqueIdentifier>{485465b6-9f35-4634-a8b3-33bc454a91ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderer\GL\Binaries">
-      <UniqueIdentifier>{1fd056d2-544f-4507-87f5-f83190e6e047}</UniqueIdentifier>
-    </Filter>
     <Filter Include="WindowsStore\Assets">
       <UniqueIdentifier>9700237c-e205-4e7d-b3cd-c676a2d7e20e</UniqueIdentifier>
     </Filter>

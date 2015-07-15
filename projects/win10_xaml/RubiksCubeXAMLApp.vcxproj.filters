@@ -50,7 +50,6 @@
       <Filter>WICTextureLoader</Filter>
     </ClCompile>
     <ClCompile Include="OpenGLES.cpp" />
-    <ClCompile Include="SimpleRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\OpenGLESPage.xaml.h" />
@@ -77,7 +76,6 @@
     </ClInclude>
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="OpenGLES.h" />
-    <ClInclude Include="SimpleRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

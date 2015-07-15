@@ -20,12 +20,14 @@ class Sticker;
 class RendererGL : public Renderer
 {
 public:
-    RendererGL(void *window);
+    RendererGL(WindowWrapper *window);
     ~RendererGL();
 
     virtual void RenderSticker(Sticker* pSticker, glm::mat4 *pWorldMatrix, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix);
 
     virtual void Swap();
+
+	virtual void MakeCurrent();
 
     virtual void Clear();
 
@@ -34,7 +36,7 @@ public:
     void GenerateStickerResources();
 
 protected:
-    void CreateWindowResources(void *window);
+    void CreateWindowResources(WindowWrapper *window);
     void DestroyWindowResources();
 
 #ifdef WIN32
