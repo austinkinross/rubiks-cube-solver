@@ -34,6 +34,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="App\App.xaml.cpp" />
     <ClCompile Include="App\OpenGLESPage.xaml.cpp" />
     <ClCompile Include="App.xaml.cpp" />
     <ClCompile Include="..\..\src\Renderer\GL\CubeAnalyzerProto.cpp">
@@ -78,13 +79,18 @@
     <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(AngleBinPath)libEGL.dll">
+      <Filter>Binaries</Filter>
+    </None>
+    <None Include="$(AngleBinPath)libGLESv2.dll">
+      <Filter>Binaries</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <Page Include="App\OpenGLESPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\src\WICTextureLoader\cube.jpg">
