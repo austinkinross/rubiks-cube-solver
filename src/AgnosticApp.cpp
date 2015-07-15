@@ -20,7 +20,7 @@ void AgnosticApp::Initialize(WindowWrapper *windowWrapper, float windowWidth, fl
 
     UINT seed = 4741;
 
-	mCubeRecognizer = new CubeRecognizer();
+	mCubeRecognizer = createCubeRecognizer(windowWrapper);
 
     // One renderer can be shared across all cubes. This uses a D3D11 backend to render the cubes
     mRenderer = new RendererGL(windowWrapper);

@@ -2,10 +2,12 @@
 
 class Cube;
 
+#include "AgnosticApp.h"
+
 class CubeRecognizer
 {
 public:
-	// CubeRecognizer();
-
-	void ColorCubeFace(Cube* cube);
+	virtual void ColorCubeFace(Cube* cube) = 0;
 };
+
+CubeRecognizer* createCubeRecognizer(WindowWrapper *windowWrapper);
