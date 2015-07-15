@@ -34,7 +34,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="App\App.xaml.cpp" />
     <ClCompile Include="App\OpenGLESPage.xaml.cpp" />
     <ClCompile Include="App.xaml.cpp" />
     <ClCompile Include="..\..\src\Renderer\GL\CubeAnalyzerProto.cpp">
@@ -50,6 +49,8 @@
     <ClCompile Include="..\..\src\WICTextureLoader\WICTextureLoader.cpp">
       <Filter>WICTextureLoader</Filter>
     </ClCompile>
+    <ClCompile Include="OpenGLES.cpp" />
+    <ClCompile Include="SimpleRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\OpenGLESPage.xaml.h" />
@@ -74,17 +75,17 @@
     <ClInclude Include="..\..\src\WindowsStore\BasicTimer.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
+    <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="OpenGLES.h" />
+    <ClInclude Include="SimpleRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(AngleBinPath)libEGL.dll">
-      <Filter>Binaries</Filter>
-    </None>
-    <None Include="$(AngleBinPath)libGLESv2.dll">
-      <Filter>Binaries</Filter>
-    </None>
+    <None Include="$(AngleBinPath)libEGL.dll" />
+    <None Include="$(AngleBinPath)libGLESv2.dll" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="App\OpenGLESPage.xaml" />

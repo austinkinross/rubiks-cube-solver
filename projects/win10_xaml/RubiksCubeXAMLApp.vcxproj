@@ -147,6 +147,8 @@
     <ClCompile Include="App\OpenGLESPage.xaml.cpp">
       <DependentUpon>App\OpenGLESPage.xaml</DependentUpon>
     </ClCompile>
+    <ClCompile Include="OpenGLES.cpp" />
+    <ClCompile Include="SimpleRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\AgnosticApp.h" />
@@ -163,6 +165,9 @@
     <ClInclude Include="App\OpenGLESPage.xaml.h">
       <DependentUpon>App\OpenGLESPage.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="MathHelper.h" />
+    <ClInclude Include="OpenGLES.h" />
+    <ClInclude Include="SimpleRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
