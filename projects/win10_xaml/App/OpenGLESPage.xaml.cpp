@@ -1,13 +1,14 @@
 ﻿#include "pch.h"
 #include "OpenGLESPage.xaml.h"
 
+#include "WindowsStore/BasicTimer.h"
+
 using namespace RubiksCubeXAMLApp;
 using namespace Platform;
 using namespace Concurrency;
 using namespace Windows::Foundation;
 
-OpenGLESPage::OpenGLESPage() :
-    mRenderSurface(EGL_NO_SURFACE)
+OpenGLESPage::OpenGLESPage()
 {
     InitializeComponent();
 
@@ -28,24 +29,16 @@ OpenGLESPage::~OpenGLESPage()
 
 void OpenGLESPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-    // The SwapChainPanel has been created and arranged in the page layout, so EGL can be initialized.
-    CreateRenderSurface();
+	m_renderer = new AgnosticApp();
+
+	void *swapChainPanelIInspectable = reinterpret_cast<void*>(swapChainPanel);
+
+	m_renderer->Initialize(swapChainPanelIInspectable, swapChainPanel->ActualWidth, swapChainPanel->ActualHeight);
+
     StartRenderLoop();
 }
 
 void OpenGLESPage::OnVisibilityChanged(Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::VisibilityChangedEventArgs^ args)
-{
-    if (args->Visible && mRenderSurface != EGL_NO_SURFACE)
-    {
-        StartRenderLoop();
-    }
-    else
-    {
-        StopRenderLoop();
-    }
-}
-
-void OpenGLESPage::CreateRenderSurface()
 {
 
 }
@@ -62,13 +55,6 @@ void OpenGLESPage::RecoverFromLostDevice()
 
     StopRenderLoop();
 
-    {
-        critical_section::scoped_lock lock(mRenderSurfaceCriticalSection);
-
-        DestroyRenderSurface();
-        CreateRenderSurface();
-    }
-
     StartRenderLoop();
 }
 
@@ -83,11 +69,14 @@ void OpenGLESPage::StartRenderLoop()
     // Create a task for rendering that will be run on a background thread.
     auto workItemHandler = ref new Windows::System::Threading::WorkItemHandler([this](Windows::Foundation::IAsyncAction ^ action)
     {
-        critical_section::scoped_lock lock(mRenderSurfaceCriticalSection);
+		BasicTimer^ timer = ref new BasicTimer();
 
         while (action->Status == Windows::Foundation::AsyncStatus::Started)
         {
-
+			timer->Update();
+			m_renderer->Update(timer->Total, timer->Delta);
+			m_renderer->Render();
+			m_renderer->Present();
         }
     });
 

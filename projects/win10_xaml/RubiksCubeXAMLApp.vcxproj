@@ -145,6 +145,7 @@
     <ClInclude Include="..\..\src\Renderer\GL\ShaderCompilerGL.h" />
     <ClInclude Include="..\..\src\Renderer\Renderer.h" />
     <ClInclude Include="..\..\src\WICTextureLoader\WICTextureLoader.h" />
+    <ClInclude Include="..\..\src\WindowsStore\BasicTimer.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>

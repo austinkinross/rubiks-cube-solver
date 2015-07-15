@@ -5,9 +5,9 @@
 
 #include "CubeAnalyzerProto.h"
 
-RendererGL::RendererGL()
+RendererGL::RendererGL(void *window) : Renderer(window)
 {
-    CreateWindowResources();
+    CreateWindowResources(window);
 
     GenerateStickerResources();
 
@@ -84,6 +84,17 @@ void RendererGL::RenderSticker(Sticker* pSticker, glm::mat4 *pWorldMatrix, glm::
         +0.95f, 3.0f, +0.95f
     };
 
+	EGLint width; EGLint height;
+	eglQuerySurface(mEglDisplay, mEglSurface, EGL_WIDTH, &width);
+	eglQuerySurface(mEglDisplay, mEglSurface, EGL_HEIGHT, &height);
+
+	glViewport(0, 0, width, height);
+
+	GLint oldViewport[4];
+	glGetIntegerv(GL_VIEWPORT, &oldViewport[0]);
+
+	GLenum err = glGetError();
+
     glUseProgram(mStickerProgram);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
@@ -97,6 +108,11 @@ void RendererGL::RenderSticker(Sticker* pSticker, glm::mat4 *pWorldMatrix, glm::
     glUniform3fv(mStickerColorUniformPos, 1, (GLfloat*)&color);
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+	if (glGetError() != GL_NO_ERROR)
+	{
+		throw Exception::CreateException(E_FAIL);
+	}
 }
 
 void RendererGL::Clear()
@@ -104,12 +120,12 @@ void RendererGL::Clear()
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    mCubeAnalyzerProto1->Draw();
-    mCubeAnalyzerProto2->Draw();
-    mCubeAnalyzerProto3->Draw();
-    mCubeAnalyzerProto4->Draw();
-    mCubeAnalyzerProto5->Draw();
-    mCubeAnalyzerProto6->Draw();
-    mCubeAnalyzerProto7->Draw();
-    mCubeAnalyzerProto8->Draw();
+    //mCubeAnalyzerProto1->Draw();
+    //mCubeAnalyzerProto2->Draw();
+    //mCubeAnalyzerProto3->Draw();
+    //mCubeAnalyzerProto4->Draw();
+    //mCubeAnalyzerProto5->Draw();
+    //mCubeAnalyzerProto6->Draw();
+    //mCubeAnalyzerProto7->Draw();
+    //mCubeAnalyzerProto8->Draw();
 }

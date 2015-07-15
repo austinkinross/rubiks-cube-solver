@@ -16,9 +16,13 @@ using namespace Windows::Graphics::Display;
 using namespace Microsoft::WRL;
 using namespace Platform;
 
-void RendererGL::CreateWindowResources()
+using namespace Windows::UI::Xaml::Controls;
+
+void RendererGL::CreateWindowResources(void *window)
 {
-    CoreWindow^ window = CoreWindow::GetForCurrentThread();
+    // CoreWindow^ window = CoreWindow::GetForCurrentThread();
+
+	SwapChainPanel^ inspectableWindow = reinterpret_cast<SwapChainPanel^>(window);
 
     const EGLint configAttributes[] =
     {
@@ -146,7 +150,7 @@ void RendererGL::CreateWindowResources()
 
     // Create a PropertySet and initialize with the EGLNativeWindowType.
     PropertySet^ surfaceCreationProperties = ref new PropertySet();
-    surfaceCreationProperties->Insert(ref new String(EGLNativeWindowTypeProperty), window);
+    surfaceCreationProperties->Insert(ref new String(EGLNativeWindowTypeProperty), inspectableWindow);
 
     //
     // A Custom render surface size can be specified by uncommenting the following lines.
@@ -174,6 +178,12 @@ void RendererGL::CreateWindowResources()
     {
         throw Exception::CreateException(E_FAIL, L"Failed to make fullscreen EGLSurface current");
     }
+
+	EGLint width; EGLint height;
+	eglQuerySurface(mEglDisplay, mEglSurface, EGL_WIDTH, &width);
+	eglQuerySurface(mEglDisplay, mEglSurface, EGL_HEIGHT, &height);
+
+	glViewport(0, 0, width, height);
 }
 
 void RendererGL::DestroyWindowResources()
@@ -220,7 +230,9 @@ void RendererGL::UpdateForWindowSizeChange()
 
 void RendererGL::Swap()
 {
-    eglSwapBuffers(mEglDisplay, mEglSurface);
+    EGLBoolean b = eglSwapBuffers(mEglDisplay, mEglSurface);
+
+	assert(b == GL_TRUE);
 }
 
 #endif // WINDOWS

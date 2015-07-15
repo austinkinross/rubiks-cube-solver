@@ -29,6 +29,9 @@
     <Filter Include="WICTextureLoader">
       <UniqueIdentifier>{8b01f208-6814-4645-83a5-bca70523abad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WindowsStore">
+      <UniqueIdentifier>{dc08bde7-7d75-4425-a982-3fa5ca619ad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\OpenGLESPage.xaml.cpp" />
@@ -66,6 +69,9 @@
     <ClInclude Include="..\..\src\Helpers.h" />
     <ClInclude Include="..\..\src\WICTextureLoader\WICTextureLoader.h">
       <Filter>WICTextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\WindowsStore\BasicTimer.h">
+      <Filter>WindowsStore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

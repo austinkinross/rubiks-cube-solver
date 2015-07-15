@@ -6,7 +6,7 @@
 class Renderer
 {
 public:
-    Renderer() { };
+    Renderer(void *window) { };
 
     virtual void DrawCube(Cube* pCube, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix) { pCube->Draw(this, pViewMatrix, pProjectionMatrix); };
 

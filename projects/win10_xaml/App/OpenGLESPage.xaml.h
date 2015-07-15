@@ -2,6 +2,8 @@
 
 #include "../Generated Files/App/OpenGLESPage.g.h"
 
+#include "AgnosticApp.h"
+
 namespace RubiksCubeXAMLApp
 {
     public ref class OpenGLESPage sealed
@@ -19,8 +21,9 @@ namespace RubiksCubeXAMLApp
         void StartRenderLoop();
         void StopRenderLoop();
 
-        EGLSurface mRenderSurface;     // This surface is associated with a swapChainPanel on the page
         Concurrency::critical_section mRenderSurfaceCriticalSection;
         Windows::Foundation::IAsyncAction^ mRenderLoopWorker;
+
+		AgnosticApp *m_renderer;
     };
 }

@@ -6,12 +6,12 @@
 
 class CubeRecognizer;
 
-ref class AgnosticApp sealed
+class AgnosticApp
 {
 public:
     AgnosticApp();
 
-    void Initialize(float windowWidth, float windowHeight);
+    void Initialize(void* window, float windowWidth, float windowHeight);
 
 	void Update(float timeTotal, float timeDelta);
     void UpdateForWindowSizeChange();

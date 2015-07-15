@@ -12,7 +12,7 @@ AgnosticApp::AgnosticApp()
 	mCubeRecognizer = nullptr;
 }
 
-void AgnosticApp::Initialize(float windowWidth, float windowHeight)
+void AgnosticApp::Initialize(void *window, float windowWidth, float windowHeight)
 {
     // Set up the projection matrices for the scene
     float fovAngleY = 70.0f * XM_PI / 180.0f;
@@ -23,7 +23,7 @@ void AgnosticApp::Initialize(float windowWidth, float windowHeight)
 	mCubeRecognizer = new CubeRecognizer();
 
     // One renderer can be shared across all cubes. This uses a D3D11 backend to render the cubes
-    mRenderer = new RendererD3D();
+    mRenderer = new RendererGL(window);
 
     // Get the list of moves required to solve the cube
     CubeSolver* solver = new CubeSolver();
