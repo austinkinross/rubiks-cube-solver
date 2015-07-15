@@ -64,14 +64,14 @@
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp">
       <Filter>Renderer\GL</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\WindowsStore\WindowsStoreApp.cpp">
-      <Filter>WindowsStore</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp">
       <Filter>WICTextureLoader</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.cpp">
       <Filter>Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\WindowsStore\CoreWindowApp\WindowsStoreApp.cpp">
+      <Filter>WindowsStore\CoreWindowApp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,9 +91,6 @@
     <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\WindowsStore\WindowsStoreApp.h">
-      <Filter>WindowsStore</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\Renderer\D3D\AsyncFileLoader.h">
       <Filter>Renderer\D3D</Filter>
     </ClInclude>
@@ -104,9 +101,14 @@
     <ClInclude Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.h">
       <Filter>Renderer\GL</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\WindowsStore\CoreWindowApp\WindowsStoreApp.h">
+      <Filter>WindowsStore\CoreWindowApp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="$(angle-BinPath)\libEGL.dll" />
+    <None Include="$(angle-BinPath)\libGLESv2.dll" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\..\src\Renderer\D3D\SimplePixelShader.hlsl">
@@ -124,6 +126,9 @@
   <ItemGroup>
     <Filter Include="WICTextureLoader">
       <UniqueIdentifier>{8a4eb8c5-8e93-4327-941a-b7fa96ada0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowsStore\CoreWindowApp">
+      <UniqueIdentifier>{68ecea60-9f40-4443-b93a-f72e49956352}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

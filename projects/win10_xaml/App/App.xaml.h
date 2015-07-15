@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "app.g.h"
-#include "openglespage.xaml.h"
+#include "WindowsStore/XAMLApp/openglespage.xaml.h"
 
 namespace RubiksCubeXAMLApp
 {

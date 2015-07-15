@@ -140,11 +140,11 @@
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp" />
     <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp" />
+    <ClCompile Include="..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml.cpp">
+      <DependentUpon>..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml</DependentUpon>
+    </ClCompile>
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
-    </ClCompile>
-    <ClCompile Include="OpenGLESPage.xaml.cpp">
-      <DependentUpon>OpenGLESPage.xaml</DependentUpon>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,11 +156,11 @@
     <ClInclude Include="..\..\..\src\Renderer\Renderer.h" />
     <ClInclude Include="..\..\..\src\WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h" />
+    <ClInclude Include="..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml.h">
+      <DependentUpon>..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
-    </ClInclude>
-    <ClInclude Include="OpenGLESPage.xaml.h">
-      <DependentUpon>OpenGLESPage.xaml</DependentUpon>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,7 +178,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="OpenGLESPage.xaml" />
+    <Page Include="..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

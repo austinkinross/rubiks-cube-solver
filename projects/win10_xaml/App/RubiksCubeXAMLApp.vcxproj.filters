@@ -32,38 +32,55 @@
     <Filter Include="WindowsStore">
       <UniqueIdentifier>{dc08bde7-7d75-4425-a982-3fa5ca619ad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WindowsStore\XAMLApp">
+      <UniqueIdentifier>{c8a5972d-7f1a-4b84-b67c-586c3f46e312}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />
     <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />
-    <ClCompile Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.cpp" />
-    <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL.cpp" />
-    <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp" />
-    <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="OpenGLESPage.xaml.cpp" />
+    <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL_WindowsStore.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\WICTextureLoader\WICTextureLoader.cpp">
+      <Filter>WICTextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.cpp">
+      <Filter>Renderer\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
     <ClInclude Include="..\..\..\src\AgnosticApp.h" />
     <ClInclude Include="..\..\..\src\Helpers.h" />
-    <ClInclude Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.h" />
-    <ClInclude Include="..\..\..\src\Renderer\GL\RendererGL.h" />
-    <ClInclude Include="..\..\..\src\Renderer\GL\ShaderCompilerGL.h" />
-    <ClInclude Include="..\..\..\src\Renderer\Renderer.h" />
-    <ClInclude Include="..\..\..\src\WICTextureLoader\WICTextureLoader.h" />
-    <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h" />
     <ClInclude Include="OpenGLESPage.xaml.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest" />
+    <ClInclude Include="..\..\..\src\Renderer\GL\RendererGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\GL\ShaderCompilerGL.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\WICTextureLoader\WICTextureLoader.h">
+      <Filter>WICTextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.h">
+      <Filter>Renderer\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h">
+      <Filter>WindowsStore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(AngleBinPath)libEGL.dll" />
     <None Include="$(AngleBinPath)libGLESv2.dll" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\src\WICTextureLoader\cube.jpg">
@@ -92,6 +109,18 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="OpenGLESPage.xaml" />
+    <Page Include="..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml">
+      <Filter>WindowsStore\XAMLApp</Filter>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <Filter>WindowsStore</Filter>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Filter>WindowsStore</Filter>
+    </ApplicationDefinition>
   </ItemGroup>
 </Project>

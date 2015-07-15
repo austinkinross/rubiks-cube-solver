@@ -1,5 +1,5 @@
 ﻿#include "WindowsStoreApp.h"
-#include "BasicTimer.h"
+#include "../BasicTimer.h"
 #include <ppltasks.h>
 
 using namespace Windows::ApplicationModel;
