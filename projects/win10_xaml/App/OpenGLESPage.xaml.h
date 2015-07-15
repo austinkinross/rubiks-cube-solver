@@ -15,8 +15,8 @@ namespace RubiksCubeXAMLApp
 	private:
 		void OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void OnVisibilityChanged(Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::VisibilityChangedEventArgs^ args);
-		void CreateRenderSurface();
-		void DestroyRenderSurface();
+		void CreateAgnosticApp();
+		void DestroyAgnosticApp();
 		void StartRenderLoop();
 		void StopRenderLoop();
 

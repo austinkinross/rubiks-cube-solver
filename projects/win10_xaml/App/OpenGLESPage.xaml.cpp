@@ -25,13 +25,12 @@ OpenGLESPage::OpenGLESPage() :
 OpenGLESPage::~OpenGLESPage()
 {
 	StopRenderLoop();
-	DestroyRenderSurface();
+	DestroyAgnosticApp();
 }
 
 void OpenGLESPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	// The SwapChainPanel has been created and arranged in the page layout, so EGL can be initialized.
-	CreateRenderSurface();
+	CreateAgnosticApp();
 	StartRenderLoop();
 }
 
@@ -47,7 +46,7 @@ void OpenGLESPage::OnVisibilityChanged(Windows::UI::Core::CoreWindow^ sender, Wi
 	}
 }
 
-void OpenGLESPage::CreateRenderSurface()
+void OpenGLESPage::CreateAgnosticApp()
 {
 	if (mAgnosticApp == nullptr)
 	{
@@ -59,7 +58,7 @@ void OpenGLESPage::CreateRenderSurface()
 	}
 }
 
-void OpenGLESPage::DestroyRenderSurface()
+void OpenGLESPage::DestroyAgnosticApp()
 {
 	if (mAgnosticApp != nullptr)
 	{
