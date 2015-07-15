@@ -1,7 +1,6 @@
 ﻿#pragma once
 
-#include "OpenGLES.h"
-#include "App/OpenGLESPage.g.h"
+#include "OpenGLESPage.g.h"
 #include "AgnosticApp.h"
 
 namespace RubiksCubeXAMLApp
