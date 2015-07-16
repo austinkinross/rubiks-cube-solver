@@ -137,6 +137,11 @@ namespace RubiksCubeRecognitionWinRT
                 ds.DrawImage(modEffect, src, src);
             }
 
+            int centerX = 0;
+            int centerY = 0;
+            int cubletWidth = 0;
+            int cubletHeight = 0;
+
             using (CanvasBitmap input = CanvasBitmap.CreateFromDirect3D11Surface(canvasDevice, context.InputFrame.Direct3DSurface))
             using (CanvasRenderTarget output = CanvasRenderTarget.CreateFromDirect3D11Surface(canvasDevice, context.OutputFrame.Direct3DSurface))
             using (CanvasDrawingSession ds = output.CreateDrawingSession())
@@ -154,10 +159,10 @@ namespace RubiksCubeRecognitionWinRT
                 int foundLeft = 0;
                 for (int i = 0; i < analysisWidth / 2; i++)
                 {
-                    byte r = analysisHorzBytes[4 * (analysisWidth / 2 - i) + 0];
+                    byte b = analysisHorzBytes[4 * (analysisWidth / 2 - i) + 0];
                     byte g = analysisHorzBytes[4 * (analysisWidth / 2 - i) + 1];
-                    byte b = analysisHorzBytes[4 * (analysisWidth / 2 - i) + 2];
-                    if ((r > 100 ||  g > 100 || b > 100) && foundLeft == 0)
+                    byte r = analysisHorzBytes[4 * (analysisWidth / 2 - i) + 2];
+                    if ((r > 100 ||  g > 100 || b > 80) && foundLeft == 0)
                     {
                         foundLeft = i;
                     }
@@ -169,7 +174,7 @@ namespace RubiksCubeRecognitionWinRT
                     byte r = analysisHorzBytes[4 * (analysisWidth / 2 + i) + 0];
                     byte g = analysisHorzBytes[4 * (analysisWidth / 2 + i) + 1];
                     byte b = analysisHorzBytes[4 * (analysisWidth / 2 + i) + 2];
-                    if ((r > 100 || g > 100 || b > 100) && foundRight == 0)
+                    if ((r > 100 || g > 100 || b > 80) && foundRight == 0)
                     {
                         foundRight = i;
                     }
@@ -181,7 +186,7 @@ namespace RubiksCubeRecognitionWinRT
                     byte r = analysisVertBytes[4 * (analysisHeight / 2 - i) + 0];
                     byte g = analysisVertBytes[4 * (analysisHeight / 2 - i) + 1];
                     byte b = analysisVertBytes[4 * (analysisHeight / 2 - i) + 2];
-                    if ((r > 100 || g > 100 || b > 100) && foundTop == 0)
+                    if ((r > 100 || g > 100 || b > 80) && foundTop == 0)
                     {
                         foundTop = i;
                     }
@@ -193,16 +198,16 @@ namespace RubiksCubeRecognitionWinRT
                     byte r = analysisVertBytes[4 * (analysisHeight / 2 + i) + 0];
                     byte g = analysisVertBytes[4 * (analysisHeight / 2 + i) + 1];
                     byte b = analysisVertBytes[4 * (analysisHeight / 2 + i) + 2];
-                    if ((r > 100 || g > 100 || b > 100) && foundBottom == 0)
+                    if ((r > 100 || g > 100 || b > 80) && foundBottom == 0)
                     {
                         foundBottom = i;
                     }
                 }
 
-                int centerX = (-foundLeft + foundRight) / 2 + (int)output.SizeInPixels.Width / 2;
-                int centerY = (-foundTop + foundBottom) / 2 + (int)output.SizeInPixels.Height / 2;
-                int cubletWidth = foundLeft + foundRight;
-                int cubletHeight = foundTop + foundBottom;
+                centerX = (-foundLeft + foundRight) / 2 + (int)output.SizeInPixels.Width / 2;
+                centerY = (-foundTop + foundBottom) / 2 + (int)output.SizeInPixels.Height / 2;
+                cubletWidth = (int)((foundLeft + foundRight) * 1.2f);
+                cubletHeight = (int)((foundTop + foundBottom) * 1.2f);
 
 
                 var transformEffect = new Transform2DEffect()
@@ -217,17 +222,16 @@ namespace RubiksCubeRecognitionWinRT
                 ds.FillRectangle(new Rect(output.SizeInPixels.Width / 2 - 3, output.SizeInPixels.Height / 4, 6, output.SizeInPixels.Height / 2), Colors.Gray);
                 ds.FillRectangle(new Rect(output.SizeInPixels.Width / 4, output.SizeInPixels.Height / 2 - 3, output.SizeInPixels.Width / 2, 6), Colors.Gray);
 
-                ds.FillRectangle(centerX - 10, centerY - 10, 20, 20, Colors.Red);
-                ds.FillRectangle(centerX - 10, centerY - cubletHeight - 10, 20, 20, Colors.Red);
-                ds.FillRectangle(centerX - 10, centerY + cubletHeight - 10, 20, 20, Colors.Red);
-                ds.FillRectangle(centerX - cubletWidth - 10, centerY - 10, 20, 20, Colors.Red);
-                ds.FillRectangle(centerX - cubletWidth - 10, centerY - cubletHeight - 10, 20, 20, Colors.Red);
-                ds.FillRectangle(centerX - cubletWidth - 10, centerY + cubletHeight - 10, 20, 20, Colors.Red);
-                ds.FillRectangle(centerX + cubletWidth - 10, centerY - 10, 20, 20, Colors.Red);
-                ds.FillRectangle(centerX + cubletWidth - 10, centerY - cubletHeight - 10, 20, 20, Colors.Red);
-                ds.FillRectangle(centerX + cubletWidth - 10, centerY + cubletHeight - 10, 20, 20, Colors.Red);
+                ds.FillRectangle(centerX - 10, centerY - 10, 20, 20, Colors.Black);
+                ds.FillRectangle(centerX - 10, centerY - cubletHeight - 10, 20, 20, Colors.Black);
+                ds.FillRectangle(centerX - 10, centerY + cubletHeight - 10, 20, 20, Colors.Black);
+                ds.FillRectangle(centerX - cubletWidth - 10, centerY - 10, 20, 20, Colors.Black);
+                ds.FillRectangle(centerX - cubletWidth - 10, centerY - cubletHeight - 10, 20, 20, Colors.Black);
+                ds.FillRectangle(centerX - cubletWidth - 10, centerY + cubletHeight - 10, 20, 20, Colors.Black);
+                ds.FillRectangle(centerX + cubletWidth - 10, centerY - 10, 20, 20, Colors.Black);
+                ds.FillRectangle(centerX + cubletWidth - 10, centerY - cubletHeight - 10, 20, 20, Colors.Black);
+                ds.FillRectangle(centerX + cubletWidth - 10, centerY + cubletHeight - 10, 20, 20, Colors.Black);
             }
-
         }
 
         public void SetEncodingProperties(VideoEncodingProperties encodingProperties, IDirect3DDevice device)
