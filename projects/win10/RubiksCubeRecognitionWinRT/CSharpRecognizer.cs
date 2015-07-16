@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Devices.Enumeration;
+using Windows.Foundation.Collections;
 using Windows.Media.Capture;
+using Windows.Media.Effects;
 using Windows.UI.Xaml.Controls;
 
 namespace RubiksCubeRecognitionWinRT
@@ -16,9 +19,25 @@ namespace RubiksCubeRecognitionWinRT
         {
             mMediaCapture = new MediaCapture();
 
+            var devices = DeviceInformation.FindAllAsync(DeviceClass.VideoCapture).AsTask();
+
+            string deviceID;
+
+            if (devices.Result.Count >= 2)
+            {
+                deviceID = devices.Result[1].Id;
+            }
+            else
+            {
+                deviceID = devices.Result[0].Id;
+            }
+
+            devices.Wait();
+
             var settings = new MediaCaptureInitializationSettings()
             {
-                StreamingCaptureMode = StreamingCaptureMode.Video
+                StreamingCaptureMode = StreamingCaptureMode.Video,
+                VideoDeviceId = deviceID
             };
 
             try
@@ -38,6 +57,10 @@ namespace RubiksCubeRecognitionWinRT
 
             captureElement.Source = mMediaCapture;
             mMediaCapture.StartPreviewAsync().AsTask().Wait();
+
+            mMediaCapture.AddVideoEffectAsync(
+                new VideoEffectDefinition(typeof(AnalysisEffect).FullName, new PropertySet()),
+                MediaStreamType.VideoPreview).AsTask().Wait();
         }
 
         public bool getBool()

@@ -39,7 +39,6 @@
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />
     <ClCompile Include="..\..\..\src\AgnosticApp.cpp" />
-    <ClCompile Include="OpenGLESPage.xaml.cpp" />
     <ClCompile Include="..\..\..\src\Renderer\GL\RendererGL.cpp">
       <Filter>Renderer\GL</Filter>
     </ClCompile>
@@ -52,12 +51,12 @@
     <ClCompile Include="..\..\..\src\Renderer\GL\CubeAnalyzerProto.cpp">
       <Filter>Renderer\GL</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
     <ClInclude Include="..\..\..\src\AgnosticApp.h" />
     <ClInclude Include="..\..\..\src\Helpers.h" />
-    <ClInclude Include="OpenGLESPage.xaml.h" />
     <ClInclude Include="..\..\..\src\Renderer\GL\RendererGL.h">
       <Filter>Renderer\GL</Filter>
     </ClInclude>
@@ -76,6 +75,7 @@
     <ClInclude Include="..\..\..\src\WindowsStore\BasicTimer.h">
       <Filter>WindowsStore</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(AngleBinPath)libEGL.dll" />

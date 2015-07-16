@@ -143,9 +143,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\third_party;$(ProjectDir)..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -167,9 +170,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile />
+      <PrecompiledHeaderOutputFile />
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\third_party;$(ProjectDir)..\..\..\src;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -3,5 +3,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <DebuggerFlavor>AppHostRemoteDebugger</DebuggerFlavor>
     <DebuggerMachineName>ASUST100TAM</DebuggerMachineName>
+    <DebuggerType>NativeOnly</DebuggerType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <DebuggerFlavor>AppHostRemoteDebugger</DebuggerFlavor>
+    <DebuggerType>NativeOnly</DebuggerType>
+    <DebuggerMachineName>ASUST100TAM</DebuggerMachineName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebuggerType>NativeOnly</DebuggerType>
+    <DebuggerMachineName>ASUST100TAM</DebuggerMachineName>
+    <DebuggerFlavor>AppHostRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
