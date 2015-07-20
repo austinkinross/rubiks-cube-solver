@@ -277,5 +277,5 @@ void Cube::SetFoldAngle(float cubeFoldAngle)
     frontFaceWorldMatrix = glm::mat4();
     backFaceWorldMatrix = leftFaceWorldMatrix * glm::translate(glm::mat4(), glm::vec3(3, 0, -3)) *  glm::rotate(glm::mat4(), -cubeFoldAngle, glm::vec3(0, 1, 0)) *  glm::translate(glm::mat4(), glm::vec3(-3, 0, 3));
     topFaceWorldMatrix = rightFaceWorldMatrix * glm::translate(glm::mat4(), glm::vec3(-3, 3, 0)) *  glm::rotate(glm::mat4(), cubeFoldAngle, glm::vec3(0, 0, 1)) *  glm::translate(glm::mat4(), glm::vec3(3, -3, 0));
-    bottomFaceWorldMatrix = backFaceWorldMatrix * glm::translate(glm::mat4(), glm::vec3(0, -3, -3)) *  glm::rotate(glm::mat4(), cubeFoldAngle, glm::vec3(1, 0, 0)) *  glm::translate(glm::mat4(), glm::vec3(0, 3, 3));
+    bottomFaceWorldMatrix = rightFaceWorldMatrix * glm::translate(glm::mat4(), glm::vec3(-3, -3, 0)) *  glm::rotate(glm::mat4(), -cubeFoldAngle, glm::vec3(0, 0, 1)) *  glm::translate(glm::mat4(), glm::vec3(3, 3, 0));
 }
