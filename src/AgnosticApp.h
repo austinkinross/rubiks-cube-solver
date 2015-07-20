@@ -34,7 +34,7 @@ public:
     void Initialize(WindowWrapper *windowWrapper, float windowWidth, float windowHeight);
 
 	void Update(float timeTotal, float timeDelta);
-    void UpdateForWindowSizeChange();
+    void UpdateForWindowSizeChange(float newWidth, float newHeight);
 
     void Present();
     void Render();

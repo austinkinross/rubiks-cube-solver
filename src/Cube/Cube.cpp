@@ -7,7 +7,7 @@
 
 Cube::Cube()
 {
-    worldMatrix = glm::rotate(glm::mat4(), 0.23835f, glm::vec3(0, 1, 0));
+    worldMatrix = glm::rotate(glm::mat4(), 0.0f, glm::vec3(0, 1, 0));
 
     float pi = 3.1415926535897f;
 

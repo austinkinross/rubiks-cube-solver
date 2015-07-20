@@ -19,6 +19,8 @@ CubePlayer::CubePlayer(CubePlayerDesc* desc)
         mPlaybackState = PLAYBACK_STATE_SOLVING;
         mFoldingAngle = 0.0f;
     }
+
+	mCube->SetFoldAngle(mFoldingAngle);
 }
 
 CubePlayer::~CubePlayer()

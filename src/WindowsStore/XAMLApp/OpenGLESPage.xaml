@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    
-  <SwapChainPanel x:Name="swapChainPanel">
+
+    <SwapChainPanel x:Name="swapChainPanel">
         <Grid.ColumnDefinitions>
             <ColumnDefinition ></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -21,10 +21,11 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
-            <CaptureElement x:Name="captureElement" Width="Auto" Height="Auto"/>
-            <TextBlock x:Name="progressText" Text="" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" />
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         </StackPanel>
 
-  </SwapChainPanel>
+        <CaptureElement Grid.Column="3" x:Name="captureElement" Width="Auto" Height="Auto"/>
+        <TextBlock x:Name="progressText" Text="" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" />
+
+    </SwapChainPanel>
 </Page>

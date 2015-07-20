@@ -71,12 +71,14 @@ void AgnosticApp::Update(float timeTotal, float timeDelta)
         mCubePlayer->Play();
 	}
 
-    mCubePlayer->Update(timeTotal, timeDelta);
+    // mCubePlayer->Update(timeTotal, timeDelta);
 
-    glm::vec3 eye = glm::vec3(7.7f, -7.7f, -7.5f);
-    glm::vec3 at = glm::vec3(0.0f, -0.1f, 0.0f);
+	mCubePlayer->Pause();
+
+    glm::vec3 eye = glm::vec3(0.0f, 0, 22.0f);
+    glm::vec3 at = glm::vec3(0.0f, -0.0f, 0.0f);
     glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-    m_viewMatrix = glm::lookAt(eye, at, up) * glm::rotate(glm::mat4(), timeTotal / 2.0f, glm::vec3(0, 1, 0));
+	m_viewMatrix = glm::lookAt(eye, at, up); // *glm::rotate(glm::mat4(), 0 / 2.0f, glm::vec3(0, 1, 0));
 }
 
 void AgnosticApp::Render()
@@ -100,8 +102,11 @@ void AgnosticApp::Render()
 }
 
 // This method is called in the event handler for the SizeChanged event.
-void AgnosticApp::UpdateForWindowSizeChange()
+void AgnosticApp::UpdateForWindowSizeChange(float newWidth, float newHeight)
 {
+	float fovAngleY = 70.0f * XM_PI / 180.0f;
+	m_projectionMatrix = glm::perspectiveFov(fovAngleY, newWidth, newHeight, 0.01f, 100.0f);
+
     mRenderer->UpdateForWindowSizeChange();
 }
 

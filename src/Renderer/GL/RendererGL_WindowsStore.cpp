@@ -224,22 +224,11 @@ void RendererGL::DestroyWindowResources()
 // This method is called in the event handler for the SizeChanged event.
 void RendererGL::UpdateForWindowSizeChange()
 {
-    // TODO: fix this
-    //Size pixelSize;
-    //// Use the dimensions of the custom render surface size if one was specified.
-    //if (mUseCustomRenderSurfaceSize)
-    //{
-    //    // Render surface size is already in pixels
-    //    pixelSize = mCustomRenderSurfaceSize;
-    //}
-    //else
-    //{
-    //    DisplayInformation^ currentDisplayInformation = DisplayInformation::GetForCurrentView();
-    //    pixelSize = Size(ConvertDipsToPixels(size.Width, currentDisplayInformation->LogicalDpi), ConvertDipsToPixels(size.Height, currentDisplayInformation->LogicalDpi));
-    //}
+	EGLint width; EGLint height;
+	eglQuerySurface(mEglDisplay, mEglSurface, EGL_WIDTH, &width);
+	eglQuerySurface(mEglDisplay, mEglSurface, EGL_HEIGHT, &height);
 
-    //mWindowWidth = static_cast<GLsizei>(pixelSize.Width);
-    //mWindowHeight = static_cast<GLsizei>(pixelSize.Height);
+	glViewport(0, 0, width, height);
 }
 
 void RendererGL::Swap()

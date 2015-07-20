@@ -20,12 +20,26 @@ OpenGLESPage::OpenGLESPage() :
 
 	this->Loaded +=
 		ref new Windows::UI::Xaml::RoutedEventHandler(this, &OpenGLESPage::OnPageLoaded);
+
+	swapChainPanel->SizeChanged +=
+		ref new Windows::UI::Xaml::SizeChangedEventHandler(this, &OpenGLESPage::OnSwapChainPanelSizeChanged);
+
 }
 
 OpenGLESPage::~OpenGLESPage()
 {
 	StopRenderLoop();
 	DestroyAgnosticApp();
+}
+
+void OpenGLESPage::OnSwapChainPanelSizeChanged(Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e)
+{
+	// Size change events occur outside of the render thread.  A lock is required when updating  
+	// the swapchainpanel size
+	if (mAgnosticApp)
+	{
+		mAgnosticApp->UpdateForWindowSizeChange(e->NewSize.Width, e->NewSize.Height);
+	}
 }
 
 void OpenGLESPage::OnPageLoaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
