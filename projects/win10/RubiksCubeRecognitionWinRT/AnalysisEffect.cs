@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
+using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.DirectX.Direct3D11;
@@ -16,6 +17,21 @@ namespace RubiksCubeRecognitionWinRT
     public sealed class AnalysisEffect : IBasicVideoEffect
     {
         CanvasDevice canvasDevice;
+
+        static Color[] cubletColors = new Color[3 * 3];
+        static Mutex cubeletColorsMutex = new Mutex();
+
+        public static Color[] GetLastCubletColors()
+        {
+          //  cubeletColorsMutex.WaitOne();
+
+            Color[] colors = new Color[9];
+            cubletColors.CopyTo(colors, 0);
+
+          //  cubeletColorsMutex.ReleaseMutex();
+
+            return colors;
+        }
 
         public bool IsReadOnly
         {
@@ -156,7 +172,7 @@ namespace RubiksCubeRecognitionWinRT
                 byte b = analysisHorzBytes[4 * (analysisWidth / 2 - i) + 0];
                 byte g = analysisHorzBytes[4 * (analysisWidth / 2 - i) + 1];
                 byte r = analysisHorzBytes[4 * (analysisWidth / 2 - i) + 2];
-                if ((r > 100 ||  g > 100 || b > 80) && foundLeft == 0)
+                if ((r > 100 ||  g > 100 || b > 50) && foundLeft == 0)
                 {
                     foundLeft = i;
                 }
@@ -168,7 +184,7 @@ namespace RubiksCubeRecognitionWinRT
                 byte r = analysisHorzBytes[4 * (analysisWidth / 2 + i) + 0];
                 byte g = analysisHorzBytes[4 * (analysisWidth / 2 + i) + 1];
                 byte b = analysisHorzBytes[4 * (analysisWidth / 2 + i) + 2];
-                if ((r > 100 || g > 100 || b > 80) && foundRight == 0)
+                if ((r > 100 || g > 100 || b > 50) && foundRight == 0)
                 {
                     foundRight = i;
                 }
@@ -180,7 +196,7 @@ namespace RubiksCubeRecognitionWinRT
                 byte r = analysisVertBytes[4 * (analysisHeight / 2 - i) + 0];
                 byte g = analysisVertBytes[4 * (analysisHeight / 2 - i) + 1];
                 byte b = analysisVertBytes[4 * (analysisHeight / 2 - i) + 2];
-                if ((r > 100 || g > 100 || b > 80) && foundTop == 0)
+                if ((r > 100 || g > 100 || b > 50) && foundTop == 0)
                 {
                     foundTop = i;
                 }
@@ -192,7 +208,7 @@ namespace RubiksCubeRecognitionWinRT
                 byte r = analysisVertBytes[4 * (analysisHeight / 2 + i) + 0];
                 byte g = analysisVertBytes[4 * (analysisHeight / 2 + i) + 1];
                 byte b = analysisVertBytes[4 * (analysisHeight / 2 + i) + 2];
-                if ((r > 100 || g > 100 || b > 80) && foundBottom == 0)
+                if ((r > 100 || g > 100 || b > 50) && foundBottom == 0)
                 {
                     foundBottom = i;
                 }
@@ -206,7 +222,6 @@ namespace RubiksCubeRecognitionWinRT
             // No 2d arrays in WinRT components? Boo.
             // "Error C1113	#using failed on 'rubikscuberecognitionwinrt.winmd'	RubiksCubeRecognitionLib
             Vector2[] cubletCenters = new Vector2[3 * 3];
-            Color[] cubletColors = new Color[3 * 3];
 
             cubletCenters[1 * 3 + 1] = new Vector2(centerX, centerY);
             cubletCenters[1 * 3 + 0] = new Vector2(centerX, centerY - cubletHeight);
@@ -217,6 +232,8 @@ namespace RubiksCubeRecognitionWinRT
             cubletCenters[2 * 3 + 1] = new Vector2(centerX + cubletWidth, centerY);
             cubletCenters[2 * 3 + 0] = new Vector2(centerX + cubletWidth, centerY - cubletHeight);
             cubletCenters[2 * 3 + 2] = new Vector2(centerX + cubletWidth, centerY + cubletHeight);
+
+            cubeletColorsMutex.WaitOne();
 
             using (CanvasBitmap input = CanvasBitmap.CreateFromDirect3D11Surface(canvasDevice, context.InputFrame.Direct3DSurface))
             using (CanvasRenderTarget output = CanvasRenderTarget.CreateFromDirect3D11Surface(canvasDevice, context.OutputFrame.Direct3DSurface))
@@ -266,6 +283,8 @@ namespace RubiksCubeRecognitionWinRT
                     }
                 }
             }
+
+            cubeletColorsMutex.ReleaseMutex();
         }
 
         public void SetEncodingProperties(VideoEncodingProperties encodingProperties, IDirect3DDevice device)

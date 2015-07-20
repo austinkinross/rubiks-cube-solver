@@ -7,7 +7,7 @@ class Cube;
 class CubeRecognizer
 {
 public:
-	virtual void ColorCubeFace(Cube* cube) = 0;
+	virtual void ColorNextCubeFace() = 0;
 };
 
-CubeRecognizer* createCubeRecognizer(WindowWrapper *windowWrapper);
+CubeRecognizer* createCubeRecognizer(Cube *cube, WindowWrapper *windowWrapper);

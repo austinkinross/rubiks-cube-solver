@@ -104,7 +104,11 @@ void RendererGL::RenderSticker(Sticker* pSticker, glm::mat4 *pWorldMatrix, glm::
     glUniformMatrix4fv(mStickerViewUniformPos, 1, GL_FALSE, (GLfloat*)pViewMatrix);
     glUniformMatrix4fv(mStickerProjectionUniformPos, 1, GL_FALSE, (GLfloat*)pProjectionMatrix);
 
-    glm::vec4 color = ColorToVec4(pSticker->GetColor());
+    // glm::vec4 color = ColorToVec4(pSticker->GetColor());
+
+	glm::vec4 color;
+	pSticker->GetRGBColor(&(color.x), &(color.y), &(color.z));
+
     glUniform3fv(mStickerColorUniformPos, 1, (GLfloat*)&color);
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

@@ -7,6 +7,7 @@ using Windows.Devices.Enumeration;
 using Windows.Foundation.Collections;
 using Windows.Media.Capture;
 using Windows.Media.Effects;
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
 
 namespace RubiksCubeRecognitionWinRT
@@ -37,7 +38,7 @@ namespace RubiksCubeRecognitionWinRT
             var settings = new MediaCaptureInitializationSettings()
             {
                 StreamingCaptureMode = StreamingCaptureMode.Video,
-                VideoDeviceId = deviceID
+                // VideoDeviceId = deviceID
             };
 
             try
@@ -63,9 +64,9 @@ namespace RubiksCubeRecognitionWinRT
                 MediaStreamType.VideoPreview).AsTask().Wait();
         }
 
-        public bool getBool()
+        public Color[] getLastColorArray()
         {
-            return false;
+            return AnalysisEffect.GetLastCubletColors();
         }
     }
 }

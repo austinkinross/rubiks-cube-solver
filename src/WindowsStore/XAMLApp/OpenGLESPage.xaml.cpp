@@ -24,6 +24,7 @@ OpenGLESPage::OpenGLESPage() :
 	swapChainPanel->SizeChanged +=
 		ref new Windows::UI::Xaml::SizeChangedEventHandler(this, &OpenGLESPage::OnSwapChainPanelSizeChanged);
 
+//	captureSolveButton->Click += ref new Windows::UI::Xaml::RoutedEventHandler(this, &OpenGLESPage::captureSolveButton_Click);
 }
 
 OpenGLESPage::~OpenGLESPage()
@@ -120,4 +121,9 @@ void OpenGLESPage::StopRenderLoop()
 		mRenderLoopWorker->Cancel();
 		mRenderLoopWorker = nullptr;
 	}
+}
+
+void OpenGLESPage::captureSolveButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	mAgnosticApp->HandleCaptureStartButtonPress();
 }

@@ -23,5 +23,6 @@ namespace RubiksCubeXAMLApp
 		AgnosticApp *mAgnosticApp;
 
 		Windows::Foundation::IAsyncAction^ mRenderLoopWorker;
+		void captureSolveButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

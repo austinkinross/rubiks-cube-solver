@@ -9,7 +9,26 @@ CubePlayer::CubePlayer(CubePlayerDesc* desc)
 	Reset();
 	bPaused = false;
 
-    if (mDesc.unfoldCubeAtStart)
+	if (mDesc.populateColors)
+	{
+		mPlaybackState = PLAYBACK_STATE_POPULATING_COLORS;
+		mFoldingAngle = 3.141592653f / 2;
+
+		// Set all the faces to be nearly black
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				mCube->frontFaceStickers[i][j]->SetColor(StickerColor::CUBE_BLACK);
+				mCube->backFaceStickers[i][j]->SetColor(StickerColor::CUBE_BLACK);
+				mCube->topFaceStickers[i][j]->SetColor(StickerColor::CUBE_BLACK);
+				mCube->bottomFaceStickers[i][j]->SetColor(StickerColor::CUBE_BLACK);
+				mCube->leftFaceStickers[i][j]->SetColor(StickerColor::CUBE_BLACK);
+				mCube->rightFaceStickers[i][j]->SetColor(StickerColor::CUBE_BLACK);
+			}
+		}
+	}
+    else if (mDesc.unfoldCubeAtStart)
     {
         mPlaybackState = PLAYBACK_STATE_FOLDING;
         mFoldingAngle = 3.141592653f / 2;

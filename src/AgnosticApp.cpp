@@ -20,8 +20,6 @@ void AgnosticApp::Initialize(WindowWrapper *windowWrapper, float windowWidth, fl
 
     UINT seed = 4741;
 
-	mCubeRecognizer = createCubeRecognizer(windowWrapper);
-
     // One renderer can be shared across all cubes. This uses a D3D11 backend to render the cubes
     mRenderer = new RendererGL(windowWrapper);
 
@@ -38,12 +36,15 @@ void AgnosticApp::Initialize(WindowWrapper *windowWrapper, float windowWidth, fl
     // Configure the CubePlayer
     CubePlayerDesc cubePlayerDesc;
     cubePlayerDesc.unfoldCubeAtStart = true;
+	cubePlayerDesc.populateColors = true;
 
     // Initialize the CubePlayer, which will play back the moves to solve the cube
     mCubePlayer = new CubePlayer(&cubePlayerDesc);
     mCubePlayer->GetCube()->Randomize(seed);
 
     mCubePlayer->UseCommandList(commandList);
+
+	mCubeRecognizer = createCubeRecognizer(mCubePlayer->GetCube(), windowWrapper);
 }
 
 bool tripledSpeed = false;
@@ -85,8 +86,6 @@ void AgnosticApp::Render()
 {
     mRenderer->Clear();
 
-	mCubeRecognizer->ColorCubeFace(mCubePlayer->GetCube());
-
     mRenderer->DrawCube(mCubePlayer->GetCube(), &m_viewMatrix, &m_projectionMatrix);
 
  //   glm::vec3 eye = glm::vec3(7.7f, -7.7f, -7.5f);
@@ -118,4 +117,9 @@ void AgnosticApp::Present()
 void AgnosticApp::MakeCurrent()
 {
 	mRenderer->MakeCurrent();
+}
+
+void AgnosticApp::HandleCaptureStartButtonPress()
+{
+	mCubeRecognizer->ColorNextCubeFace();
 }

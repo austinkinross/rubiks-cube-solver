@@ -53,6 +53,16 @@ StickerColor Sticker::GetColor()
 	return this->color;
 }
 
+void Sticker::SetRGBColor(float r, float g, float b)
+{
+	mRGBColor[0] = r; mRGBColor[1] = g; mRGBColor[2] = b;
+}
+
+void Sticker::GetRGBColor(float *r, float *g, float *b)
+{
+	*r = mRGBColor[0]; *g = mRGBColor[1]; *b = mRGBColor[2];
+}
+
 void Sticker::Draw(Renderer* pRenderer, glm::mat4 *pViewMatrix, glm::mat4 *pProjectionMatrix)
 {
     glm::mat4 cumulativeWorld = worldMatrix;

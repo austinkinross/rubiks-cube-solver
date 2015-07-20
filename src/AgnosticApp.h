@@ -41,6 +41,8 @@ public:
 
 	void MakeCurrent();
 
+	void HandleCaptureStartButtonPress();
+
 private:
     Renderer* mRenderer;
 	CubePlayer* mCubePlayer;

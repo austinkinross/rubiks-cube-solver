@@ -20,9 +20,11 @@ struct CubePlayerDesc
 {
     CubePlayerDesc()
     {
+		populateColors = true;
         unfoldCubeAtStart = false;
     }
 
+	bool populateColors;
     bool unfoldCubeAtStart;
     CubePlayerSpeeds speeds;
 };
@@ -49,7 +51,8 @@ private:
     enum PlaybackState
     {
         PLAYBACK_STATE_FOLDING = 1,
-        PLAYBACK_STATE_SOLVING = 2
+        PLAYBACK_STATE_SOLVING = 2,
+		PLAYBACK_STATE_POPULATING_COLORS = 3
     };
 
 	void Reset();

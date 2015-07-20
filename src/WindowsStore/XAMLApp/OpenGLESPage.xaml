@@ -27,5 +27,7 @@
         <CaptureElement Grid.Column="3" x:Name="captureElement" Width="Auto" Height="Auto"/>
         <TextBlock x:Name="progressText" Text="" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" />
 
+        <Button x:Name="captureSolveButton" Click="captureSolveButton_Click"  Grid.Column="0" Grid.Row="3" Foreground="Black" FontSize="50" HorizontalAlignment="Center">Capture</Button>
+        
     </SwapChainPanel>
 </Page>

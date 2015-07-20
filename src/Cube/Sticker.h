@@ -15,6 +15,8 @@ public:
 	void AttachRotationMatrix(glm::mat4 *pRotationMatrix);
 	void SetColor(StickerColor color);
 	StickerColor GetColor();
+	void SetRGBColor(float r, float g, float b);
+	void GetRGBColor(float *r, float *g, float *b);
 
 protected:
 	StickerColor color;
@@ -29,4 +31,6 @@ protected:
 
 	glm::mat4 worldMatrix;
     glm::mat4* mFaceMatrix;
+
+	float mRGBColor[3];
 };
