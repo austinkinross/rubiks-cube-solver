@@ -9,16 +9,21 @@
 
     
   <SwapChainPanel x:Name="swapChainPanel">
-        <!--<Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>-->
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
 
         <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
             <CaptureElement x:Name="captureElement" Width="Auto" Height="Auto"/>
-            <!---->
-            <TextBlock x:Name="progressText" Text="OpenGL ES and XAML" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" />
+            <TextBlock x:Name="progressText" Text="" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" />
         </StackPanel>
 
   </SwapChainPanel>
