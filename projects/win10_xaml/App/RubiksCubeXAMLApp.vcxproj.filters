@@ -78,9 +78,9 @@
     <ClInclude Include="..\..\..\src\WindowsStore\XAMLApp\OpenGLESPage.xaml.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(AngleBinPath)libEGL.dll" />
-    <None Include="$(AngleBinPath)libGLESv2.dll" />
     <None Include="packages.config" />
+    <None Include="$(angle-BinPath)\libEGL.dll" />
+    <None Include="$(angle-BinPath)\libGLESv2.dll" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\src\WICTextureLoader\cube.jpg">
